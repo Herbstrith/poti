@@ -30,6 +30,7 @@ static void poti_header_PajeDefineContainerType (int old_header)
   }
   fprintf(paje_file, "%%       Name string\n");
   fprintf(paje_file, "%%EndEventDef\n");
+//rst_event_ssisssss("EventDef", "PajeDefineContainerType",PAJE_DefineContainerType, Alias, ContainerType,Type,Name, "EndEventDef") 
 }
 
 static void poti_header_PajeDefineVariableType (int old_header)
@@ -44,6 +45,7 @@ static void poti_header_PajeDefineVariableType (int old_header)
   fprintf(paje_file, "%%       Name string\n");
   fprintf(paje_file, "%%       Color color\n");
   fprintf(paje_file, "%%EndEventDef\n");
+//rst_event_ssissssss("EventDef", "PajeDefineContainerType",PAJE_DefineVariableType, "Alias", "ContainerType","Type","Name","Color", "EndEventDef") 
 }
 
 static void poti_header_PajeDefineStateType (int old_header)
@@ -57,6 +59,8 @@ static void poti_header_PajeDefineStateType (int old_header)
   }
   fprintf(paje_file, "%%       Name string\n");
   fprintf(paje_file, "%%EndEventDef\n");
+
+//rst_event_ssissssss("EventDef", "PajeDefineStateType",PAJE_DefineStateType, "Alias string", "ContainerType string","Type string","Name string","Color string", "EndEventDef") 
 }
 
 static void poti_header_PajeDefineEventType (int old_header)
@@ -66,10 +70,12 @@ static void poti_header_PajeDefineEventType (int old_header)
   if (old_header){
     fprintf(paje_file, "%%       ContainerType string\n");
   }else{
-    fprintf(paje_file, "%%       Type string\n");
+    fprintf(paje_file, "%%       Types string\n");
   }
   fprintf(paje_file, "%%       Name string\n");
   fprintf(paje_file, "%%EndEventDef\n");
+
+//rst_event_ssisssss("EventDef", "PajeDefineStateType", PAJE_DefineEventType, "Alias string", "ContainerType string","Type string","Name string", "EndEventDef") 
 }
 
 static void poti_header_PajeDefineLinkType (int old_header)
