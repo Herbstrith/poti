@@ -18,7 +18,6 @@
 
 #include "poti_private.h"
 
-#include "poti_header_rastro.h"
 
 extern FILE *paje_file;
 extern int paje_extended;

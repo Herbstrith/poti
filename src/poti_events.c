@@ -15,6 +15,7 @@
     along with Poti. If not, see <http://www.gnu.org/licenses/>.
 */
 #include "poti_private.h"
+#include "poti_event_rastro.h"
 
 static double paje_event_timestamp(double timestamp)
 {
@@ -37,6 +38,8 @@ void poti_DefineContainerType(const char *alias,
          alias,
          containerType,
          name);
+
+ rst_event_dsss(0,PAJE_DefineContainerType,alias,containerType,name);
  
 }
 
@@ -51,6 +54,7 @@ void poti_DefineVariableType(const char *alias,
            containerType,
            name,
            color);
+rst_event_dssss(1,PAJE_DefineVariableType,alias,containerType,name,color);
 }
 
 void poti_DefineStateType(const char *alias,
@@ -62,6 +66,7 @@ void poti_DefineStateType(const char *alias,
          alias,
          containerType,
          name);
+rst_event_dsss(2,PAJE_DefineStateType,alias,containerType,name);
 }
 
 void poti_DefineEventType(const char *alias,
@@ -73,6 +78,7 @@ void poti_DefineEventType(const char *alias,
           alias,
           containerType,
           name);
+rst_event_dsss(3,PAJE_DefineEventType,alias,containerType,name);
 }
 
 void poti_DefineLinkType(const char *alias,
@@ -88,6 +94,7 @@ void poti_DefineLinkType(const char *alias,
          startContainerType,
          endContainerType,
          name);
+rst_event_dsssss(4,PAJE_DefineLinkType,alias,containerType,startContainerType,endContainerType,name);
 }
 
 void poti_DefineEntityValue(const char *alias,
@@ -101,6 +108,8 @@ void poti_DefineEntityValue(const char *alias,
           entityType,
           name,
           color);
+
+rst_event_dssss(4,PAJE_DefineEntityValue,alias,entityType,name,color);
 }
 
 void poti_CreateContainer(double timestamp,
@@ -116,6 +125,13 @@ void poti_CreateContainer(double timestamp,
          type,
          container,
          name);
+rst_event_ddssss(5,PAJE_CreateContainer,
+         paje_event_timestamp(timestamp),
+         alias,
+         type,
+         container,
+         name);
+
 }
 
 void poti_DestroyContainer(double timestamp,
@@ -127,6 +143,12 @@ void poti_DestroyContainer(double timestamp,
          paje_event_timestamp(timestamp),
          type,
          container);
+
+rst_event_ddss(6,PAJE_DestroyContainer,
+         paje_event_timestamp(timestamp),
+         type,
+         container);
+
 }
 
 void poti_SetVariable (double timestamp,
@@ -140,6 +162,12 @@ void poti_SetVariable (double timestamp,
           container,
           type,
           value);
+rst_event_ddssd(6, PAJE_SetVariable,
+          paje_event_timestamp(timestamp),
+          container,
+          type,
+          value);
+
 }
 
 void poti_AddVariable (double timestamp,
@@ -149,6 +177,11 @@ void poti_AddVariable (double timestamp,
 {
   fprintf(paje_file,"%d %.9f %s %s %f\n",
           PAJE_AddVariable,
+          paje_event_timestamp(timestamp),
+          container,
+          type,
+          value);
+rst_event_ddssd(7,PAJE_AddVariable,
           paje_event_timestamp(timestamp),
           container,
           type,
@@ -166,6 +199,12 @@ void poti_SubVariable (double timestamp,
           container,
           type,
           value);
+rst_event_ddssd(8,PAJE_SubVariable,
+          paje_event_timestamp(timestamp),
+          container,
+          type,
+          value);
+
 }
 
 void poti_SetState(double timestamp,
@@ -179,6 +218,12 @@ void poti_SetState(double timestamp,
          container,
          type,
          value);
+rst_event_ddsss(9, PAJE_SetState,
+         paje_event_timestamp(timestamp),
+         container,
+         type,
+         value);
+
 }
 
 
@@ -193,6 +238,12 @@ void poti_PushState(double timestamp,
          container,
          type,
          value);
+rst_event_ddsss( 10,PAJE_PushState,
+         paje_event_timestamp(timestamp),
+         container,
+         type,
+         value);
+
 }
 
 void poti_PushStateMark(double timestamp,
@@ -209,6 +260,14 @@ void poti_PushStateMark(double timestamp,
             type,
             value,
             mark);
+rst_event_ddsssi(11, PAJE_PushStateMark,
+            paje_event_timestamp(timestamp),
+            container,
+            type,
+            value,
+            mark);
+
+
   }else{
     poti_PushState (timestamp, container, type, value);
   }
@@ -223,6 +282,11 @@ void poti_PopState(double timestamp,
          paje_event_timestamp(timestamp),
          container,
          type);
+rst_event_ddss(12,PAJE_PopState,
+         paje_event_timestamp(timestamp),
+         container,
+         type);
+
 }
 
 void poti_ResetState(double timestamp,
@@ -234,6 +298,11 @@ void poti_ResetState(double timestamp,
          paje_event_timestamp(timestamp),
          container,
          type);
+rst_event_ddss(13,PAJE_ResetState,
+         paje_event_timestamp(timestamp),
+         container,
+         type);
+
 }
 
 void poti_StartLink(double timestamp,
@@ -251,6 +320,14 @@ void poti_StartLink(double timestamp,
          sourceContainer,
          value,
          key);
+rst_event_ddsssss(14,PAJE_StartLink,
+         paje_event_timestamp(timestamp),
+         container,
+         type,
+         sourceContainer,
+         value,
+         key);
+
 }
 
 void poti_StartLinkSize(double timestamp,
@@ -271,6 +348,15 @@ void poti_StartLinkSize(double timestamp,
             value,
             key,
             size);
+rst_event_ddsssssi(15,PAJE_StartLinkSize,
+            paje_event_timestamp(timestamp),
+            container,
+            type,
+            sourceContainer,
+            value,
+            key,
+            size);
+
   }else{
     poti_StartLink (timestamp, container, type, sourceContainer, value, key);
   }
@@ -296,6 +382,16 @@ void poti_StartLinkSizeMark(double timestamp,
             key,
             size,
             mark);
+rst_event_ddsssssii(16,PAJE_StartLinkSizeMark,
+            paje_event_timestamp(timestamp),
+            container,
+            type,
+            sourceContainer,
+            value,
+            key,
+            size,
+            mark);
+
   }else{
     poti_StartLink (timestamp, container, type, sourceContainer, value, key);
   }
@@ -316,6 +412,14 @@ void poti_EndLink(double timestamp,
          endContainer,
          value,
          key);
+rst_event_ddsssss(17, PAJE_EndLink,
+         paje_event_timestamp(timestamp),
+         container,
+         type,
+         endContainer,
+         value,
+         key);
+
 }
 
 void poti_NewEvent(double timestamp,
@@ -329,4 +433,10 @@ void poti_NewEvent(double timestamp,
          container,
          type,
          value);
+rst_event_ddsss(18,PAJE_NewEvent,
+         paje_event_timestamp(timestamp),
+         container,
+         type,
+         value);
+
 }
