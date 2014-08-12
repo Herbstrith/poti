@@ -37,6 +37,7 @@ void poti_DefineContainerType(const char *alias,
          alias,
          containerType,
          name);
+ 
 }
 
 void poti_DefineVariableType(const char *alias,

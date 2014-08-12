@@ -15,7 +15,7 @@
     along with Poti. If not, see <http://www.gnu.org/licenses/>.
 */
 #include "poti_private.h"
-
+#include <rastro.h>
 FILE* paje_file = 0;
 int paje_extended = 0;
 
@@ -53,5 +53,8 @@ void poti_header (int basic, int old_header)
 
   fprintf(paje_file,"#POTI_GIT_VERSION %s\n", POTI_GITVERSION);
   fprintf(paje_file,"#POTI_GIT_DATE (date of the cmake configuration) %s\n", POTI_GITDATE);
+//rst_init(1, 1);
+//rst_event(1);
   _poti_header (basic, old_header);
+//rst_finalize();
 }

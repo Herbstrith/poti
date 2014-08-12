@@ -35,11 +35,11 @@ static void poti_header_PajeDefineContainerType (int old_header)
   fprintf(paje_file, "%%       Name string\n");
   fprintf(paje_file, "%%EndEventDef\n");
 
-
+/*
 rst_init(1, 1);
 	rst_event(1);
 rst_event_ssisssss(0,"EventDef", "PajeDefineContainerType",PAJE_DefineContainerType, "Alias string", "ContainerType string","Type string","Name string", "EndEventDef") ;
-rst_finalize();
+rst_finalize();*/
 
 }
 
