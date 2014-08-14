@@ -17,10 +17,68 @@
 
 
 #include "poti_private.h"
-
+//#include "libpaje/PajeDefinitions.h"
 
 extern FILE *paje_file;
 extern int paje_extended;
+
+
+
+
+/*TODO
+	remove enums from the header
+	and use the PajeDefinitions
+
+*/
+typedef enum {
+  PajeDefineContainerTypeEventId,
+  PajeDefineEventTypeEventId,
+  PajeDefineStateTypeEventId,
+  PajeDefineVariableTypeEventId,
+  PajeDefineLinkTypeEventId,
+  PajeDefineEntityValueEventId,
+  PajeCreateContainerEventId,
+  PajeDestroyContainerEventId,
+  PajeNewEventEventId,
+  PajeSetStateEventId,
+  PajePushStateEventId,
+  PajePopStateEventId,
+  PajeResetStateEventId,
+  PajeSetVariableEventId,
+  PajeAddVariableEventId,
+  PajeSubVariableEventId,
+  PajeStartLinkEventId,
+  PajeEndLinkEventId,
+  PajeEventIdCount,
+  PajeUnknownEventId,
+} PajeEventId;
+
+typedef enum {
+  PAJE_Event,
+  PAJE_Time,
+  PAJE_Name,
+  PAJE_Type,
+  PAJE_Container,
+  PAJE_StartContainerType,
+  PAJE_EndContainerType,
+  PAJE_StartContainer,
+  PAJE_EndContainer,
+  PAJE_Value,
+  PAJE_Key,
+  PAJE_Alias,
+  PAJE_Color,
+  PAJE_Line,
+  PAJE_File,
+  PAJE_Extra, //for user-defined fields
+  PAJE_Unknown_Field
+} PajeField;
+
+
+
+
+
+
+
 
 static void poti_header_PajeDefineContainerType (int old_header)
 {
@@ -28,17 +86,27 @@ static void poti_header_PajeDefineContainerType (int old_header)
   fprintf(paje_file, "%%       Alias string\n");
   if (old_header){
     fprintf(paje_file, "%%       ContainerType string\n");
+	/*
+rst_event_iiii(PajeDefineContainerTypeEventId,
+		PAJE_DefineContainerType,
+		PAJE_Alias,
+		PAJE_Container
+		PAJE_Name);
+*/
+
   }else{
     fprintf(paje_file, "%%       Type string\n");
+		/*
+rst_event_iiii(PajeDefineContainerTypeEventId,
+		PAJE_DefineContainerType,
+		PAJE_Alias,
+		PAJE_Type,
+		PAJE_Name);
+*/
   }
   fprintf(paje_file, "%%       Name string\n");
   fprintf(paje_file, "%%EndEventDef\n");
 
-/*
-rst_init(1, 1);
-	rst_event(1);
-rst_event_ssisssss(0,"EventDef", "PajeDefineContainerType",PAJE_DefineContainerType, "Alias string", "ContainerType string","Type string","Name string", "EndEventDef") ;
-rst_finalize();*/
 
 }
 
@@ -48,14 +116,32 @@ static void poti_header_PajeDefineVariableType (int old_header)
   fprintf(paje_file, "%%       Alias string\n");
   if (old_header){
     fprintf(paje_file, "%%       ContainerType string\n");
+	/*rst_event_iiiii(PajeDefineVariableTypeEventId,
+		PAJE_DefineVariableType,
+		PAJE_Alias,
+		PAJE_Container,
+		PAJE_Name,
+		PAJE_Color);
+
+
+*/
   }else{
     fprintf(paje_file, "%%       Type string\n");
+/*rst_event_iiiii(PajeDefineVariableTypeEventId,
+		PAJE_DefineVariableType,
+		PAJE_Alias,
+		PAJE_Container,
+		PAJE_Name,
+		PAJE_Color);
+
+*/
   }
   fprintf(paje_file, "%%       Name string\n");
   fprintf(paje_file, "%%       Color color\n");
   fprintf(paje_file, "%%EndEventDef\n");
 
-//rst_event_ssissssss(1,"EventDef", "PajeDefineContainerType",PAJE_DefineVariableType, "Alias string", "ContainerType string","Type string","Name string","Color color", "EndEventDef") ;
+
+
 
 }
 
@@ -65,13 +151,27 @@ static void poti_header_PajeDefineStateType (int old_header)
   fprintf(paje_file, "%%       Alias string\n");
   if (old_header){
     fprintf(paje_file, "%%       ContainerType string\n");
+/*rst_event_iiii(PajeDefineStateTypeEventId,
+		PAJE_DefineStateType,
+		PAJE_Alias,
+		PAJE_Container,
+		PAJE_Name);
+
+*/
   }else{
     fprintf(paje_file, "%%       Type string\n");
+/*rst_event_iiii(PajeDefineStateTypeEventId,
+		PAJE_DefineStateType,
+		PAJE_Alias,
+		PAJE_Type,
+		PAJE_Name);
+
+*/
   }
   fprintf(paje_file, "%%       Name string\n");
   fprintf(paje_file, "%%EndEventDef\n");
 
-//rst_event_ssissssss(2,"EventDef", "PajeDefineStateType",PAJE_DefineStateType, "Alias string", "ContainerType string","Type string","Name string","Color string", "EndEventDef"); 
+
 }
 
 static void poti_header_PajeDefineEventType (int old_header)
@@ -80,13 +180,25 @@ static void poti_header_PajeDefineEventType (int old_header)
   fprintf(paje_file, "%%       Alias string\n");
   if (old_header){
     fprintf(paje_file, "%%       ContainerType string\n");
+/*rst_event_iiii(PajeDefineEventTypeEventId,
+		PAJE_DefineEventType,
+		PAJE_Alias,
+		PAJE_Container,
+		PAJE_Name);
+*/
   }else{
     fprintf(paje_file, "%%       Types string\n");
+/*rst_event_iiii(PajeDefineEventTypeEventId,
+		PAJE_DefineEventType,
+		PAJE_Alias,
+		PAJE_Type,
+		PAJE_Name);
+*/
   }
   fprintf(paje_file, "%%       Name string\n");
   fprintf(paje_file, "%%EndEventDef\n");
 
-//rst_event_ssisssss(3,"EventDef", "PajeDefineStateType", PAJE_DefineEventType, "Alias string", "ContainerType string","Type string","Name string", "EndEventDef") ;
+
 }
 
 static void poti_header_PajeDefineLinkType (int old_header)
@@ -97,15 +209,33 @@ static void poti_header_PajeDefineLinkType (int old_header)
     fprintf(paje_file, "%%       ContainerType string\n");
     fprintf(paje_file, "%%       SourceContainerType string\n");
     fprintf(paje_file, "%%       DestContainerType string\n");
+
+	/*rst_event_iiiiiii(PajeDefineLinkTypeEventId,
+		PAJE_DefineLinkType,
+		PAJE_Alias,
+		PAJE_Container,
+		PAJE_Container,
+		PAJE_Container,
+		PAJE_Name);
+*/
   }else{
     fprintf(paje_file, "%%       Type string\n");
     fprintf(paje_file, "%%       StartContainerType string\n");
     fprintf(paje_file, "%%       EndContainerType string\n");
+
+/*rst_event_iiiiiii(PajeDefineLinkTypeEventId,
+		PAJE_DefineLinkType,
+		PAJE_Alias,
+		PAJE_Type,
+		PAJE_StartContainerType,
+		PAJE_EndContainerType,
+		PAJE_Name);
+*/
   }
   fprintf(paje_file, "%%       Name string\n");
   fprintf(paje_file, "%%EndEventDef\n");
 
-//rst_event_ssissssssss(4,"EventDef", "PajeDefineLinkType", PAJE_DefineLinkType, "Alias string", "ContainerType string","ContainerType string","SourceContainerType string", "DestContainerType string","Type string","Name string", "EndEventDef") ;
+
 
 
 }
@@ -116,14 +246,28 @@ static void poti_header_PajeDefineEntityValue (int old_header)
   fprintf(paje_file, "%%       Alias string\n");
   if (old_header){
     fprintf(paje_file, "%%       EntityType string\n");
+	/*rst_event_iiiii(PajeDefineEntityValueEventId,
+		PAJE_DefineEntityValue,
+		PAJE_Alias,
+		PAJE_Container,
+		PAJE_Name,
+		PAJE_Color);
+*/
   }else{
     fprintf(paje_file, "%%       Type string\n");
+	/*rst_event_iiiii(PajeDefineEntityValueEventId,
+		PAJE_DefineEntityValue,
+		PAJE_Alias,
+		PAJE_Type,
+		PAJE_Name,
+		PAJE_Color);
+*/
   }
   fprintf(paje_file, "%%       Name string\n");
   fprintf(paje_file, "%%       Color color\n");
   fprintf(paje_file, "%%EndEventDef\n");
 
- //rst_event_ssissssss(5,"EventDef", "PajeDefineEntityValue", PAJE_DefineEntityValue, "Alias string", "EntityType string","Type string","Name string","Color color", "EndEventDef"); 
+ 
 
 }
 
@@ -136,7 +280,14 @@ static void poti_header_PajeCreateContainer (int old_header)
   fprintf(paje_file, "%%       Container string\n");
   fprintf(paje_file, "%%       Name string\n");
   fprintf(paje_file, "%%EndEventDef\n");
- //rst_event_ssissssss(6,"EventDef", "PajeCreateContainer", PAJE_CreateContainer,"Time date", "Alias string","Type string","Container string","Name string", "EndEventDef"); 
+ /*rst_event_iiiiii(PajeCreateContainerEventId,
+		PAJE_CreateContainer,
+		PAJE_Time,
+		PAJE_Alias,
+		PAJE_Type,
+		PAJE_Container,
+		Paje_Name);
+*/
 }
 
 static void poti_header_PajeDestroyContainer (int old_header)
@@ -146,7 +297,12 @@ static void poti_header_PajeDestroyContainer (int old_header)
   fprintf(paje_file, "%%       Type string\n");
   fprintf(paje_file, "%%       Name string\n");
   fprintf(paje_file, "%%EndEventDef\n");
-//rst_event_ssissss(7,"EventDef","PajeDestroyContainer", PAJE_DestroyContainer, "Time date", "Type string", "Name string", "EndEventDef");
+/*rst_event_iiii(PajeDestroyContainerEventId,
+		PAJE_DestroyContainer,
+		PAJE_Time,
+		PAJE_Type,
+		Paje_Name);
+*/
 }
 
 static void poti_header_PajeSetVariable (int old_header)
@@ -157,7 +313,13 @@ static void poti_header_PajeSetVariable (int old_header)
   fprintf(paje_file, "%%       Type string\n");
   fprintf(paje_file, "%%       Value double\n");
   fprintf(paje_file, "%%EndEventDef\n");
-//rst_event_ssisssss(8,"EventDef","PajeSetVariable", PAJE_SetVariable, "Time date", "Container string","Type string", "Value double", "EndEventDef");
+/*rst_event_iiiii(PajeSetVariableEventId,
+		PAJE_SetVariable,
+		PAJE_Time,
+		PAJE_Container,
+		PAJE_Type,
+		Paje_Value);
+*/
 }
 
 static void poti_header_PajeAddVariable (int old_header)
@@ -169,7 +331,13 @@ static void poti_header_PajeAddVariable (int old_header)
   fprintf(paje_file, "%%       Value double\n");
   fprintf(paje_file, "%%EndEventDef\n");
 
-//rst_event_ssisssss(9,"EventDef","PajeAddVariable", PAJE_AddVariable,"Time date", "Container string", "Type string", "Value double", "EndEventDef");
+/*rst_event_iiiii(PajeAddVariableEventId,
+		PAJE_AddVariable,
+		PAJE_Time,
+		PAJE_Container,
+		PAJE_Type,
+		Paje_Value);
+*/
 }
 
 static void poti_header_PajeSubVariable (int old_header)
@@ -180,7 +348,13 @@ static void poti_header_PajeSubVariable (int old_header)
   fprintf(paje_file, "%%       Type string\n");
   fprintf(paje_file, "%%       Value double\n");
   fprintf(paje_file, "%%EndEventDef\n");
-//rst_event_ssisssss(10,"EventDef","PajeSubVariable",PAJE_SubVariable,"Time date","Container string","Type string","Value double","EndEventDef");
+/*rst_event_iiiii(PajeSubVariableEventId,
+		PAJE_SubVariable,
+		PAJE_Time,
+		PAJE_Container,
+		PAJE_Type,
+		Paje_Value);
+*/
 }
 
 
@@ -192,7 +366,14 @@ static void poti_header_PajeSetState (int old_header)
   fprintf(paje_file, "%%       Type string\n");
   fprintf(paje_file, "%%       Value string\n");
   fprintf(paje_file, "%%EndEventDef\n");
-//rst_event_ssisssss(11,"EventDef","PajeSetState",PAJE_SetState,"Time date","Container string","Type string","Value string","EndEventDef");
+
+/*rst_event_iiiii(PajeSetStateEventId,
+		PAJE_SetState,
+		PAJE_Time,
+		PAJE_Container,
+		PAJE_Type,
+		Paje_Value);
+*/
 }
 
 static void poti_header_PajePushState (int old_header)
@@ -203,7 +384,13 @@ static void poti_header_PajePushState (int old_header)
   fprintf(paje_file, "%%       Type string\n");
   fprintf(paje_file, "%%       Value string\n");
   fprintf(paje_file, "%%EndEventDef\n");
-//rst_event_ssisssss(12,"EventDef","PajePushState",PAJE_PushState,"Time date","Container string","Type string","Value string","EndEventDef");
+/*rst_event_iiiii(PajePushStateEventId,
+		PAJE_PushState,
+		PAJE_Time,
+		PAJE_Container,
+		PAJE_Type,
+		Paje_Value);
+*/
 }
 
 static void poti_header_PajePushStateMark (int old_header)
@@ -215,7 +402,14 @@ static void poti_header_PajePushStateMark (int old_header)
   fprintf(paje_file, "%%       Value string\n");
   fprintf(paje_file, "%%       Mark string\n");
   fprintf(paje_file, "%%EndEventDef\n");
-//rst_event_ssissssss(13,"EventDef","PajePushState",PAJE_PushStateMark,"Time date","Container string","Type string","Value string","Mark string","EndEventDef");
+/*rst_event_iiiiii(PajePushStateEventId,
+		PAJE_PushState,
+		PAJE_Time,
+		PAJE_Container,
+		PAJE_Type,
+		Paje_Value,
+		PAJE_Extra);
+*/
 }
 
 static void poti_header_PajePopState (int old_header)
@@ -225,7 +419,12 @@ static void poti_header_PajePopState (int old_header)
   fprintf(paje_file, "%%       Container string\n");
   fprintf(paje_file, "%%       Type string\n");
   fprintf(paje_file, "%%EndEventDef\n");
-//rst_event_ssissss(14,"EventDef","PajePopState",PAJE_PopState,"Time date","Container string","Type string","EndEventDef");
+/*rst_event_iiiii(PajePopStateEventId,
+		PAJE_PopState,
+		PAJE_Time,
+		PAJE_Container,
+		PAJE_Type);
+*/
 }
 
 static void poti_header_PajeResetState (int old_header)
@@ -238,7 +437,12 @@ static void poti_header_PajeResetState (int old_header)
   fprintf(paje_file, "%%       Container string\n");
   fprintf(paje_file, "%%EndEventDef\n");
 
-//rst_event_ssissss(15,"EventDef","PajeResetState",PAJE_ResetState,"Time date","Type string","Container string","EndEventDef");
+/*rst_event_iiii(PajeResetStateEventId,
+		PAJE_ResetState,
+		PAJE_Time,
+		PAJE_Type,
+		PAJE_Container);
+*/
 }
 
 static void poti_header_PajeStartLink (int old_header)
@@ -259,11 +463,26 @@ static void poti_header_PajeStartLink (int old_header)
 /*
 	if(old_header)
 {
-	rst_event_ssisssssss(16,"EventDef","PajeStartLink",PAJE_StartLink,"Time date","Container string","Type string","SourceContainer string","Value string","Key string","EndEventDef");
+	/*rst_event_iiiiiii(PajeStartLinkEventId,
+		PAJE_StartLink,
+		PAJE_Time,
+		PAJE_Container,
+		PAJE_Type,
+		PAJE_Container,
+		PAJE_Value,
+		PAJE_Key);
+
 }
 else
 {
-	rst_event_ssisssssss(16,"EventDef","PajeStartLink",PAJE_StartLink,"Time date","Container string","Type string","StartContainer string","Value string","Key string","EndEventDef");
+	rst_event_iiiiiii(PajeStartLinkEventId,
+		PAJE_StartLink,
+		PAJE_Time,
+		PAJE_Container,
+		PAJE_Type,
+		PAJE_StartContainer,
+		PAJE_Value,
+		PAJE_Key);
 }
 */
 }
@@ -287,11 +506,26 @@ static void poti_header_PajeStartLinkSize (int old_header)
 	/*
 	if(old_header)
 {
-	rst_event_ssissssssss(17,"EventDef","PajeStartLink",PAJE_StartLinkSize,"Time date","Container string","Type string","SourceContainer string","Value string","Key string","Size double","EndEventDef");
+	/*rst_event_iiiiiii(PajeStartLinkEventId,
+		PAJE_StartLinkSize,
+		PAJE_Time,
+		PAJE_Container,
+		PAJE_Type,
+		PAJE_Container,
+		PAJE_Value,
+		PAJE_Key);
+
 }
 else
 {
-	rst_event_ssissssssss(17,"EventDef","PajeStartLink",PAJE_StartLink,"Time date","Container string","Type string","StartContainer string","Value string","Key string","Size double","EndEventDef");
+	rst_event_iiiiiii(PajeStartLinkEventId,
+		PAJE_StartLinkSize,
+		PAJE_Time,
+		PAJE_Container,
+		PAJE_Type,
+		PAJE_StartContainer,
+		PAJE_Value,
+		PAJE_Key);
 }
 */
 }
@@ -318,11 +552,26 @@ static void poti_header_PajeStartLinkSizeMark (int old_header)
 /*
 	if(old_header)
 {
-	rst_event_ssisssssssss(18,"EventDef","PajeStartLink",PAJE_StartLinkSizeMark,"Time date","Container string","Type string","SourceContainer string","Value string","Key string","Size double","Mark string","EndEventDef");
+	/*rst_event_iiiiiii(PajeStartLinkEventId,
+		PAJE_StartLinkSizeMark,
+		PAJE_Time,
+		PAJE_Container,
+		PAJE_Type,
+		PAJE_Container,
+		PAJE_Value,
+		PAJE_Key);
+
 }
 else
 {
-	rst_event_ssisssssssss(18,"EventDef","PajeStartLink",PAJE_StartLink,"Time date","Container string","Type string","StartContainer string","Value string","Key string","Size double","Mark string","EndEventDef");
+	rst_event_iiiiiii(PajeStartLinkEventId,
+		PAJE_StartLinkSizeMark,
+		PAJE_Time,
+		PAJE_Container,
+		PAJE_Type,
+		PAJE_StartContainer,
+		PAJE_Value,
+		PAJE_Key);
 }
 */
 }
@@ -345,11 +594,26 @@ static void poti_header_PajeEndLink (int old_header)
  /*
 	if(old_header)
 {
-	rst_event_ssisssssss(19,"EventDef","PajeEndLink",PAJE_EndLink,"Time date","Container string","Type string","DestContainer string","Value string","Key string","EndEventDef");
+	/*rst_event_iiiiiii(PajeEndLinkEventId,
+		PAJE_EndLink,
+		PAJE_Time,
+		PAJE_Container,
+		PAJE_Type,
+		PAJE_Container,
+		PAJE_Value,
+		PAJE_Key);
+
 }
 else
 {
-	rst_event_ssisssssss(19,"EventDef","PajeEndLink",PAJE_EndLink,"Time date","Container string","Type string","EndContainer string","Value string","Key string","EndEventDef");
+	rst_event_iiiiiii(PajeEndLinkEventId,
+		PAJE_EndLink,
+		PAJE_Time,
+		PAJE_Container,
+		PAJE_Type,
+		PAJE_EndContainer,
+		PAJE_Value,
+		PAJE_Key);
 }
 */
 
@@ -363,7 +627,15 @@ static void poti_header_PajeNewEvent (int old_header)
   fprintf(paje_file, "%%       Type string\n");
   fprintf(paje_file, "%%       Value string\n");
   fprintf(paje_file, "%%EndEventDef\n");
-//rst_event_ssisssss(20,"EventDef","EventDef",PAJE_NewEvent,"Time date","Container string", "Type string", "Value string","EndEventDef");
+
+/*
+rst_event_iiiii(PajeNewEventEventId,
+		PAJE_NewEvent,
+		PAJE_Time,
+		PAJE_Container,
+		PAJE_Type,
+		PAJE_Value);
+*/
 }
 
 /* entry point */
