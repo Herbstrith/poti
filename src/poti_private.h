@@ -46,6 +46,49 @@ typedef enum {
   PAJE_NewEvent,
 } e_event_type;
 
+typedef enum {
+  PajeDefineContainerTypeEventId,
+  PajeDefineEventTypeEventId,
+  PajeDefineStateTypeEventId,
+  PajeDefineVariableTypeEventId,
+  PajeDefineLinkTypeEventId,
+  PajeDefineEntityValueEventId,
+  PajeCreateContainerEventId,
+  PajeDestroyContainerEventId,
+  PajeNewEventEventId,
+  PajeSetStateEventId,
+  PajePushStateEventId,
+  PajePopStateEventId,
+  PajeResetStateEventId,
+  PajeSetVariableEventId,
+  PajeAddVariableEventId,
+  PajeSubVariableEventId,
+  PajeStartLinkEventId,
+  PajeEndLinkEventId,
+  PajeEventIdCount,
+  PajeUnknownEventId,
+} PajeEventId;
+
+typedef enum {
+  PAJE_Event,
+  PAJE_Time,
+  PAJE_Name,
+  PAJE_Type,
+  PAJE_Container,
+  PAJE_StartContainerType,
+  PAJE_EndContainerType,
+  PAJE_StartContainer,
+  PAJE_EndContainer,
+  PAJE_Value,
+  PAJE_Key,
+  PAJE_Alias,
+  PAJE_Color,
+  PAJE_Line,
+  PAJE_File,
+  PAJE_Extra, //for user-defined fields
+  PAJE_Unknown_Field
+} PajeField;
+
 void _poti_header (int basic, int old_header);
 
 #endif

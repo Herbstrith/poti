@@ -21,11 +21,18 @@ int main (int argc, char **argv)
   //first, dump the pajeheader
   //first parameter is a boolean indicating a basic header or not
   //second parameter is a boolean indicating an old header or not
+
+rst_init(1, 4);
+rst_event(565);
+
   poti_header (0, 0);
+
+
 	
-rst_init(1, 2);
+rst_event(565);
   //Defining my types
   poti_DefineContainerType ("ROOT", "0", "ROOT");
+
   poti_DefineContainerType("THREAD", "ROOT", "THREAD");
   poti_DefineStateType("STATE", "THREAD", "STATE");
   poti_DefineLinkType("LINK", "ROOT", "THREAD", "THREAD", "LINK");
@@ -63,6 +70,7 @@ rst_init(1, 2);
   poti_DestroyContainer (1.23, "THREAD", "thread-1");
   poti_DestroyContainer (1.34, "ROOT", "root");
 
-	rst_finalize();
+rst_finalize();
+
   return 0;
 }
