@@ -56,5 +56,4 @@ void poti_header (int basic, int old_header)
 
 
   _poti_header (basic, old_header);
-rst_finalize();
 }
