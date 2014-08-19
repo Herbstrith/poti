@@ -56,7 +56,7 @@ rst_event_iiii(PajeDefineContainerTypeEventId,
   }else{
     fprintf(paje_file, "%%       Type string\n");
 		
-    rst_event_iiii(PajeDefineContainerTypeEventId,
+    rst_event_iiii(PajeHeaderEventId,
 		PAJE_DefineContainerType,
 		PAJE_Alias,
 		PAJE_Type,
