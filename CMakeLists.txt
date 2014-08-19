@@ -25,8 +25,8 @@ SET(CMAKE_C_FLAGS "-Wall -Wunused -Wmissing-prototypes -Wmissing-declarations -W
 CONFIGURE_FILE("${poti_SOURCE_DIR}/include/poti_config.h.in" "${CMAKE_BINARY_DIR}/include/poti_config.h" ESCAPE_QUOTES @ONLY IMMEDIATE)
 
 
-SET(POTI_SRC src/poti.c src/poti_header.c src/poti_events.c src/poti_events_rastro.c )
-SET(POTI_HEADERS include/poti.h include/poti_events_rastro.h ${CMAKE_BINARY_DIR}/include/poti_config.h)
+SET(POTI_SRC src/poti.c src/poti_header.c src/poti_events.c src/poti_events_rastro.c src/poti_header_rastro.c )
+SET(POTI_HEADERS include/poti.h include/poti_events_rastro.h include/poti_header_rastro.h ${CMAKE_BINARY_DIR}/include/poti_config.h)
 
 
 ADD_SUBDIRECTORY(librastro)
