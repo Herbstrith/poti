@@ -52,6 +52,10 @@ PROPERTIES
 # bump when the API change (new functions in the header file)
 SET(POTI_APIVERSION 2)
 
+# The poti binary reader
+ADD_EXECUTABLE(poti_reader src/poti_reader.c)
+TARGET_LINK_LIBRARIES(poti_reader poti)
+
 INSTALL(TARGETS poti
   RUNTIME DESTINATION bin
   LIBRARY DESTINATION lib
