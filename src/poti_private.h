@@ -23,6 +23,7 @@
 #include <poti_config.h>
 
 typedef enum {
+  PajeHeaderEventId,
   PajeDefineContainerTypeEventId,
   PajeDefineEventTypeEventId,
   PajeDefineStateTypeEventId,
