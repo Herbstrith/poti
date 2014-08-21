@@ -15,13 +15,14 @@
     along with Poti. If not, see <http://www.gnu.org/licenses/>.
 */
 #include <poti.h>
-
+#include <rastro.h>
 int main (int argc, char **argv)
 {
   //Vite-1.2 requires an old header definition (with no extended events)
   //So:
   //first parameter set to 1 means basic header with no extended events
   //second parameter set to 1 means old header
+  rst_init(1, 2);
   poti_header (1, 1);
 
   //Defining my types
@@ -63,5 +64,6 @@ int main (int argc, char **argv)
   poti_DestroyContainer (1.23, "THREAD", "thread-1");
   poti_DestroyContainer (1.34, "ROOT", "root");
 
+  rst_finalize();
   return 0;
 }
