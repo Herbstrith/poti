@@ -41,6 +41,11 @@ static int parse_options (int key, char *arg, struct argp_state *state)
 
 static struct argp argp = { options, parse_options, args_doc, doc };
 
+void poti_print_event (rst_event *event)
+{
+  //implement here
+}
+
 int main (int argc, char *argv[])
 {
   struct arguments arguments;
@@ -78,7 +83,7 @@ int main (int argc, char *argv[])
 
   /* reading all the files */
   while (rst_decode_event (&rastro, &event)) {
-    rst_print_event (&event);
+    poti_print_event (&event);
   }
 
   /* closing everything */
