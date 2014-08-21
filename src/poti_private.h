@@ -24,6 +24,7 @@
 
 typedef enum {
   PajeHeaderEventId,
+  PajeHeaderExtendedId,
   PajeDefineContainerTypeEventId,
   PajeDefineEventTypeEventId,
   PajeDefineStateTypeEventId,

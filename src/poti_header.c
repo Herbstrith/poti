@@ -518,7 +518,7 @@ void _poti_header(int basic, int old_header)
              "#\n"
              "# Trace created without extended events\n"
              "#\n");
-   rst_event_s(21,"# Trace created without extended events");
+   rst_event_s(PajeHeaderExtendedId,"# Trace created without extended events");
     return;
   }else{
     paje_extended = 1;
@@ -530,7 +530,7 @@ void _poti_header(int basic, int old_header)
           "# Note that not all paje file format parsers support this\n"
           "# If you have problems parsing this file with your visualization tool\n"
           "#\n");
-rst_event_s(21,"#Extended events with additional information");
+  rst_event_s(PajeHeaderExtendedId,"#Extended events with additional information");
 
   poti_header_PajePushStateMark (old_header);
   poti_header_PajeStartLinkSize (old_header);
