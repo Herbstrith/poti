@@ -96,7 +96,7 @@ static void poti_header_PajeDefineStateType (int old_header)
   fprintf(paje_file, "%%       Name string\n");
   fprintf(paje_file, "%%EndEventDef\n");
 
-  rst_event_iiii(PajeDefineStateTypeEventId,
+  rst_event_iiii(PajeHeaderEventId,
 		PajeDefineStateTypeEventId,
 		PAJE_Alias,
 		PAJE_Type,
