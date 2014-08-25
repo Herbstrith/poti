@@ -475,14 +475,11 @@ void rst_print_event(rst_event_t *event)
 {
   int i;
   if (event->file->resolution > RST_MICROSECONDS){
-    /*printf("%d type: %d ts: %.9f (id1=%"PRIu64",id2=%"PRIu64")\n", event->file->id,
-           event->type, event->timestamp, event->id1, event->id2);*/
-    printf("file %d event-type: %d \n", event->file->id, event->type);
-
+    printf("%d type: %d ts: %.9f (id1=%"PRIu64",id2=%"PRIu64")\n", event->file->id,
+           event->type, event->timestamp, event->id1, event->id2);
   }else{
-    /*printf("%d type: %d ts: %f (id1=%"PRIu64",id2=%"PRIu64")\n", event->file->id,
-           event->type, event->timestamp, event->id1, event->id2);*/
-    printf("file %d event-type: %d \n", event->file->id,event->type);
+    printf("%d type: %d ts: %f (id1=%"PRIu64",id2=%"PRIu64")\n", event->file->id,
+           event->type, event->timestamp, event->id1, event->id2);
   }
   if (event->ct.n_uint64 > 0) {
     printf("\tu_int64_ts-> ");
