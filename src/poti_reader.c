@@ -174,6 +174,7 @@ const char* fieldToString(u_int32_t event)
 	}
 	return "error on field def";
 }
+
 //reads the binary rst events and print them in  paje  format
 void poti_print_event (rst_event_t *event)
 {
@@ -193,17 +194,73 @@ void poti_print_event (rst_event_t *event)
 
 	}
 	//extended header event
-	/*if(event->type == 1)
+	else if(event->type == 1)
 	{
-		if (event->ct.n_string > 0) {
-		    printf("\tstrings-> ");
-		    for (i = 0; i < event->ct.n_string; i++) {
-		      printf("(%s) ", event->v_string[i]);
-		    }
-		    printf("\n");
-		  }
+		int i = 0;
+		printf("# \n");
+		for (i = 0; i < event->ct.n_string; i++) {
+		printf("%s ", event->v_string[i]);
+		}
+		printf("\n# \n");
+		  
 
-	}*/
+	}
+	//poti event event
+	else
+	{
+	  int i;
+	  if (event->file->resolution > RST_MICROSECONDS){
+	    	printf("%d ",event->type);
+	  }else{
+	    	printf("%d ",event->type);
+	  }
+
+	  if (event->ct.n_double > 0) {
+
+	    for (i = 0; i < event->ct.n_double; i++) {
+	      printf("%f ", event->v_double[i]);
+	    }
+
+	  }
+	  if (event->ct.n_uint64 > 0) {
+	    for (i = 0; i < event->ct.n_uint64; i++) {
+	      printf("%" PRIu64 " ", event->v_uint64[i]);
+	    }
+	  }
+	  if (event->ct.n_string > 0) {
+	    for (i = 0; i < event->ct.n_string; i++) {
+	      printf("%s ", event->v_string[i]);
+	    }
+	  }
+	  if (event->ct.n_float > 0) {
+
+	    for (i = 0; i < event->ct.n_float; i++) {
+	      printf("%f ", event->v_float[i]);
+	    }
+	  }
+	  if (event->ct.n_uint32 > 0) {
+
+	    for (i = 0; i < event->ct.n_uint32; i++) {
+	      printf("%d ", event->v_uint32[i]);
+	    }
+	  }
+	  if (event->ct.n_uint16 > 0) {
+	    for (i = 0; i < event->ct.n_uint16; i++) {
+	      printf("%d ", event->v_uint16[i]);
+	    }
+	  }
+	  if (event->ct.n_uint8 > 0) {
+	    for (i = 0; i < event->ct.n_uint8; i++) {
+	      printf("%c ", event->v_uint8[i]);
+	    }
+
+	  }
+	  
+	printf("\n");
+
+	}
+
+	
 
 /*
 	  int i;
