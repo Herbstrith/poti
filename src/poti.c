@@ -44,10 +44,13 @@ void poti_close ()
     fclose( paje_file );
   }
   paje_file = 0;
+  rst_finalize();
 }
 
 void poti_header (int basic, int old_header)
 {
+  rst_init(1, 1);
+
   if (paje_file ==0)
     paje_file = stdout;
 
