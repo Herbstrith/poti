@@ -184,7 +184,7 @@ void poti_print_event (rst_event_t *event)
 	if(event->type == 0 )
 	{
 		int i = 0;
-		printf("%%EventDef %s %" PRIu32 " \n", eventidToString(event->v_uint32[i]), event->v_uint32[i]);
+		printf("%%EventDef %s %" PRIu32 "\n", eventidToString(event->v_uint32[i]), event->v_uint32[i]);
 		i++;
 		for (i = 0; i < event->ct.n_uint32; i++) {
 			printf("%%       %s\n", fieldToString(event->v_uint32[i]));
@@ -197,11 +197,11 @@ void poti_print_event (rst_event_t *event)
 	else if(event->type == 1)
 	{
 		int i = 0;
-		printf("# \n");
+		printf("#\n");
 		for (i = 0; i < event->ct.n_string; i++) {
 		printf("%s ", event->v_string[i]);
 		}
-		printf("\n# \n");
+		printf("\n#\n");
 		  
 
 	}
