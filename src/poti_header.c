@@ -77,7 +77,7 @@ static void poti_header_PajeDefineVariableType (int old_header)
   rst_event_iiiii(PajeHeaderEventId,
 		PajeDefineVariableTypeEventId,
 		PAJE_Alias,
-		PAJE_Container,
+		PAJE_Type,
 		PAJE_Name,
 		PAJE_Color);
 
@@ -112,7 +112,7 @@ static void poti_header_PajeDefineEventType (int old_header)
   if (old_header){
     fprintf(paje_file, "%%       ContainerType string\n");
   }else{
-    fprintf(paje_file, "%%       Types string\n");
+    fprintf(paje_file, "%%       Type string\n");
   }
   fprintf(paje_file, "%%       Name string\n");
   fprintf(paje_file, "%%EndEventDef\n");
@@ -282,7 +282,7 @@ static void poti_header_PajeSetState (int old_header)
 		PAJE_Time,
 		PAJE_Container,
 		PAJE_Type,
-		PAJE_Value);
+		PAJE_ValueString);
 
 }
 
@@ -299,7 +299,7 @@ static void poti_header_PajePushState (int old_header)
 		PAJE_Time,
 		PAJE_Container,
 		PAJE_Type,
-		PAJE_Value);
+		PAJE_ValueString);
 
 }
 
@@ -317,7 +317,7 @@ static void poti_header_PajePushStateMark (int old_header)
 		PAJE_Time,
 		PAJE_Container,
 		PAJE_Type,
-		PAJE_Value,
+		PAJE_ValueString,
 		PAJE_Extra);
 
 }
@@ -376,7 +376,7 @@ static void poti_header_PajeStartLink (int old_header)
 		PAJE_Container,
 		PAJE_Type,
 		PAJE_StartContainer,
-		PAJE_Value,
+		PAJE_ValueString,
 		PAJE_Key);
 
 
@@ -405,7 +405,7 @@ static void poti_header_PajeStartLinkSize (int old_header)
 		PAJE_Container,
 		PAJE_Type,
 		PAJE_StartContainer,
-		PAJE_Value,
+		PAJE_ValueString,
 		PAJE_Key);
 
 
@@ -437,7 +437,7 @@ static void poti_header_PajeStartLinkSizeMark (int old_header)
 		PAJE_Container,
 		PAJE_Type,
 		PAJE_StartContainer,
-		PAJE_Value,
+		PAJE_ValueString,
 		PAJE_Key);
 
 
@@ -464,7 +464,7 @@ static void poti_header_PajeEndLink (int old_header)
 		PAJE_Container,
 		PAJE_Type,
 		PAJE_EndContainer,
-		PAJE_Value,
+		PAJE_ValueString,
 		PAJE_Key);
 
 
@@ -486,7 +486,7 @@ static void poti_header_PajeNewEvent (int old_header)
 		PAJE_Time,
 		PAJE_Container,
 		PAJE_Type,
-		PAJE_Value);
+		PAJE_ValueString);
 
 }
 
@@ -518,7 +518,7 @@ void _poti_header(int basic, int old_header)
              "#\n"
              "# Trace created without extended events\n"
              "#\n");
-   rst_event_s(PajeHeaderExtendedId,"# Trace created without extended events");
+   //rst_event_s(PajeHeaderExtendedId,"# Trace created without extended events");
     return;
   }else{
     paje_extended = 1;
@@ -530,7 +530,7 @@ void _poti_header(int basic, int old_header)
           "# Note that not all paje file format parsers support this\n"
           "# If you have problems parsing this file with your visualization tool\n"
           "#\n");
-  rst_event_s(PajeHeaderExtendedId,"#Extended events with additional information");
+  //rst_event_s(PajeHeaderExtendedId,"#Extended events with additional information");
 
   poti_header_PajePushStateMark (old_header);
   poti_header_PajeStartLinkSize (old_header);

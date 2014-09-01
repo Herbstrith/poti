@@ -38,11 +38,14 @@ void poti_DefineContainerType(const char *alias,
          alias,
          containerType,
          name);
-
- rst_event_sss(PajeDefineContainerTypeEventId,
+  
+  char temp[50];
+  sprintf(temp, "\"%s\"", name);
+  rst_event_sss(PajeDefineContainerTypeEventId,
 		alias,
 		containerType,
-		name);
+		temp);
+ 
  
 }
 
@@ -58,11 +61,15 @@ void poti_DefineVariableType(const char *alias,
            name,
            color);
 
+char temp[50];
+  sprintf(temp, "\"%s\"", name);
+char temp2[50];
+  sprintf(temp2, "\"%s\"", color);
 rst_event_ssss( PajeDefineVariableTypeEventId,
 		alias,
 		containerType,
-		name,
-		color);
+		temp,
+		temp2);
 }
 
 void poti_DefineStateType(const char *alias,
@@ -75,10 +82,13 @@ void poti_DefineStateType(const char *alias,
          containerType,
          name);
 
+char temp[50];
+  sprintf(temp, "\"%s\"", name);
+
   rst_event_sss(PajeDefineStateTypeEventId,
 		alias,
 		containerType,
-		name);
+		temp);
 }
 
 void poti_DefineEventType(const char *alias,
@@ -90,7 +100,11 @@ void poti_DefineEventType(const char *alias,
           alias,
           containerType,
           name);
-rst_event_sss(PajeDefineEventTypeEventId,alias,containerType,name);
+
+char temp[50];
+  sprintf(temp, "\"%s\"", name);
+
+rst_event_sss(PajeDefineEventTypeEventId,alias,containerType,temp);
 }
 
 void poti_DefineLinkType(const char *alias,
@@ -106,13 +120,14 @@ void poti_DefineLinkType(const char *alias,
          startContainerType,
          endContainerType,
          name);
-
+char temp[50];
+  sprintf(temp, "\"%s\"", name);
 rst_event_sssss(PajeDefineLinkTypeEventId,
 		alias,
 		containerType,
 		startContainerType,
 		endContainerType,
-		name);
+		temp);
 }
 
 void poti_DefineEntityValue(const char *alias,
@@ -126,12 +141,15 @@ void poti_DefineEntityValue(const char *alias,
           entityType,
           name,
           color);
-
+char temp[50];
+  sprintf(temp, "\"%s\"", name);
+char temp2[50];
+  sprintf(temp2, "\"%s\"", color);
 rst_event_ssss(PajeDefineEntityValueEventId,
 		alias,
 		entityType,
-		name,
-		color);
+		temp,
+		temp2);
 }
 
 void poti_CreateContainer(double timestamp,
@@ -147,13 +165,14 @@ void poti_CreateContainer(double timestamp,
          type,
          container,
          name);
-
+char temp[50];
+  sprintf(temp, "\"%s\"", name);
 rst_event_dssss(PajeCreateContainerEventId,
          paje_event_timestamp(timestamp),
          alias,
          type,
          container,
-         name);
+         temp);
 
 }
 
