@@ -331,9 +331,9 @@ int main (int argc, char *argv[])
               __FUNCTION__, arguments.input[i]);
       return 1;
     }else{
-      printf ("file %s, id %d\n",
-              rastro.files[i]->filename,
-              rastro.files[i]->id);
+      printf ("#POTI_GIT_VERSION %s\n#POTI_GIT_DATE (date of the cmake configuration) %s\n",
+              POTI_GITVERSION,
+              POTI_GITDATE);
     }
   }
 

@@ -19,24 +19,10 @@
 #include "poti_private.h"
 #include "poti_header_rastro.h"
 #include "poti_events_rastro.h"
-//#include "libpaje/PajeDefinitions.h"
+
 
 extern FILE *paje_file;
 extern int paje_extended;
-
-
-
-
-/*TODO
-	remove enums from the header
-	and use the PajeDefinitions
-
-*/
-
-
-
-
-
 
 
 static void poti_header_PajeDefineContainerType (int old_header)
