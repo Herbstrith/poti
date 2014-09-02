@@ -75,6 +75,49 @@ void rst_event_iiiiiii_f_( int16_t *type, int32_t* i0, int32_t* i1, int32_t* i2,
   rst_event_iiiiiii ((u_int16_t)* type, (u_int32_t)* i0, (u_int32_t)* i1, (u_int32_t)* i2, (u_int32_t)* i3, (u_int32_t)* i4, (u_int32_t)* i5, (u_int32_t)* i6);
 }
 
+/* Rastro function implementation for 'iiiiiiii' */
+void rst_event_iiiiiiii_ptr(rst_buffer_t *ptr, u_int16_t type, u_int32_t i0, u_int32_t i1, u_int32_t i2, u_int32_t i3, u_int32_t i4, u_int32_t i5, u_int32_t i6, u_int32_t i7)
+{
+  rst_startevent(ptr, type<<18|0x7777);
+  RST_PUT(ptr, u_int32_t, 0x27777000);
+  RST_PUT(ptr, u_int32_t, i0);
+  RST_PUT(ptr, u_int32_t, i1);
+  RST_PUT(ptr, u_int32_t, i2);
+  RST_PUT(ptr, u_int32_t, i3);
+  RST_PUT(ptr, u_int32_t, i4);
+  RST_PUT(ptr, u_int32_t, i5);
+  RST_PUT(ptr, u_int32_t, i6);
+  RST_PUT(ptr, u_int32_t, i7);
+  rst_endevent(ptr);
+}
+/* Rastro function implementation for 'iiiiiiii' - fortran support */
+void rst_event_iiiiiiii_f_( int16_t *type, int32_t* i0, int32_t* i1, int32_t* i2, int32_t* i3, int32_t* i4, int32_t* i5, int32_t* i6, int32_t* i7)
+{
+  rst_event_iiiiiiii ((u_int16_t)* type, (u_int32_t)* i0, (u_int32_t)* i1, (u_int32_t)* i2, (u_int32_t)* i3, (u_int32_t)* i4, (u_int32_t)* i5, (u_int32_t)* i6, (u_int32_t)* i7);
+}
+
+/* Rastro function implementation for 'iiiiiiiii' */
+void rst_event_iiiiiiiii_ptr(rst_buffer_t *ptr, u_int16_t type, u_int32_t i0, u_int32_t i1, u_int32_t i2, u_int32_t i3, u_int32_t i4, u_int32_t i5, u_int32_t i6, u_int32_t i7, u_int32_t i8)
+{
+  rst_startevent(ptr, type<<18|0x7777);
+  RST_PUT(ptr, u_int32_t, 0x27777700);
+  RST_PUT(ptr, u_int32_t, i0);
+  RST_PUT(ptr, u_int32_t, i1);
+  RST_PUT(ptr, u_int32_t, i2);
+  RST_PUT(ptr, u_int32_t, i3);
+  RST_PUT(ptr, u_int32_t, i4);
+  RST_PUT(ptr, u_int32_t, i5);
+  RST_PUT(ptr, u_int32_t, i6);
+  RST_PUT(ptr, u_int32_t, i7);
+  RST_PUT(ptr, u_int32_t, i8);
+  rst_endevent(ptr);
+}
+/* Rastro function implementation for 'iiiiiiiii' - fortran support */
+void rst_event_iiiiiiiii_f_( int16_t *type, int32_t* i0, int32_t* i1, int32_t* i2, int32_t* i3, int32_t* i4, int32_t* i5, int32_t* i6, int32_t* i7, int32_t* i8)
+{
+  rst_event_iiiiiiiii ((u_int16_t)* type, (u_int32_t)* i0, (u_int32_t)* i1, (u_int32_t)* i2, (u_int32_t)* i3, (u_int32_t)* i4, (u_int32_t)* i5, (u_int32_t)* i6, (u_int32_t)* i7, (u_int32_t)* i8);
+}
+
 /* Rastro function implementation for 's' */
 void rst_event_s_ptr(rst_buffer_t *ptr, u_int16_t type, const char* s0)
 {

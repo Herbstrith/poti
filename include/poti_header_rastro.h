@@ -24,6 +24,16 @@ void rst_event_iiiiiii_ptr(rst_buffer_t *ptr, u_int16_t type, u_int32_t i0, u_in
 void rst_event_iiiiiii_f_ (int16_t *type, int32_t* i0, int32_t* i1, int32_t* i2, int32_t* i3, int32_t* i4, int32_t* i5, int32_t* i6);
 #define rst_event_iiiiiii(type, i0, i1, i2, i3, i4, i5, i6) rst_event_iiiiiii_ptr(RST_PTR, type, i0, i1, i2, i3, i4, i5, i6)
 
+/* Rastro function prototype for 'iiiiiiii' */
+void rst_event_iiiiiiii_ptr(rst_buffer_t *ptr, u_int16_t type, u_int32_t i0, u_int32_t i1, u_int32_t i2, u_int32_t i3, u_int32_t i4, u_int32_t i5, u_int32_t i6, u_int32_t i7);
+void rst_event_iiiiiiii_f_ (int16_t *type, int32_t* i0, int32_t* i1, int32_t* i2, int32_t* i3, int32_t* i4, int32_t* i5, int32_t* i6, int32_t* i7);
+#define rst_event_iiiiiiii(type, i0, i1, i2, i3, i4, i5, i6, i7) rst_event_iiiiiiii_ptr(RST_PTR, type, i0, i1, i2, i3, i4, i5, i6, i7)
+
+/* Rastro function prototype for 'iiiiiiiii' */
+void rst_event_iiiiiiiii_ptr(rst_buffer_t *ptr, u_int16_t type, u_int32_t i0, u_int32_t i1, u_int32_t i2, u_int32_t i3, u_int32_t i4, u_int32_t i5, u_int32_t i6, u_int32_t i7, u_int32_t i8);
+void rst_event_iiiiiiiii_f_ (int16_t *type, int32_t* i0, int32_t* i1, int32_t* i2, int32_t* i3, int32_t* i4, int32_t* i5, int32_t* i6, int32_t* i7, int32_t* i8);
+#define rst_event_iiiiiiiii(type, i0, i1, i2, i3, i4, i5, i6, i7, i8) rst_event_iiiiiiiii_ptr(RST_PTR, type, i0, i1, i2, i3, i4, i5, i6, i7, i8)
+
 /* Rastro function prototype for 's' */
 void rst_event_s_ptr(rst_buffer_t *ptr, u_int16_t type, const char* s0);
 void rst_event_s_f_ (int16_t *type, const char* s0);

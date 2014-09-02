@@ -301,14 +301,14 @@ void poti_PushStateMark(double timestamp,
 {
   if (paje_extended){
     fprintf(paje_file,"%d %.9f %s %s %s %d\n",
-            PajePushStateEventId,
+            PajePushStateMarkEventId,
             paje_event_timestamp(timestamp),
             container,
             type,
             value,
             mark);
 
-rst_event_dsssi(PajePushStateEventId,
+rst_event_dsssi(PajePushStateMarkEventId,
             paje_event_timestamp(timestamp),
             container,
             type,
@@ -391,7 +391,7 @@ void poti_StartLinkSize(double timestamp,
 {
   if (paje_extended){
     fprintf(paje_file,"%d %.9f %s %s %s %s %s %d\n",
-            PajeStartLinkEventId,
+            PajeStartLinkSizeEventId,
             paje_event_timestamp(timestamp),
             container,
             type,
@@ -400,7 +400,7 @@ void poti_StartLinkSize(double timestamp,
             key,
             size);
 
-rst_event_dsssssi(PajeStartLinkEventId,
+rst_event_dsssssi(PajeStartLinkSizeEventId,
             paje_event_timestamp(timestamp),
             container,
             type,
@@ -425,7 +425,7 @@ void poti_StartLinkSizeMark(double timestamp,
 {
   if (paje_extended){
     fprintf(paje_file,"%d %.9f %s %s %s %s %s %d %d\n",
-            PajeStartLinkEventId,
+            PajeStartLinkSizeMarkEventId,
             paje_event_timestamp(timestamp),
             container,
             type,
@@ -435,7 +435,7 @@ void poti_StartLinkSizeMark(double timestamp,
             size,
             mark);
 
-rst_event_dsssssii(PajeStartLinkEventId,
+rst_event_dsssssii(PajeStartLinkSizeMarkEventId,
             paje_event_timestamp(timestamp),
             container,
             type,

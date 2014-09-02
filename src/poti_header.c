@@ -291,7 +291,7 @@ static void poti_header_PajePushState (int old_header)
 
 static void poti_header_PajePushStateMark (int old_header)
 {
-  fprintf(paje_file, "%%EventDef PajePushState %d\n", PajePushStateEventId);
+  fprintf(paje_file, "%%EventDef PajePushState %d\n", PajePushStateMarkEventId);
   fprintf(paje_file, "%%       Time date\n");
   fprintf(paje_file, "%%       Container string\n");
   fprintf(paje_file, "%%       Type string\n");
@@ -299,12 +299,12 @@ static void poti_header_PajePushStateMark (int old_header)
   fprintf(paje_file, "%%       Mark string\n");
   fprintf(paje_file, "%%EndEventDef\n");
   rst_event_iiiiii(PajeHeaderEventId,
-		PajePushStateEventId,
+		PajePushStateMarkEventId,
 		PAJE_Time,
 		PAJE_Container,
 		PAJE_Type,
 		PAJE_ValueString,
-		PAJE_Extra);
+		PAJE_Mark);
 
 }
 
@@ -370,7 +370,7 @@ static void poti_header_PajeStartLink (int old_header)
 
 static void poti_header_PajeStartLinkSize (int old_header)
 {
-  fprintf(paje_file, "%%EventDef PajeStartLink %d\n", PajeStartLinkEventId);
+  fprintf(paje_file, "%%EventDef PajeStartLink %d\n", PajeStartLinkSizeEventId);
   fprintf(paje_file, "%%       Time date\n");
   fprintf(paje_file, "%%       Container string\n");
   fprintf(paje_file, "%%       Type string\n");
@@ -385,14 +385,15 @@ static void poti_header_PajeStartLinkSize (int old_header)
   fprintf(paje_file, "%%EndEventDef\n");
 
 
-  rst_event_iiiiiii(PajeHeaderEventId,
-		PajeStartLinkEventId,
+  rst_event_iiiiiiii(PajeHeaderEventId,
+		PajeStartLinkSizeEventId,
 		PAJE_Time,
 		PAJE_Container,
 		PAJE_Type,
 		PAJE_StartContainer,
 		PAJE_ValueString,
-		PAJE_Key);
+		PAJE_Key,
+		PAJE_Size);
 
 
 }
@@ -400,7 +401,7 @@ static void poti_header_PajeStartLinkSize (int old_header)
 
 static void poti_header_PajeStartLinkSizeMark (int old_header)
 {
-  fprintf(paje_file, "%%EventDef PajeStartLink %d\n", PajeStartLinkEventId);
+  fprintf(paje_file, "%%EventDef PajeStartLink %d\n", PajeStartLinkSizeMarkEventId);
   fprintf(paje_file, "%%       Time date\n");
   fprintf(paje_file, "%%       Container string\n");
   fprintf(paje_file, "%%       Type string\n");
@@ -417,14 +418,16 @@ static void poti_header_PajeStartLinkSizeMark (int old_header)
 
 
 
-  rst_event_iiiiiii(PajeHeaderEventId,
-		PajeStartLinkEventId,
+  rst_event_iiiiiiiii(PajeHeaderEventId,
+		PajeStartLinkSizeMarkEventId,
 		PAJE_Time,
 		PAJE_Container,
 		PAJE_Type,
 		PAJE_StartContainer,
 		PAJE_ValueString,
-		PAJE_Key);
+		PAJE_Key,
+		PAJE_Size,
+		PAJE_Mark);
 
 
 }

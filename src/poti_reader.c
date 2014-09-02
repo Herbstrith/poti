@@ -108,8 +108,18 @@ const char* eventidToString(u_int32_t event)
 		case PajeEventIdCount:
 			return "PajeEventIdCount";
 			break;
+		//poti extended events : TODO merge with same events
 		case PajeUnknownEventId:
 			return "PajeUnknownEventId";
+			break;
+		case PajePushStateMarkEventId:
+			return "PajePushState";
+			break;
+		case PajeStartLinkSizeEventId:
+			return "PajeStartLink";
+			break;
+		case PajeStartLinkSizeMarkEventId:
+			return "PajeStartLink";
 			break;	
 		
 	}
@@ -157,6 +167,14 @@ const char* fieldToString(u_int32_t event)
 			break;	
 		case PAJE_Color:
 			return "Color color";
+			break;
+
+		//poti extended events
+		case PAJE_Mark:
+			return "Mark string";
+			break;
+		case PAJE_Size:
+			return "Size double";
 			break;
 /*	
 		case PAJE_Line:

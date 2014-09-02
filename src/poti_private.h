@@ -44,6 +44,10 @@ typedef enum {
   PajeEndLinkEventId,
   PajeEventIdCount,
   PajeUnknownEventId,
+  //poti extender header ids
+  PajeStartLinkSizeMarkEventId,
+  PajeStartLinkSizeEventId,
+  PajePushStateMarkEventId
 } PajeEventId;
 
 typedef enum {
@@ -61,6 +65,8 @@ typedef enum {
   PAJE_Key,
   PAJE_Alias,
   PAJE_Color,
+  PAJE_Size,
+  PAJE_Mark,
   PAJE_Line,
   PAJE_File,
   PAJE_Extra, //for user-defined fields
