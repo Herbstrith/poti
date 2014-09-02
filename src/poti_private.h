@@ -61,7 +61,6 @@ typedef enum {
   PAJE_StartContainer,
   PAJE_EndContainer,
   PAJE_Value,
-  PAJE_ValueString,
   PAJE_Key,
   PAJE_Alias,
   PAJE_Color,
