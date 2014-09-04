@@ -15,9 +15,12 @@
     along with Poti. If not, see <http://www.gnu.org/licenses/>.
 */
 #include "poti_private.h"
+#include <poti.h>
 #include <rastro.h>
 FILE* paje_file = 0;
 int paje_extended = 0;
+//0 for textual,1 for binary,2 for both
+int paje_binary = 0;
 
 int poti_open (const char* filename)
 {
@@ -29,6 +32,10 @@ int poti_open (const char* filename)
 
 int poti_init (FILE *file)
 {
+  if(paje_binary == 1 || paje_binary == 2)
+  {
+    rst_init(5,5);
+  }
   if (file){
     paje_file = file;
     return 0;
@@ -36,6 +43,7 @@ int poti_init (FILE *file)
     return -1;
   }
 }
+
 
 void poti_close ()
 {
@@ -49,7 +57,7 @@ void poti_close ()
 
 void poti_header (int basic, int old_header)
 {
-  rst_init(1, 1);
+
 
   if (paje_file ==0)
     paje_file = stdout;
