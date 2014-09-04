@@ -21,6 +21,7 @@ struct arguments {
 void poti_print_event(rst_event_t *event);
 const char* eventidToString(u_int32_t event);
 const char* fieldToString(u_int32_t event);
+const char* typeToString(u_int32_t event);
 static int parse_options (int key, char *arg, struct argp_state *state)
 {
   struct arguments *arguments = state->input;
@@ -131,50 +132,48 @@ const char* fieldToString(u_int32_t event)
 	switch (event)
 	{
 		case PAJE_Time:
-			return  "Time date";
+			return  "Time";
 			break;
 		case PAJE_Name:
-			return "Name string";
+			return "Name";
 			break;
 		case PAJE_Type:
-			return "Type string";
+			return "Type";
 			break;
 		case PAJE_Container:
-			return "Container string";
+			return "Container";
 			break;
 		case PAJE_StartContainerType:
-			return "StartContainerType string";
+			return "StartContainerType";
 			break;
 		case PAJE_EndContainerType:
-			return "EndContainerType string";
+			return "EndContainerType";
 			break;
 		case PAJE_StartContainer:
-			return "StartContainer string";
+			return "StartContainer";
 			break;
 		case PAJE_EndContainer:
-			return "EndContainer string";
+			return "EndContainer";
 			break;
 		case PAJE_Value:
-			return "Value double";
-			break;
-		case PAJE_ValueString:
-			return "Value string";
+			return "Value";
+			break;	
 		case PAJE_Key:
-			return "Key string";
+			return "Key";
 			break;
 		case PAJE_Alias:
-			return "Alias string";
+			return "Alias";
 			break;	
 		case PAJE_Color:
-			return "Color color";
+			return "Color";
 			break;
 
 		//poti extended events
 		case PAJE_Mark:
-			return "Mark string";
+			return "Mark";
 			break;
 		case PAJE_Size:
-			return "Size double";
+			return "Size";
 			break;
 /*	
 		case PAJE_Line:
@@ -195,6 +194,38 @@ const char* fieldToString(u_int32_t event)
 	return "error on field def";
 }
 
+const char* typeToString(u_int32_t event)
+{
+	switch (event)
+	{
+		case PAJE_string:
+			return  "string";
+			break;
+		case PAJE_float:
+			return "float";
+			break;
+		case PAJE_double:
+			return "double";
+			break;
+		case PAJE_int:
+			return "int";
+			break;
+		case PAJE_hex:
+			return "hex";
+			break;
+    case PAJE_date:
+			return "date";
+			break;
+		case PAJE_color:
+			return "color";
+			break;
+		case PAJE_unknown_field_type:
+			return "unknown_field_type";
+			break;
+  }
+  return "error on type def";
+}
+
 //reads the binary rst events and print them in  paje  format
 void poti_print_event (rst_event_t *event)
 {
@@ -206,8 +237,8 @@ void poti_print_event (rst_event_t *event)
 		int i = 0;
 		printf("%%EventDef %s %" PRIu32 "\n", eventidToString(event->v_uint32[i]), event->v_uint32[i]);
 		i++;
-		for (; i < event->ct.n_uint32; i++) {
-			printf("%%       %s\n", fieldToString(event->v_uint32[i]));
+		for (; i < event->ct.n_uint32; i=i+2) {
+			printf("%%       %s %s\n", fieldToString(event->v_uint32[i]),typeToString(event->v_uint32[i+1]));
 		}
 		printf("%%EndEventDef\n");
 	  	

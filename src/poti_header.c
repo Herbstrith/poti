@@ -39,11 +39,11 @@ static void poti_header_PajeDefineContainerType (int old_header)
   fprintf(paje_file, "%%       Name string\n");
   fprintf(paje_file, "%%EndEventDef\n");
 
-  rst_event_iiii(PajeHeaderEventId,
+  rst_event_iiiiiii(PajeHeaderEventId,
 		PajeDefineContainerTypeEventId,
-		PAJE_Alias,
-		PAJE_Type,
-		PAJE_Name);
+		PAJE_Alias,PAJE_string,
+		PAJE_Type,PAJE_string,
+		PAJE_Name,PAJE_string);
 
 }
 
@@ -60,12 +60,12 @@ static void poti_header_PajeDefineVariableType (int old_header)
   fprintf(paje_file, "%%       Color color\n");
   fprintf(paje_file, "%%EndEventDef\n");
 
-  rst_event_iiiii(PajeHeaderEventId,
+  rst_event_iiiiiiiii(PajeHeaderEventId,
 		PajeDefineVariableTypeEventId,
-		PAJE_Alias,
-		PAJE_Type,
-		PAJE_Name,
-		PAJE_Color);
+		PAJE_Alias,PAJE_string,
+		PAJE_Type,PAJE_string,
+		PAJE_Name,PAJE_string,
+		PAJE_Color,PAJE_color);
 
 
 }
@@ -82,11 +82,11 @@ static void poti_header_PajeDefineStateType (int old_header)
   fprintf(paje_file, "%%       Name string\n");
   fprintf(paje_file, "%%EndEventDef\n");
 
-  rst_event_iiii(PajeHeaderEventId,
+  rst_event_iiiiiii(PajeHeaderEventId,
 		PajeDefineStateTypeEventId,
-		PAJE_Alias,
-		PAJE_Type,
-		PAJE_Name);
+		PAJE_Alias,PAJE_string,
+		PAJE_Type,PAJE_string,
+		PAJE_Name,PAJE_string);
 
 
 }
@@ -103,11 +103,11 @@ static void poti_header_PajeDefineEventType (int old_header)
   fprintf(paje_file, "%%       Name string\n");
   fprintf(paje_file, "%%EndEventDef\n");
   
-  rst_event_iiii(PajeHeaderEventId,
+  rst_event_iiiiiii(PajeHeaderEventId,
 		PajeDefineEventTypeEventId,
-		PAJE_Alias,
-		PAJE_Type,
-		PAJE_Name);
+		PAJE_Alias,PAJE_string,
+		PAJE_Type,PAJE_string,
+		PAJE_Name,PAJE_string);
 
 
 }
@@ -128,13 +128,13 @@ static void poti_header_PajeDefineLinkType (int old_header)
   fprintf(paje_file, "%%       Name string\n");
   fprintf(paje_file, "%%EndEventDef\n");
 
-  rst_event_iiiiii(PajeHeaderEventId,
+  rst_event_iiiiiiiiiii(PajeHeaderEventId,
 			PajeDefineLinkTypeEventId,
-			PAJE_Alias,
-			PAJE_Type,
-			PAJE_StartContainerType,
-			PAJE_EndContainerType,
-			PAJE_Name);
+			PAJE_Alias,PAJE_string,
+			PAJE_Type,PAJE_string,
+			PAJE_StartContainerType,PAJE_string,
+			PAJE_EndContainerType,PAJE_string,
+			PAJE_Name,PAJE_string);
 
 
 
@@ -155,12 +155,12 @@ static void poti_header_PajeDefineEntityValue (int old_header)
   fprintf(paje_file, "%%       Color color\n");
   fprintf(paje_file, "%%EndEventDef\n");
 
-  rst_event_iiiii(PajeHeaderEventId,
+  rst_event_iiiiiiiii(PajeHeaderEventId,
 		PajeDefineEntityValueEventId,
-		PAJE_Alias,
-		PAJE_Type,
-		PAJE_Name,
-		PAJE_Color);
+		PAJE_Alias,PAJE_string,
+		PAJE_Type,PAJE_string,
+		PAJE_Name,PAJE_string,
+		PAJE_Color,PAJE_color);
 
  
 
@@ -175,13 +175,13 @@ static void poti_header_PajeCreateContainer (int old_header)
   fprintf(paje_file, "%%       Container string\n");
   fprintf(paje_file, "%%       Name string\n");
   fprintf(paje_file, "%%EndEventDef\n");
-  rst_event_iiiiii(PajeHeaderEventId,
+  rst_event_iiiiiiiiiii(PajeHeaderEventId,
 		PajeCreateContainerEventId,
-		PAJE_Time,
-		PAJE_Alias,
-		PAJE_Type,
-		PAJE_Container,
-		PAJE_Name);
+		PAJE_Time,PAJE_date,
+		PAJE_Alias,PAJE_string,
+		PAJE_Type,PAJE_string,
+		PAJE_Container,PAJE_string,
+		PAJE_Name,PAJE_string);
 
 }
 
@@ -192,11 +192,11 @@ static void poti_header_PajeDestroyContainer (int old_header)
   fprintf(paje_file, "%%       Type string\n");
   fprintf(paje_file, "%%       Name string\n");
   fprintf(paje_file, "%%EndEventDef\n");
-  rst_event_iiii(PajeHeaderEventId,
+  rst_event_iiiiiii(PajeHeaderEventId,
 		PajeDestroyContainerEventId,
-		PAJE_Time,
-		PAJE_Type,
-		PAJE_Name);
+		PAJE_Time,PAJE_date,
+		PAJE_Type,PAJE_string,
+		PAJE_Name,PAJE_string);
 
 }
 
@@ -208,12 +208,12 @@ static void poti_header_PajeSetVariable (int old_header)
   fprintf(paje_file, "%%       Type string\n");
   fprintf(paje_file, "%%       Value double\n");
   fprintf(paje_file, "%%EndEventDef\n");
-  rst_event_iiiii(PajeHeaderEventId,
+  rst_event_iiiiiiiii(PajeHeaderEventId,
 		PajeSetVariableEventId,
-		PAJE_Time,
-		PAJE_Container,
-		PAJE_Type,
-		PAJE_Value);
+		PAJE_Time,PAJE_date,
+		PAJE_Container,PAJE_string,
+		PAJE_Type,PAJE_string,
+		PAJE_Value,PAJE_double);
 
 }
 
@@ -226,12 +226,12 @@ static void poti_header_PajeAddVariable (int old_header)
   fprintf(paje_file, "%%       Value double\n");
   fprintf(paje_file, "%%EndEventDef\n");
 
-  rst_event_iiiii(PajeHeaderEventId,
+  rst_event_iiiiiiiii(PajeHeaderEventId,
 		PajeAddVariableEventId,
-		PAJE_Time,
-		PAJE_Container,
-		PAJE_Type,
-		PAJE_Value);
+		PAJE_Time,PAJE_date,
+		PAJE_Container,PAJE_string,
+		PAJE_Type,PAJE_string,
+		PAJE_Value,PAJE_double);
 
 }
 
@@ -244,12 +244,12 @@ static void poti_header_PajeSubVariable (int old_header)
   fprintf(paje_file, "%%       Value double\n");
   fprintf(paje_file, "%%EndEventDef\n");
 
-  rst_event_iiiii(PajeHeaderEventId,
+  rst_event_iiiiiiiii(PajeHeaderEventId,
 		PajeSubVariableEventId,
-		PAJE_Time,
-		PAJE_Container,
-		PAJE_Type,
-		PAJE_Value);
+		PAJE_Time,PAJE_date,
+		PAJE_Container,PAJE_string,
+		PAJE_Type,PAJE_string,
+		PAJE_Value,PAJE_double);
 
 }
 
@@ -263,12 +263,12 @@ static void poti_header_PajeSetState (int old_header)
   fprintf(paje_file, "%%       Value string\n");
   fprintf(paje_file, "%%EndEventDef\n");
 
-  rst_event_iiiii(PajeHeaderEventId,
+  rst_event_iiiiiiiii(PajeHeaderEventId,
 		PajeSetStateEventId,
-		PAJE_Time,
-		PAJE_Container,
-		PAJE_Type,
-		PAJE_ValueString);
+		PAJE_Time,PAJE_date,
+		PAJE_Container,PAJE_string,
+		PAJE_Type,PAJE_string,
+		PAJE_Value,PAJE_string);
 
 }
 
@@ -280,12 +280,12 @@ static void poti_header_PajePushState (int old_header)
   fprintf(paje_file, "%%       Type string\n");
   fprintf(paje_file, "%%       Value string\n");
   fprintf(paje_file, "%%EndEventDef\n");
-  rst_event_iiiii(PajeHeaderEventId,
+  rst_event_iiiiiiiii(PajeHeaderEventId,
 		PajePushStateEventId,
-		PAJE_Time,
-		PAJE_Container,
-		PAJE_Type,
-		PAJE_ValueString);
+		PAJE_Time,PAJE_date,
+		PAJE_Container,PAJE_string,
+		PAJE_Type,PAJE_string,
+		PAJE_Value,PAJE_string);
 
 }
 
@@ -298,13 +298,13 @@ static void poti_header_PajePushStateMark (int old_header)
   fprintf(paje_file, "%%       Value string\n");
   fprintf(paje_file, "%%       Mark string\n");
   fprintf(paje_file, "%%EndEventDef\n");
-  rst_event_iiiiii(PajeHeaderEventId,
+  rst_event_iiiiiiiiiii(PajeHeaderEventId,
 		PajePushStateMarkEventId,
-		PAJE_Time,
-		PAJE_Container,
-		PAJE_Type,
-		PAJE_ValueString,
-		PAJE_Mark);
+		PAJE_Time,PAJE_date,
+		PAJE_Container,PAJE_string,
+		PAJE_Type,PAJE_string,
+		PAJE_Value,PAJE_string,
+		PAJE_Mark,PAJE_string);
 
 }
 
@@ -315,11 +315,11 @@ static void poti_header_PajePopState (int old_header)
   fprintf(paje_file, "%%       Container string\n");
   fprintf(paje_file, "%%       Type string\n");
   fprintf(paje_file, "%%EndEventDef\n");
-  rst_event_iiii(PajeHeaderEventId,
+  rst_event_iiiiiii(PajeHeaderEventId,
 		PajePopStateEventId,
-		PAJE_Time,
-		PAJE_Container,
-		PAJE_Type);
+		PAJE_Time,PAJE_date,
+		PAJE_Container,PAJE_string,
+		PAJE_Type,PAJE_string);
 
 }
 
@@ -333,11 +333,11 @@ static void poti_header_PajeResetState (int old_header)
   fprintf(paje_file, "%%       Container string\n");
   fprintf(paje_file, "%%EndEventDef\n");
 
-  rst_event_iiii(PajeHeaderEventId,
+  rst_event_iiiiiii(PajeHeaderEventId,
 		PajeResetStateEventId,
-		PAJE_Time,
-		PAJE_Type,
-		PAJE_Container);
+		PAJE_Time,PAJE_date,
+		PAJE_Type,PAJE_string,
+		PAJE_Container,PAJE_string);
 
 }
 
@@ -356,14 +356,14 @@ static void poti_header_PajeStartLink (int old_header)
   fprintf(paje_file, "%%       Key string\n");
   fprintf(paje_file, "%%EndEventDef\n");
 
-  rst_event_iiiiiii(PajeHeaderEventId,
+  rst_event_iiiiiiiiiiiii(PajeHeaderEventId,
 		PajeStartLinkEventId,
-		PAJE_Time,
-		PAJE_Container,
-		PAJE_Type,
-		PAJE_StartContainer,
-		PAJE_ValueString,
-		PAJE_Key);
+		PAJE_Time,PAJE_date,
+		PAJE_Container,PAJE_string,
+		PAJE_Type,PAJE_string,
+		PAJE_StartContainer,PAJE_string,
+		PAJE_Value, PAJE_string,
+		PAJE_Key,PAJE_string);
 
 
 }
@@ -385,15 +385,15 @@ static void poti_header_PajeStartLinkSize (int old_header)
   fprintf(paje_file, "%%EndEventDef\n");
 
 
-  rst_event_iiiiiiii(PajeHeaderEventId,
+  rst_event_iiiiiiiiiiiiiii(PajeHeaderEventId,
 		PajeStartLinkSizeEventId,
-		PAJE_Time,
-		PAJE_Container,
-		PAJE_Type,
-		PAJE_StartContainer,
-		PAJE_ValueString,
-		PAJE_Key,
-		PAJE_Size);
+		PAJE_Time,PAJE_date,
+		PAJE_Container,PAJE_string,
+		PAJE_Type,PAJE_string,
+		PAJE_StartContainer,PAJE_string,
+		PAJE_Value,PAJE_string,
+		PAJE_Key,PAJE_string,
+		PAJE_Size,PAJE_double);
 
 
 }
@@ -418,16 +418,16 @@ static void poti_header_PajeStartLinkSizeMark (int old_header)
 
 
 
-  rst_event_iiiiiiiii(PajeHeaderEventId,
+  rst_event_iiiiiiiiiiiiiiiii(PajeHeaderEventId,
 		PajeStartLinkSizeMarkEventId,
-		PAJE_Time,
-		PAJE_Container,
-		PAJE_Type,
-		PAJE_StartContainer,
-		PAJE_ValueString,
-		PAJE_Key,
-		PAJE_Size,
-		PAJE_Mark);
+		PAJE_Time,PAJE_date,
+		PAJE_Container,PAJE_string,
+		PAJE_Type,PAJE_string,
+		PAJE_StartContainer,PAJE_string,
+		PAJE_Value,PAJE_string,
+		PAJE_Key,PAJE_string,
+		PAJE_Size,PAJE_double,
+		PAJE_Mark,PAJE_string);
 
 
 }
@@ -447,14 +447,14 @@ static void poti_header_PajeEndLink (int old_header)
   fprintf(paje_file, "%%       Key string\n");
   fprintf(paje_file, "%%EndEventDef\n");
 
-  rst_event_iiiiiii(PajeHeaderEventId,
+  rst_event_iiiiiiiiiiiii(PajeHeaderEventId,
 		PajeEndLinkEventId,
-		PAJE_Time,
-		PAJE_Container,
-		PAJE_Type,
-		PAJE_EndContainer,
-		PAJE_ValueString,
-		PAJE_Key);
+		PAJE_Time,PAJE_date,
+		PAJE_Container,PAJE_string,
+		PAJE_Type,PAJE_string,
+		PAJE_EndContainer,PAJE_string,
+		PAJE_Value,PAJE_string,
+		PAJE_Key,PAJE_string);
 
 
 
@@ -470,12 +470,12 @@ static void poti_header_PajeNewEvent (int old_header)
   fprintf(paje_file, "%%EndEventDef\n");
 
 
-  rst_event_iiiii(PajeHeaderEventId,
+  rst_event_iiiiiiiii(PajeHeaderEventId,
 		PajeNewEventEventId,
-		PAJE_Time,
-		PAJE_Container,
-		PAJE_Type,
-		PAJE_ValueString);
+		PAJE_Time,PAJE_date,
+		PAJE_Container,PAJE_string,
+		PAJE_Type,PAJE_string,
+		PAJE_Value,PAJE_string);
 
 }
 
