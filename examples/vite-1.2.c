@@ -23,7 +23,7 @@ int main (int argc, char **argv)
   //first parameter set to 1 means basic header with no extended events
   //second parameter set to 1 means old header
   rst_init(1, 2);
-  poti_header (1, 1);
+  poti_header (1, 1,0);
 
   //Defining my types
   poti_DefineContainerType ("ROOT", "0", "ROOT");

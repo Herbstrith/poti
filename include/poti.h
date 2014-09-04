@@ -28,12 +28,10 @@ extern "C" {
  * Function to open output into a file, else output to stdout
  */
 int poti_open (const char* filename);
-
 /*
  * Function to init poti with an external file descriptor
  */
 int poti_init (FILE *file);
-
 /*
  * Function to close opened file
  */
@@ -42,7 +40,7 @@ void poti_close (void);
 /*
  * Function to generate the header 
  */
-void poti_header (int basic, int old_header);
+void poti_header (int basic, int old_header, int output_mode);
 
 /*
  * Functions to define the type hierarchy of a Paje trace file 

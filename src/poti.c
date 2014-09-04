@@ -55,7 +55,7 @@ void poti_close ()
   rst_finalize();
 }
 
-void poti_header (int basic, int old_header)
+void poti_header (int basic, int old_header, int output_mode)
 {
 
 
@@ -66,5 +66,5 @@ void poti_header (int basic, int old_header)
   fprintf(paje_file,"#POTI_GIT_DATE (date of the cmake configuration) %s\n", POTI_GITDATE);
 
 
-  _poti_header (basic, old_header);
+  _poti_header (basic, old_header,output_mode);
 }
