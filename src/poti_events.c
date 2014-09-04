@@ -129,7 +129,7 @@ void poti_DefineLinkType(const char *alias,
                         const char *endContainerType,
                         const char *name)
 {
-  if(paje_binary == 1 || paje_binary == 2)
+  if(paje_binary == 0 || paje_binary == 2)
   {
     fprintf(paje_file,"%d %s %s %s %s \"%s\"\n",
            PajeDefineLinkTypeEventId,

@@ -441,7 +441,7 @@ static void poti_header_PajeStartLink (int old_header)
     fprintf(paje_file, "%%       Key string\n");
     fprintf(paje_file, "%%EndEventDef\n");
   }
-  if(paje_binary == 0 || paje_binary == 2)
+  if(paje_binary == 1 || paje_binary == 2)
   {
     rst_event_iiiiiiiiiiiii(PajeHeaderEventId,
 		  PajeStartLinkEventId,
