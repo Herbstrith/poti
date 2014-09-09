@@ -132,7 +132,7 @@ const char* fieldToString(u_int32_t event)
 	switch (event)
 	{
 		case PAJE_Time:
-			return  "Time";
+			return "Time";
 			break;
 		case PAJE_Name:
 			return "Name";

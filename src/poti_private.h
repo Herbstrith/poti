@@ -48,7 +48,7 @@ typedef enum {
   PAJE_color,
   PAJE_unknown_field_type
 } PajeFieldType;
-*/
-void _poti_header (int basic, int old_header);
+
+void _poti_header (int basic, int old_header,int output_mode);
 
 #endif

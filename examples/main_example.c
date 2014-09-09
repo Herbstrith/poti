@@ -22,8 +22,8 @@ int main (int argc, char **argv)
   //first parameter is a boolean indicating a basic header or not
   //second parameter is a boolean indicating an old header or not
 
-  poti_header (0, 0);
-  int new_push_state_identifier = poti_header_PajePushState (old_header, "Mark", PAJE_string);
+  poti_header (0, 0,2);
+  //int new_push_state_identifier = poti_header_PajePushState (old_header, "Mark", PAJE_string);
 
   //Defining my types
   poti_DefineContainerType ("ROOT", "0", "ROOT");
@@ -57,7 +57,7 @@ int main (int argc, char **argv)
   poti_PopState  (0.90, "thread-0", "STATE");
   poti_PopState  (1.01, "thread-1", "STATE");
 
-  poti_UserPushState (new_push_state_identifier, 0.34, "thread-0", "STATE", "r", "valor_do_mark");
+  //poti_UserPushState (new_push_state_identifier, 0.34, "thread-0", "STATE", "r", "valor_do_mark");
 
   //End the link at thread-1
   poti_EndLink (1.02, "root", "LINK", "thread-1", "c", "myKey-001");
