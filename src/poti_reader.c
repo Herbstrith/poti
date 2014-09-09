@@ -24,7 +24,7 @@ const char* fieldToString(u_int32_t event);
 const char* typeToString(u_int32_t event);
 static int parse_options (int key, char *arg, struct argp_state *state)
 {
-  struct arguments *arguments = state->input;
+  struct arguments *arguments = (struct arguments*)state->input;
   switch (key){
   case 's': arguments->synchronization_file = arg; break;
   case ARGP_KEY_ARG:

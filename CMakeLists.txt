@@ -16,8 +16,13 @@ CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
 PROJECT(poti)
 SET(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake")
 
+
+
 EXEC_PROGRAM("git --git-dir=${PROJECT_SOURCE_DIR}/.git log --oneline -1" OUTPUT_VARIABLE "POTI_GITVERSION")
 EXEC_PROGRAM("git --git-dir=${PROJECT_SOURCE_DIR}/.git log -n 1 --format=%ai" OUTPUT_VARIABLE "POTI_GITDATE")
+
+
+SET_SOURCE_FILES_PROPERTIES( src/poti_private.h src/poti.c src/poti_header.c src/poti_events.c src/poti_reader.c PROPERTIES LANGUAGE CXX )
 
 SET(CMAKE_C_FLAGS "-Wall -Wunused -Wmissing-prototypes -Wmissing-declarations -Wpointer-arith -Wchar-subscripts -Wcomment -Wformat -Wwrite-strings -Wno-unused-function -Wno-unused-parameter -Wno-strict-aliasing -Wno-format-nonliteral -Werror ")
 
@@ -29,7 +34,12 @@ SET(POTI_SRC src/poti.c src/poti_header.c src/poti_events.c src/poti_events_rast
 SET(POTI_HEADERS include/poti.h include/poti_events_rastro.h include/poti_header_rastro.h ${CMAKE_BINARY_DIR}/include/poti_config.h)
 
 
+FIND_PACKAGE(Boost REQUIRED)
+INCLUDE_DIRECTORIES(paje_library ${Boost_INCLUDE_DIR})
+
 ADD_SUBDIRECTORY(librastro)
+#ADD_SUBDIRECTORY(pajeng)
+#add_subdirectory (${CMAKE_HOME_DIRECTORY}/pajeng/src/libpaje/)
 
 INCLUDE_DIRECTORIES(${poti_SOURCE_DIR}/include/)
 INCLUDE_DIRECTORIES(${poti_SOURCE_DIR}/src/)
@@ -37,6 +47,9 @@ INCLUDE_DIRECTORIES(${CMAKE_BINARY_DIR}/include/)
 
 INCLUDE_DIRECTORIES(${rastro_SOURCE_DIR}/include/)
 INCLUDE_DIRECTORIES(${rastro_SOURCE_DIR}/src/)
+
+INCLUDE_DIRECTORIES(${CMAKE_HOME_DIRECTORY}/pajeng/src/libpaje/)
+
 
 TARGET_LINK_LIBRARIES(rastro)
 ADD_LIBRARY(poti SHARED ${POTI_SRC})
