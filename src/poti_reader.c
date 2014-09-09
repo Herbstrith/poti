@@ -237,7 +237,7 @@ void poti_print_event (rst_event_t *event)
 
 
 	//header event
-	if(event->type == 0 )
+	if(event->type == PajeHeaderEventId )
 	{
 		int i = 0;
 		printf("%%EventDef %s %" PRIu32 "\n", eventidToString(event->v_uint32[i]), event->v_uint32[i]);

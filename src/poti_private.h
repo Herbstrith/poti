@@ -26,7 +26,7 @@
 
 
 typedef enum {
-  PajeHeaderEventId,
+  PajeHeaderEventId=999,
   //poti extender header ids
   PajeStartLinkSizeMarkEventId = 22,
   PajeStartLinkSizeEventId = 23,
