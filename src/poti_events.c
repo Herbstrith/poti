@@ -15,7 +15,14 @@
     along with Poti. If not, see <http://www.gnu.org/licenses/>.
 */
 #include "poti_private.h"
-#include "poti_events_rastro.h"
+//#include "poti_events_rastro.h"
+
+extern "C"
+{
+  #include "poti_events_rastro.h"
+
+}
+
 
 static double paje_event_timestamp(double timestamp)
 {

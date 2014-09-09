@@ -1,7 +1,12 @@
 #include <stdio.h>
 #include <argp.h>
-#include <rastro.h>
 #include "poti_private.h"
+
+extern "C"
+{
+  #include <rastro.h>
+
+}
 
 static char doc[] = "Reads the poti binary trace";
 static char args_doc[] = "{rastro-0-0.rst rastro-1-0.rst ...}";

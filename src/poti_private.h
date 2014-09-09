@@ -37,17 +37,6 @@ typedef enum {
   PAJE_Size=35,
   PAJE_Mark=36
 } PotiField;
-/*
-typedef enum {
-  PAJE_string,
-  PAJE_float,
-  PAJE_double,
-  PAJE_int,
-  PAJE_hex,
-  PAJE_date,
-  PAJE_color,
-  PAJE_unknown_field_type
-} PajeFieldType;
 
 void _poti_header (int basic, int old_header,int output_mode);
 

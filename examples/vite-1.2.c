@@ -14,8 +14,12 @@
     You should have received a copy of the GNU Public License
     along with Poti. If not, see <http://www.gnu.org/licenses/>.
 */
-#include <poti.h>
-#include <rastro.h>
+//#include <poti.h>
+extern "C"
+{
+  #include <rastro.h>
+  #include <poti.h>
+}
 int main (int argc, char **argv)
 {
   //Vite-1.2 requires an old header definition (with no extended events)

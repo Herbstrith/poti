@@ -17,9 +17,14 @@
 
 
 #include "poti_private.h"
-#include "poti_header_rastro.h"
-#include "poti_events_rastro.h"
+//#include "poti_header_rastro.h"
+//#include "poti_events_rastro.h"
 #include <PajeDefinitions.h>
+extern "C"
+{
+  #include "poti_header_rastro.h"
+
+}
 
 extern FILE *paje_file;
 extern int paje_extended;
@@ -587,6 +592,8 @@ static void poti_header_PajeNewEvent (int old_header)
 /* entry point */
 void _poti_header(int basic, int old_header, int output_mode)
 {
+
+  paje_binary = output_mode;
   poti_header_PajeDefineContainerType (old_header);
   poti_header_PajeDefineVariableType (old_header);
   poti_header_PajeDefineStateType (old_header);
@@ -606,18 +613,7 @@ void _poti_header(int basic, int old_header, int output_mode)
   poti_header_PajeEndLink (old_header);
   poti_header_PajeNewEvent (old_header);
   
-  if(output_mode == 0)
-  {
-    paje_binary = 0;
-  }
-  if(output_mode == 1)
-  {
-    paje_binary = 1;
-  }
-  if(output_mode == 2)
-  {
-    paje_binary = 2;
-  }
+  
   
   if (basic){
     paje_extended = 0;

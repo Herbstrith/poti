@@ -16,7 +16,12 @@
 */
 #include "poti_private.h"
 #include <poti.h>
-#include <rastro.h>
+extern "C"
+{
+  #include <rastro.h>
+
+}
+
 FILE* paje_file = 0;
 int paje_extended = 0;
 //0 for textual,1 for binary,2 for both

@@ -12,6 +12,9 @@
 #
 # You should have received a copy of the GNU Lesser Public License
 # along with Poti. If not, see <http://www.gnu.org/licenses/>.
+
+SET_SOURCE_FILES_PROPERTIES( main_example.c vite-1.2.c vite-svn.c PROPERTIES LANGUAGE CXX )
+
 ADD_EXECUTABLE(main_example main_example.c)
 TARGET_LINK_LIBRARIES(main_example poti rastro)
 
