@@ -41,18 +41,24 @@ void poti_DefineContainerType(const char *alias,
                              const char *containerType,
                              const char *name)
 {
+
+  if(paje_binary == 0 || paje_binary == 2)
+  {
   fprintf(paje_file,"%d %s %s \"%s\"\n",
          PajeDefineContainerTypeEventId,
          alias,
          containerType,
          name);
-  
+  }
+  if(paje_binary == 1 || paje_binary == 2)
+  {
   char temp[50];
   sprintf(temp, "\"%s\"", name);
   rst_event_sss(PajeDefineContainerTypeEventId,
 		alias,
 		containerType,
 		temp);
+  }
  
  
 }
