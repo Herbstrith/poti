@@ -27,7 +27,7 @@ int main (int argc, char **argv)
   //first parameter is a boolean indicating a basic header or not
   //second parameter is a boolean indicating an old header or not
   rst_init(6,6);
-  poti_header (0,0,1);
+  poti_header (0,0,2);
   //int new_push_state_identifier = poti_header_PajePushState (old_header, "Mark", PAJE_string);
 
   //Defining my types
