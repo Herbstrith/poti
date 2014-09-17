@@ -12,7 +12,7 @@
 # Just set PAJENG_PATH it to your specific installation directory
 #
 FIND_LIBRARY(LIBRASTRO_LIBRARY
-NAMES librastro
+NAMES rastro
 PATHS /usr/lib /usr/local/lib ${LIBRASTRO_PATH}/lib)
 IF(LIBRASTRO_LIBRARY)
 MESSAGE ( STATUS "Found LIBRASTRO library: ${LIBRASTRO_LIBRARY}" )
@@ -41,4 +41,12 @@ MESSAGE(STATUS " - as a command line argument when working with cmake e.g.")
 MESSAGE(STATUS " cmake .. -DLIBRASTRO_PATH:PATH=/usr/local/librastro/ ")
 SET(LIBRASTRO_PATH "" CACHE PATH "Root of LIBRASTRO install tree." )
 ENDIF( NOT LIBRASTRO_FOUND )
+
+
+
+
+
+
+
+
 
