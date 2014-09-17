@@ -36,11 +36,13 @@ SET(POTI_HEADERS include/poti.h include/poti_events_rastro.h include/poti_header
 
 FIND_PACKAGE(Boost REQUIRED)
 
-FIND_PACKAGE(pajeng)
-FIND_PACKAGE(librastro)
+FIND_PACKAGE(PajeNG REQUIRED)
+FIND_PACKAGE(librastro REQUIRED)
 
+INCLUDE_DIRECTORIES(${PAJENG_INCLUDE_PATH})
+LINK_DIRECTORIES (${PAJENG_LIBRARY_PATH})
 
-INCLUDE_DIRECTORIES(${poti_SOURCE_DIR}/src/converter/)
+#INCLUDE_DIRECTORIES(${poti_SOURCE_DIR}/src/converter/)
 INCLUDE_DIRECTORIES(${poti_SOURCE_DIR}/include/)
 INCLUDE_DIRECTORIES(${poti_SOURCE_DIR}/src/)
 INCLUDE_DIRECTORIES(${CMAKE_BINARY_DIR}/include/)
@@ -71,7 +73,7 @@ INSTALL(TARGETS poti
 INSTALL(FILES include/poti.h
   DESTINATION include)
 
-#add_subdirectory (${CMAKE_HOME_DIRECTORY}/src/converter/)
+add_subdirectory (${CMAKE_HOME_DIRECTORY}/src/converter/)
 ADD_SUBDIRECTORY(examples)
 ADD_SUBDIRECTORY(pkgconfig)
 
