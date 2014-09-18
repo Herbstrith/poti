@@ -18,6 +18,7 @@
 #include <PajeException.h>
 #include "parser.hh"
 
+
 void yyerror (char const *mensagem)
 {
   fprintf (stderr, "%s on line %d\n", mensagem, yylineno);
@@ -37,11 +38,14 @@ PajeFlexReader::PajeFlexReader(std::string f, PajeDefinitions *definitions)
 
 PajeFlexReader::PajeFlexReader(PajeDefinitions *definitions)
 {
+	
   initialize (definitions);
 }
 
 void PajeFlexReader::initialize (PajeDefinitions *definitions)
 {
+	
+  
   defs = globalDefinitions = definitions;
   flexReader = this;
   hasData = true;

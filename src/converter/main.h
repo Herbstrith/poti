@@ -3,7 +3,7 @@
 #include <PajeEventDefinition.h>
 #include <PajeFlexReader.h>
 #include <PajeDefinitions.h>
-
+#include <poti.h>
 extern PajeDefinitions *globalDefinitions;
 extern PajeFlexReader *flexReader;
 

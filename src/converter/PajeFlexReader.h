@@ -17,9 +17,11 @@
 #ifndef __PAJEFLEXREADER_H__
 #define __PAJEFLEXREADER_H__
 #include "PajeComponent.h"
+#include "poti.h"
 
 extern "C"
 {
+
   extern int yylineno;
   int yylex(void);
   void yyerror (char const *mensagem);
