@@ -2,6 +2,9 @@
 #include <stdio.h>
 #include <search.h>
 #include "main.h"
+#include <poti.h>
+#include <rastro.h>
+#include <string.h>
 
   PajeEventDefinition *eventBeingDefined;
   PajeDefinitions *globalDefinitions;
@@ -25,6 +28,7 @@
 
 
   paje_line line; //the current line being read
+
 %}
 
 %union {
@@ -178,6 +182,106 @@ argument: TK_STRING { $$ = $1; } | TK_FLOAT { $$ = $1; } | TK_INT { $$ = $1; };
 
 %%
 
+char* create_poti_event(int identifier, paje_line line)
+{
+switch (identifier)
+	{
+		case PajeDefineContainerTypeEventId:
+      poti_DefineContainerType(line.word[1],line.word[2],line.word[3]);
+			return "PajeDefineContainerType";
+			break;
+		case PajeDefineEventTypeEventId:
+      poti_DefineEventType(line.word[1],line.word[2],line.word[3]);
+			return "PajeDefineEventType";
+			break;
+		case PajeDefineStateTypeEventId:
+      poti_DefineStateType(line.word[1],line.word[2],line.word[3]);
+			return "PajeDefineStateType";
+			break;
+		case PajeDefineVariableTypeEventId:
+      poti_DefineVariableType(line.word[1],line.word[2],line.word[3],line.word[4]);
+			return "PajeDefineVariableType";
+			break;
+		case PajeDefineLinkTypeEventId:
+       poti_DefineLinkType(line.word[1],line.word[2],line.word[3],line.word[4],line.word[5]);
+			return "PajeDefineLinkType";
+			break;
+		case PajeDefineEntityValueEventId:
+      poti_DefineEntityValue(line.word[1],line.word[2],line.word[3],line.word[4]);
+			return "PajeDefineEntityValue";
+			break;
+		case PajeCreateContainerEventId:
+      poti_CreateContainer(strtod(line.word[1],NULL),line.word[2],line.word[3],line.word[4],line.word[5]);
+			return "PajeCreateContainer";
+			break;
+		case PajeDestroyContainerEventId:
+      poti_DestroyContainer(strtod(line.word[1],NULL),line.word[2],line.word[3]);
+			return "PajeDestroyContainer";
+			break;
+		case PajeNewEventEventId:
+      poti_NewEvent(strtod(line.word[1],NULL),line.word[2],line.word[3],line.word[4]);
+			return "PajeNewEvent";
+			break;
+		case PajeSetStateEventId:
+      poti_SetState(strtod(line.word[1],NULL),line.word[2],line.word[3],line.word[4]);
+			return "PajeSetState";
+			break;
+		case PajePushStateEventId:
+      poti_PushState(strtod(line.word[1],NULL),line.word[2],line.word[3],line.word[4]);
+			return "PajePushState";
+			break;	
+		case PajePopStateEventId:
+      poti_PopState(strtod(line.word[1],NULL),line.word[2],line.word[3]);
+			return "PajePopState";
+			break;	
+		case PajeResetStateEventId:
+      poti_ResetState(strtod(line.word[1],NULL),line.word[2],line.word[3]);
+			return "PajeResetState";
+			break;
+		case PajeSetVariableEventId:
+      poti_SetVariable (strtod(line.word[1],NULL),line.word[2],line.word[3],strtod(line.word[4],NULL));
+			return "PajeSetVariable";
+			break;	
+		case PajeAddVariableEventId:
+      poti_AddVariable(strtod(line.word[1],NULL),line.word[2],line.word[3],strtod(line.word[4],NULL));
+			return "PajeAddVariable";
+			break;		
+		case PajeSubVariableEventId:
+      poti_SubVariable(strtod(line.word[1],NULL),line.word[2],line.word[3],strtod(line.word[4],NULL));
+			return "PajeSubVariable";
+			break;	
+		case PajeStartLinkEventId:
+      poti_StartLink(strtod(line.word[1],NULL),line.word[2],line.word[3],line.word[4],line.word[5],line.word[6]);
+			return "PajeStartLink";
+			break;
+		case PajeEndLinkEventId:
+      poti_EndLink(strtod(line.word[1],NULL),line.word[2],line.word[3],line.word[4],line.word[5],line.word[6]);
+			return "PajeEndLink";
+			break;
+		case PajeEventIdCount:
+      poti_EndLink(strtod(line.word[1],NULL),line.word[2],line.word[3],line.word[4],line.word[5],line.word[6]);
+			return "PajeEventIdCount";
+			break;
+		//poti extended events : TODO merge with same events
+		case PajeUnknownEventId:
+			return "PajeUnknownEventId";
+			break;
+		/*case PajePushStateMarkEventId:
+			return "PajePushState";
+			break;
+		case PajeStartLinkSizeEventId:
+			return "PajeStartLink";
+			break;
+		case PajeStartLinkSizeMarkEventId:
+			return "PajeStartLink";
+			break;	*/
+		
+	}
+    return "ERROR:event definition not found";
+}
+
+
+
 void lineReset ()
 {
   line.lineNumber = yylineno;
@@ -187,12 +291,49 @@ void lineReset ()
 void lineAdd (char *str)
 {
   line.word[line.word_count++] = strdup(str);
+  /*atoi(str);
+    printf("str %d \n", atoi(str));*/
 }
 
 void lineSend ()
 {
-  int identifier = atoi(line.word[0]);
+
+  
+  int identifier = atoi(line.word[0]); 
+  int i;
+  for(i = 0; i <line.word_count;i++)
+  {
+    if(line.word[i][0] == '"')
+    {
+      // printf("we gotta a ''");
+      int len = strlen(line.word[i]);
+      int f = 0;
+      int k = 0;
+      for ( f = 0; f <= len; f++ )
+      {
+        if (line.word[i][f] != '"')
+        {
+          line.word[i][k]=line.word[i][f];
+          k++;
+        } 
+      }
+      
+    }
+
+  }
+
+  //printf("id %s\n",create_poti_event(identifier));
+  create_poti_event(identifier,line);
+ /* for(int i =0; i < line.word_count ; i++)
+{
+  printf("%s \n", line.word[i]);
+
+}
   PajeTraceEvent *event = new PajeTraceEvent (defsv[identifier], &line);
   flexReader->outputEntity (event);
-  delete event; 
+  delete event; */
+
+  
 }
+
+

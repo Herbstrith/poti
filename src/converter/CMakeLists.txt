@@ -21,6 +21,7 @@ FIND_PACKAGE(BISON REQUIRED)
 
 FLEX_TARGET(scanner scanner.l ${CMAKE_CURRENT_BINARY_DIR}/lexer.cc COMPILE_FLAGS "-F")
 BISON_TARGET(parser parser.y ${CMAKE_CURRENT_BINARY_DIR}/parser.cc VERBOSE parser.output)
+
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_BINARY_DIR})
 INCLUDE_DIRECTORIES(${CMAKE_HOME_DIRECTORY}/src/converter/)
 INCLUDE_DIRECTORIES(${CMAKE_HOME_DIRECTORY}/include/)
@@ -31,8 +32,11 @@ ADD_LIBRARY(conversor_library
   ${FLEX_scanner_OUTPUTS}
   ${BISON_parser_OUTPUTS}
   ${${poti_SOURCE_DIR}/include/}
+  
   PajeFlexReader.cc
   )
+TARGET_LINK_LIBRARIES(conversor_library poti)
+TARGET_LINK_LIBRARIES(conversor_library rastro)
 ADD_EXECUTABLE(conversor main.cc)
 SET_PROPERTY(TARGET conversor PROPERTY RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 
