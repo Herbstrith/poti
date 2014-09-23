@@ -26,7 +26,7 @@ extern "C"
   int yyparse ();
   extern char *yytext;
   extern int yychar;
-  extern PajeEventDefinition **defsv;
+  //extern PajeEventDefinition **defsv;
   
 }
 
@@ -34,8 +34,8 @@ int main (int argc, char **argv)
 {
 		printf("begin conversion");
   long long counter = 0;
-	rst_init(8,6);
-		//poti_init(NULL);
+	//rst_init(8,6);
+		poti_init(NULL);
 
 	  poti_header(0,0,1);
 

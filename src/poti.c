@@ -40,6 +40,7 @@ int poti_init (FILE *file)
   if(paje_binary == POTI_BINARY_OUTPUT || POTI_TEXTUAL_BINARY_OUTPUT == 2)
   {
     rst_init(5,5);
+    return 0;
   }
   if (file){
     paje_file = file;
