@@ -33,7 +33,7 @@ extern int paje_binary;
 static void poti_header_PajeDefineContainerType (int old_header)
 {
 
-  if(paje_binary == 0 || paje_binary == 2)
+  if(paje_binary == POTI_TEXTUAL_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
   {
     fprintf(paje_file, "%%EventDef PajeDefineContainerType %d\n", PajeDefineContainerTypeEventId);
     fprintf(paje_file, "%%       Alias string\n");
@@ -47,7 +47,7 @@ static void poti_header_PajeDefineContainerType (int old_header)
     fprintf(paje_file, "%%       Name string\n");
     fprintf(paje_file, "%%EndEventDef\n");
   }
-  if(paje_binary == 1 || paje_binary == 2)
+  if(paje_binary == POTI_BINARY_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
   {
     rst_event_iiiiiii(PajeHeaderEventId,
 		    PajeDefineContainerTypeEventId,
@@ -60,7 +60,7 @@ static void poti_header_PajeDefineContainerType (int old_header)
 
 static void poti_header_PajeDefineVariableType (int old_header)
 {
-  if(paje_binary == 0 || paje_binary == 2)
+  if(paje_binary == POTI_TEXTUAL_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
   {
     fprintf(paje_file, "%%EventDef PajeDefineVariableType %d\n", PajeDefineVariableTypeEventId);
     fprintf(paje_file, "%%       Alias string\n");
@@ -73,7 +73,7 @@ static void poti_header_PajeDefineVariableType (int old_header)
     fprintf(paje_file, "%%       Color color\n");
     fprintf(paje_file, "%%EndEventDef\n");
   }
-   if(paje_binary == 1 || paje_binary == 2)
+   if(paje_binary == POTI_BINARY_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
   {
     rst_event_iiiiiiiii(PajeHeaderEventId,
 		    PajeDefineVariableTypeEventId,
@@ -87,7 +87,7 @@ static void poti_header_PajeDefineVariableType (int old_header)
 
 static void poti_header_PajeDefineStateType (int old_header)
 {
-  if(paje_binary == 0 || paje_binary == 2)
+  if(paje_binary == POTI_TEXTUAL_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
   {
     fprintf(paje_file, "%%EventDef PajeDefineStateType %d\n", PajeDefineStateTypeEventId);
     fprintf(paje_file, "%%       Alias string\n");
@@ -99,7 +99,7 @@ static void poti_header_PajeDefineStateType (int old_header)
     fprintf(paje_file, "%%       Name string\n");
     fprintf(paje_file, "%%EndEventDef\n");
   }
-  if(paje_binary == 1 || paje_binary == 2)
+  if(paje_binary == POTI_BINARY_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
   {
     rst_event_iiiiiii(PajeHeaderEventId,
 		  PajeDefineStateTypeEventId,
@@ -113,7 +113,7 @@ static void poti_header_PajeDefineStateType (int old_header)
 
 static void poti_header_PajeDefineEventType (int old_header)
 {
-  if(paje_binary == 0 || paje_binary == 2)
+  if(paje_binary == POTI_TEXTUAL_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
   {
     fprintf(paje_file, "%%EventDef PajeDefineEventType %d\n", PajeDefineEventTypeEventId);
     fprintf(paje_file, "%%       Alias string\n");
@@ -125,7 +125,7 @@ static void poti_header_PajeDefineEventType (int old_header)
     fprintf(paje_file, "%%       Name string\n");
     fprintf(paje_file, "%%EndEventDef\n");
   }
-  if(paje_binary == 1 || paje_binary == 2)
+  if(paje_binary == POTI_BINARY_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
   {
     rst_event_iiiiiii(PajeHeaderEventId,
 		  PajeDefineEventTypeEventId,
@@ -139,7 +139,7 @@ static void poti_header_PajeDefineEventType (int old_header)
 
 static void poti_header_PajeDefineLinkType (int old_header)
 {
-  if(paje_binary == 0 || paje_binary == 2)
+  if(paje_binary == POTI_TEXTUAL_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
   {
     fprintf(paje_file, "%%EventDef PajeDefineLinkType %d\n", PajeDefineLinkTypeEventId);
     fprintf(paje_file, "%%       Alias string\n");
@@ -155,7 +155,7 @@ static void poti_header_PajeDefineLinkType (int old_header)
     fprintf(paje_file, "%%       Name string\n");
     fprintf(paje_file, "%%EndEventDef\n");
   }
-  if(paje_binary == 1 || paje_binary == 2)
+  if(paje_binary == POTI_BINARY_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
   {
     rst_event_iiiiiiiiiii(PajeHeaderEventId,
 			  PajeDefineLinkTypeEventId,
@@ -173,7 +173,7 @@ static void poti_header_PajeDefineLinkType (int old_header)
 
 static void poti_header_PajeDefineEntityValue (int old_header)
 {
-  if(paje_binary == 0 || paje_binary == 2)
+  if(paje_binary == POTI_TEXTUAL_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
     {
     fprintf(paje_file, "%%EventDef PajeDefineEntityValue %d\n", PajeDefineEntityValueEventId);
     fprintf(paje_file, "%%       Alias string\n");
@@ -187,7 +187,7 @@ static void poti_header_PajeDefineEntityValue (int old_header)
     fprintf(paje_file, "%%EndEventDef\n");
   }
 
-  if(paje_binary == 1 || paje_binary == 2)
+  if(paje_binary == POTI_BINARY_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
   {
     rst_event_iiiiiiiii(PajeHeaderEventId,
 		  PajeDefineEntityValueEventId,
@@ -202,7 +202,7 @@ static void poti_header_PajeDefineEntityValue (int old_header)
 
 static void poti_header_PajeCreateContainer (int old_header)
 {
-  if(paje_binary == 0 || paje_binary == 2)
+  if(paje_binary == POTI_TEXTUAL_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
   {  
     fprintf(paje_file, "%%EventDef PajeCreateContainer %d\n", PajeCreateContainerEventId);
     fprintf(paje_file, "%%       Time date\n");
@@ -212,7 +212,7 @@ static void poti_header_PajeCreateContainer (int old_header)
     fprintf(paje_file, "%%       Name string\n");
     fprintf(paje_file, "%%EndEventDef\n");
   }
-  if(paje_binary == 1 || paje_binary == 2)
+  if(paje_binary == POTI_BINARY_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
   {
     rst_event_iiiiiiiiiii(PajeHeaderEventId,
 		  PajeCreateContainerEventId,
@@ -227,7 +227,7 @@ static void poti_header_PajeCreateContainer (int old_header)
 
 static void poti_header_PajeDestroyContainer (int old_header)
 {
-  if(paje_binary == 0 || paje_binary == 2)
+  if(paje_binary == POTI_TEXTUAL_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
   {
     fprintf(paje_file, "%%EventDef PajeDestroyContainer %d\n", PajeDestroyContainerEventId);
     fprintf(paje_file, "%%       Time date\n");
@@ -235,7 +235,7 @@ static void poti_header_PajeDestroyContainer (int old_header)
     fprintf(paje_file, "%%       Name string\n");
     fprintf(paje_file, "%%EndEventDef\n");
   }
-  if(paje_binary == 1 || paje_binary == 2)
+  if(paje_binary == POTI_BINARY_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
   {
     rst_event_iiiiiii(PajeHeaderEventId,
 		  PajeDestroyContainerEventId,
@@ -248,7 +248,7 @@ static void poti_header_PajeDestroyContainer (int old_header)
 
 static void poti_header_PajeSetVariable (int old_header)
 {
-  if(paje_binary == 0 || paje_binary == 2)
+  if(paje_binary == POTI_TEXTUAL_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
   {
     fprintf(paje_file, "%%EventDef PajeSetVariable %d\n", PajeSetVariableEventId);
     fprintf(paje_file, "%%       Time date\n");
@@ -257,7 +257,7 @@ static void poti_header_PajeSetVariable (int old_header)
     fprintf(paje_file, "%%       Value double\n");
     fprintf(paje_file, "%%EndEventDef\n");
   }
-  if(paje_binary == 1 || paje_binary == 2)
+  if(paje_binary == POTI_BINARY_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
   {
     rst_event_iiiiiiiii(PajeHeaderEventId,
 		  PajeSetVariableEventId,
@@ -270,7 +270,7 @@ static void poti_header_PajeSetVariable (int old_header)
 
 static void poti_header_PajeAddVariable (int old_header)
 {
-  if(paje_binary == 0 || paje_binary == 2)
+  if(paje_binary == POTI_TEXTUAL_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
   {
     fprintf(paje_file, "%%EventDef PajeAddVariable %d\n", PajeAddVariableEventId);
     fprintf(paje_file, "%%       Time date\n");
@@ -279,7 +279,7 @@ static void poti_header_PajeAddVariable (int old_header)
     fprintf(paje_file, "%%       Value double\n");
     fprintf(paje_file, "%%EndEventDef\n");
   }
-  if(paje_binary == 1 || paje_binary == 2)
+  if(paje_binary == POTI_BINARY_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
   {
     rst_event_iiiiiiiii(PajeHeaderEventId,
 		  PajeAddVariableEventId,
@@ -293,7 +293,7 @@ static void poti_header_PajeAddVariable (int old_header)
 
 static void poti_header_PajeSubVariable (int old_header)
 {
-  if(paje_binary == 0 || paje_binary == 2)
+  if(paje_binary == POTI_TEXTUAL_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
   {
     fprintf(paje_file, "%%EventDef PajeSubVariable %d\n", PajeSubVariableEventId);
     fprintf(paje_file, "%%       Time date\n");
@@ -302,7 +302,7 @@ static void poti_header_PajeSubVariable (int old_header)
     fprintf(paje_file, "%%       Value double\n");
     fprintf(paje_file, "%%EndEventDef\n");
   }
-  if(paje_binary == 1 || paje_binary == 2)
+  if(paje_binary == POTI_BINARY_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
   {
     rst_event_iiiiiiiii(PajeHeaderEventId,
 		  PajeSubVariableEventId,
@@ -317,7 +317,7 @@ static void poti_header_PajeSubVariable (int old_header)
 
 static void poti_header_PajeSetState (int old_header)
 {
-  if(paje_binary == 0 || paje_binary == 2)
+  if(paje_binary == POTI_TEXTUAL_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
   {
     fprintf(paje_file, "%%EventDef PajeSetState %d\n", PajeSetStateEventId);
     fprintf(paje_file, "%%       Time date\n");
@@ -326,7 +326,7 @@ static void poti_header_PajeSetState (int old_header)
     fprintf(paje_file, "%%       Value string\n");
     fprintf(paje_file, "%%EndEventDef\n");
   }
-  if(paje_binary == 1 || paje_binary == 2)
+  if(paje_binary == POTI_BINARY_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
   {
     rst_event_iiiiiiiii(PajeHeaderEventId,
 		  PajeSetStateEventId,
@@ -340,7 +340,7 @@ static void poti_header_PajeSetState (int old_header)
 
 static void poti_header_PajePushState (int old_header)
 {
-  if(paje_binary == 0 || paje_binary == 2)
+  if(paje_binary == POTI_TEXTUAL_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
   {
     fprintf(paje_file, "%%EventDef PajePushState %d\n", PajePushStateEventId);
     fprintf(paje_file, "%%       Time date\n");
@@ -349,7 +349,7 @@ static void poti_header_PajePushState (int old_header)
     fprintf(paje_file, "%%       Value string\n");
     fprintf(paje_file, "%%EndEventDef\n");
   }
-  if(paje_binary == 1 || paje_binary == 2)
+  if(paje_binary == POTI_BINARY_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
   {
     rst_event_iiiiiiiii(PajeHeaderEventId,
 		  PajePushStateEventId,
@@ -363,7 +363,7 @@ static void poti_header_PajePushState (int old_header)
 
 static void poti_header_PajePushStateMark (int old_header)
 {
-  if(paje_binary == 0 || paje_binary == 2)
+  if(paje_binary == POTI_TEXTUAL_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
   {
     fprintf(paje_file, "%%EventDef PajePushState %d\n", PajePushStateMarkEventId);
     fprintf(paje_file, "%%       Time date\n");
@@ -373,7 +373,7 @@ static void poti_header_PajePushStateMark (int old_header)
     fprintf(paje_file, "%%       Mark string\n");
     fprintf(paje_file, "%%EndEventDef\n");
   }
-  if(paje_binary == 1 || paje_binary == 2)
+  if(paje_binary == POTI_BINARY_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
   {
     rst_event_iiiiiiiiiii(PajeHeaderEventId,
 		  PajePushStateMarkEventId,
@@ -388,7 +388,7 @@ static void poti_header_PajePushStateMark (int old_header)
 
 static void poti_header_PajePopState (int old_header)
 {
-  if(paje_binary == 0 || paje_binary == 2)
+  if(paje_binary == POTI_TEXTUAL_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
   {
     fprintf(paje_file, "%%EventDef PajePopState %d\n", PajePopStateEventId);
     fprintf(paje_file, "%%       Time date\n");
@@ -396,7 +396,7 @@ static void poti_header_PajePopState (int old_header)
     fprintf(paje_file, "%%       Type string\n");
     fprintf(paje_file, "%%EndEventDef\n");
   }
-  if(paje_binary == 1 || paje_binary == 2)
+  if(paje_binary == POTI_BINARY_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
   {
     rst_event_iiiiiii(PajeHeaderEventId,
 		  PajePopStateEventId,
@@ -410,7 +410,7 @@ static void poti_header_PajePopState (int old_header)
 static void poti_header_PajeResetState (int old_header)
 {
   if (old_header) return;
-  if(paje_binary == 0 || paje_binary == 2)
+  if(paje_binary == POTI_TEXTUAL_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
   {
     fprintf(paje_file, "%%EventDef PajeResetState %d\n", PajeResetStateEventId);
     fprintf(paje_file, "%%       Time date\n");
@@ -418,7 +418,7 @@ static void poti_header_PajeResetState (int old_header)
     fprintf(paje_file, "%%       Container string\n");
     fprintf(paje_file, "%%EndEventDef\n");
   }
-  if(paje_binary == 1 || paje_binary == 2)
+  if(paje_binary == POTI_BINARY_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
   {
     rst_event_iiiiiii(PajeHeaderEventId,
 		  PajeResetStateEventId,
@@ -431,7 +431,7 @@ static void poti_header_PajeResetState (int old_header)
 
 static void poti_header_PajeStartLink (int old_header)
 {
-  if(paje_binary == 0 || paje_binary == 2)
+  if(paje_binary == POTI_TEXTUAL_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
   {
     fprintf(paje_file, "%%EventDef PajeStartLink %d\n", PajeStartLinkEventId);
     fprintf(paje_file, "%%       Time date\n");
@@ -446,7 +446,7 @@ static void poti_header_PajeStartLink (int old_header)
     fprintf(paje_file, "%%       Key string\n");
     fprintf(paje_file, "%%EndEventDef\n");
   }
-  if(paje_binary == 1 || paje_binary == 2)
+  if(paje_binary == POTI_BINARY_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
   {
     rst_event_iiiiiiiiiiiii(PajeHeaderEventId,
 		  PajeStartLinkEventId,
@@ -462,7 +462,7 @@ static void poti_header_PajeStartLink (int old_header)
 
 static void poti_header_PajeStartLinkSize (int old_header)
 {
-  if(paje_binary == 0 || paje_binary == 2)
+  if(paje_binary == POTI_TEXTUAL_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
   {
     fprintf(paje_file, "%%EventDef PajeStartLink %d\n", PajeStartLinkSizeEventId);
     fprintf(paje_file, "%%       Time date\n");
@@ -478,7 +478,7 @@ static void poti_header_PajeStartLinkSize (int old_header)
     fprintf(paje_file, "%%       Size double\n");
     fprintf(paje_file, "%%EndEventDef\n");
   }
-  if(paje_binary == 1 || paje_binary == 2)
+  if(paje_binary == POTI_BINARY_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
   {
     rst_event_iiiiiiiiiiiiiii(PajeHeaderEventId,
 		  PajeStartLinkSizeEventId,
@@ -497,7 +497,7 @@ static void poti_header_PajeStartLinkSize (int old_header)
 
 static void poti_header_PajeStartLinkSizeMark (int old_header)
 {
-  if(paje_binary == 0 || paje_binary == 2)
+  if(paje_binary == POTI_TEXTUAL_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
   {
     fprintf(paje_file, "%%EventDef PajeStartLink %d\n", PajeStartLinkSizeMarkEventId);
     fprintf(paje_file, "%%       Time date\n");
@@ -516,7 +516,7 @@ static void poti_header_PajeStartLinkSizeMark (int old_header)
   }
 
   
-  if(paje_binary == 1 || paje_binary == 2)
+  if(paje_binary == POTI_BINARY_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
   {
     rst_event_iiiiiiiiiiiiiiiii(PajeHeaderEventId,
 		  PajeStartLinkSizeMarkEventId,
@@ -535,7 +535,7 @@ static void poti_header_PajeStartLinkSizeMark (int old_header)
 
 static void poti_header_PajeEndLink (int old_header)
 {
-  if(paje_binary == 0 || paje_binary == 2)
+  if(paje_binary == POTI_TEXTUAL_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
   {
     fprintf(paje_file, "%%EventDef PajeEndLink %d\n", PajeEndLinkEventId);
     fprintf(paje_file, "%%       Time date\n");
@@ -550,7 +550,7 @@ static void poti_header_PajeEndLink (int old_header)
     fprintf(paje_file, "%%       Key string\n");
     fprintf(paje_file, "%%EndEventDef\n");
   }
-  if(paje_binary == 1 || paje_binary == 2)
+  if(paje_binary == POTI_BINARY_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
   {
     rst_event_iiiiiiiiiiiii(PajeHeaderEventId,
 		  PajeEndLinkEventId,
@@ -568,7 +568,7 @@ static void poti_header_PajeEndLink (int old_header)
 
 static void poti_header_PajeNewEvent (int old_header)
 {
-  if(paje_binary == 0 || paje_binary == 2)
+  if(paje_binary == POTI_TEXTUAL_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
   {
     fprintf(paje_file, "%%EventDef PajeNewEvent %d\n", PajeNewEventEventId);
     fprintf(paje_file, "%%       Time date\n");
@@ -577,7 +577,7 @@ static void poti_header_PajeNewEvent (int old_header)
     fprintf(paje_file, "%%       Value string\n");
     fprintf(paje_file, "%%EndEventDef\n");
   }
-  if(paje_binary == 1 || paje_binary == 2)
+  if(paje_binary == POTI_BINARY_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
   {
     rst_event_iiiiiiiii(PajeHeaderEventId,
 		  PajeNewEventEventId,

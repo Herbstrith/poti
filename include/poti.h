@@ -24,9 +24,9 @@
 extern "C" {
 #endif
 
-#define POTI_TEXTUAL_OUTPUT 1
-#define POTI_BINARY_OUTPUT  2
-
+#define POTI_TEXTUAL_OUTPUT 0
+#define POTI_BINARY_OUTPUT  1
+#define POTI_TEXTUAL_BINARY_OUTPUT 2
 /*
  * Function to open output into a file, else output to stdout
  */

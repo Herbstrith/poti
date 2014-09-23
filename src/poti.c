@@ -37,7 +37,7 @@ int poti_open (const char* filename)
 
 int poti_init (FILE *file)
 {
-  if(paje_binary == 1 || paje_binary == 2)
+  if(paje_binary == POTI_BINARY_OUTPUT || POTI_TEXTUAL_BINARY_OUTPUT == 2)
   {
     rst_init(5,5);
   }
