@@ -37,7 +37,7 @@ int main (int argc, char **argv)
 	//rst_init(8,6);
 		poti_init(NULL);
 
-	  poti_header(0,0,1);
+	  poti_header(1,0,POTI_BINARY_OUTPUT);
 
   //the global PajeDefinitions object
 //  globalDefinitions = new PajeDefinitions (false);
