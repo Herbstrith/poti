@@ -3,6 +3,7 @@
 #include <search.h>
 #include "main.h"
 #include <poti.h>
+#include <poti_private.h>
 #include <rastro.h>
 #include <string.h>
 
@@ -182,7 +183,7 @@ argument: TK_STRING { $$ = $1; } | TK_FLOAT { $$ = $1; } | TK_INT { $$ = $1; };
 
 %%
 
-char* create_poti_event(int identifier, paje_line line)
+char* create_poti_event(int identifier/*,paje_line line*/)
 {
 switch (identifier)
 	{
@@ -262,19 +263,22 @@ switch (identifier)
       poti_EndLink(strtod(line.word[1],NULL),line.word[2],line.word[3],line.word[4],line.word[5],line.word[6]);
 			return "PajeEventIdCount";
 			break;
-		//poti extended events : TODO merge with same events
 		case PajeUnknownEventId:
 			return "PajeUnknownEventId";
 			break;
-		/*case PajePushStateMarkEventId:
+		case PajePushStateMarkEventId:
+      poti_PushStateMark(strtod(line.word[1],NULL),line.word[2],line.word[3],line.word[4], atoi(line.word[5]) );
 			return "PajePushState";
 			break;
 		case PajeStartLinkSizeEventId:
+      poti_StartLinkSize(strtod(line.word[1],NULL),line.word[2],line.word[3],line.word[4],line.word[5],line.word[6],atoi(line.word[7]));
 			return "PajeStartLink";
 			break;
 		case PajeStartLinkSizeMarkEventId:
+      poti_StartLinkSizeMark(strtod(line.word[1],NULL),line.word[2],line.word[3],line.word[4],line.word[5],line.word[6],
+                              atoi(line.word[7]),atoi(line.word[8]) );
 			return "PajeStartLink";
-			break;	*/
+			break;	
 		
 	}
     return "ERROR:event definition not found";
@@ -323,7 +327,7 @@ void lineSend ()
   }
 
   //printf("id %s\n",create_poti_event(identifier));
-  create_poti_event(identifier,line);
+  create_poti_event(identifier);
  /* for(int i =0; i < line.word_count ; i++)
 {
   printf("%s \n", line.word[i]);
