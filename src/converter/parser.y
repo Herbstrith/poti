@@ -426,7 +426,8 @@ void lineSend ()
   }
 
   //printf("id %s\n",create_poti_event(identifier));
-  create_poti_event(identifier);
+ // create_poti_event(identifier);
+create_poti_event_poti_definitions(identifier);
  /* for(int i =0; i < line.word_count ; i++)
 {
   printf("%s \n", line.word[i]);
