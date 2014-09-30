@@ -1,5 +1,5 @@
-#ifndef __CONVERSOR_STRUCT_H
-#define __CONVERSOR_STRUCT_H
+#ifndef __CONVERSORSTRUCT_H
+#define __CONVERSORSTRUCT_H
 
 #include <stdio.h>
 #include <poti.h>
@@ -22,7 +22,7 @@ typedef struct HeaderEventListItem
 {
 	int init;
 	header_event *event_define;
-	HeaderEventListItem *next;
+	struct HeaderEventListItem *next;
 }header_event_list_item;
 
 void addField(int field_name,int field_type,header_event *event)
@@ -94,5 +94,25 @@ void addEventToList(header_event_list_item *list, header_event *new_event )
 	actual_item->next = new_item;
 
 
+}
+
+int findHeaderFileId(header_event_list_item *list , int id)
+{
+  header_event_list_item *actual_item;
+	
+	actual_item = list;
+	while(actual_item != NULL)
+  {
+    if(actual_item->event_define.paje_file_event_id == id)
+    { 
+      return actual_item->event_define.paje_event_type_definition;
+    }
+    if(actual_item->next == NULL) 
+			return -1;
+
+		actual_item = actual_item->next;
+  }   
+  
+  return -1;
 }
 #endif

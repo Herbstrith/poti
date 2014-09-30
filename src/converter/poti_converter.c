@@ -3,11 +3,108 @@
 #include "main.h"
 #include <poti.h>
 #include <poti_private.h>
+#include <poti_header.c>
 #include <rastro.h>
 #include <string.h>
 #include <conversor_structs.h>
 
+void create_header_event(header_event *event)
+{
+  switch (event->paje_event_type_definition)
+	{
+		case PajeDefineContainerTypeEventId:
+			poti_header_PajeDefineContainerType(0);
+			break;
+		case PajeDefineEventTypeEventId:
+      poti_header_PajeDefineEventType(0);
+			break;
+		case PajeDefineStateTypeEventId:
+      poti_header_PajeDefineStateType(0);
+			break;
 
+
+		case PajeDefineVariableTypeEventId:
+      poti_header_PajeDefineVariableType(0);    
+			break;
+		case PajeDefineLinkTypeEventId:
+      poti_header_PajeDefineLinkType(0);
+			break;
+		case PajeDefineEntityValueEventId:
+      poti_header_PajeDefineEntityValue(0);
+			break;
+		case PajeCreateContainerEventId:
+      poti_header_PajeCreateContainer(0);
+			break;
+		case PajeDestroyContainerEventId:
+      poti_header_PajeDestroyContainer(0);
+			break;
+		case PajeNewEventEventId:
+      poti_header_PajeNewEvent(0);
+			break;
+		case PajeSetStateEventId:
+      poti_header_PajeSetState(0);
+			break;
+		case PajePushStateEventId:
+      poti_header_PajePushState(0);
+			break;	
+		case PajePopStateEventId:
+      poti_header_PajePopState(0);
+			break;	
+		case PajeResetStateEventId:
+      poti_header_PajeResetState(0);
+			break;
+		case PajeSetVariableEventId:
+      poti_header_PajeSetVariable(0);
+			break;	
+		case PajeAddVariableEventId:
+      poti_header_PajeAddVariable(0);
+			break;		
+		case PajeSubVariableEventId:
+      poti_header_PajeSubVariable(0);
+			break;	
+		case PajeStartLinkEventId:
+      poti_header_PajeStartLink(0);
+			break;
+		case PajeEndLinkEventId:
+      poti_header_PajeEndLink(0);
+			break;
+		//poti extended events : TODO merge with same events
+		case PajePushStateMarkEventId:
+      poti_header_PajePushStateMark(0);
+			break;
+		case PajeStartLinkSizeEventId:
+      poti_header_PajeStartLinkSize(0);
+			break;
+		case PajeStartLinkSizeMarkEventId:
+      poti_header_PajeStartLinkSizeMark(0);
+			break;	
+		
+	}
+
+
+
+}
+
+
+
+void create_header(header_event_list_item *list)
+{
+  header_event_list_item *actual_item;
+  actual_item = list;
+
+  while(actual_item != NULL)
+  {
+    
+    create_header_event(actual_item->event_define);
+    if(actual_item->next == NULL)
+      break;
+
+    actual_item= actual_item->next;
+    
+
+  }
+
+}
 
 
 char* create_poti_event_poti_definitions(int identifier, paje_line line)
