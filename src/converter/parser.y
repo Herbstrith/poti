@@ -6,7 +6,6 @@
 #include <poti_private.h>
 #include <rastro.h>
 #include <string.h>
-#include <poti_private_original.h>
 #include <conversor_structs.h>
   PajeEventDefinition *eventBeingDefined;
   PajeDefinitions *globalDefinitions;
@@ -30,7 +29,7 @@
 
 
   paje_line line; //the current line being read
-	header_event_list_item events_def=(header_event_list_item*)malloc(sizeof(header_event_list_item));
+	header_event_list_item *events_def=(header_event_list_item*)malloc(sizeof(header_event_list_item));
 	header_event *actual_event ;
 
 %}
@@ -118,16 +117,14 @@ declaration: TK_EVENT_DEF_BEGIN event_name event_id TK_BREAK
              {
 								actual_event = (header_event*)malloc(sizeof(header_event));
              		actual_event->field_counter = 0;	
-							 actual_event->paje_event_type_definition = $2;
-							 actual_event->paje_file_event_id = $3;
-               //def = new HeaderDefine($2, $3, yylineno, globalDefinitions);
+							  actual_event->paje_event_type_definition = $2;
+							  actual_event->paje_file_event_id = $3;
+                //def = new HeaderDefine($2, $3, yylineno, globalDefinitions);
              }
              fields TK_EVENT_DEF_END TK_BREAK
              {
-								print_header_event(actual_event);
-								//print_list(events_def);
-								//addEventToList(events_def , actual_event);
-             		//actual_event.field_counter = 0;	
+								addEventToList(events_def , actual_event);
+								print_list(events_def);
              };
 event_name:
         TK_PAJE_DEFINE_CONTAINER_TYPE { $$ = PajeDefineContainerTypeEventId;} |

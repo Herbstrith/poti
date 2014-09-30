@@ -23,7 +23,29 @@
 #include <poti_config.h>
 #include <PajeDefinitions.h>
 
-
+typedef enum {
+  PAJE_DefineContainerType,
+  PAJE_DefineVariableType,
+  PAJE_DefineStateType,
+  PAJE_DefineEventType,
+  PAJE_DefineLinkType,
+  PAJE_DefineEntityValue,
+  PAJE_CreateContainer,
+  PAJE_DestroyContainer,
+  PAJE_SetVariable,
+  PAJE_AddVariable,
+  PAJE_SubVariable,
+  PAJE_SetState,
+  PAJE_PushState,
+  PAJE_PushStateMark,
+  PAJE_PopState,
+  PAJE_ResetState,
+  PAJE_StartLink,
+  PAJE_StartLinkSize,
+  PAJE_StartLinkSizeMark,
+  PAJE_EndLink,
+  PAJE_NewEvent,
+} e_event_type;
 
 typedef enum {
   PajeHeaderEventId=999,
