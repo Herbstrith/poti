@@ -7,7 +7,7 @@
 #include <rastro.h>
 #include <string.h>
 #include <poti_private_original.h>
-
+#include <conversor_structs.h>
   PajeEventDefinition *eventBeingDefined;
   PajeDefinitions *globalDefinitions;
 
@@ -30,6 +30,8 @@
 
 
   paje_line line; //the current line being read
+	header_event_list_item events_def=(header_event_list_item*)malloc(sizeof(header_event_list_item));
+	header_event *actual_event ;
 
 %}
 
@@ -114,66 +116,72 @@ paje: declarations events { return 4;};
 declarations: declaration declarations | ;
 declaration: TK_EVENT_DEF_BEGIN event_name event_id TK_BREAK
              {
-               //def = new PajeEventDefinition($2, $3, yylineno, globalDefinitions);
+								actual_event = (header_event*)malloc(sizeof(header_event));
+             		actual_event->field_counter = 0;	
+							 actual_event->paje_event_type_definition = $2;
+							 actual_event->paje_file_event_id = $3;
+               //def = new HeaderDefine($2, $3, yylineno, globalDefinitions);
              }
              fields TK_EVENT_DEF_END TK_BREAK
              {
-              // defsv = (PajeEventDefinition**)realloc (defsv, (def->uniqueIdentifier+1)*sizeof(PajeEventDefinition*));
-              // defsv[def->uniqueIdentifier] = def;
-              // def = NULL;
+								print_header_event(actual_event);
+								//print_list(events_def);
+								//addEventToList(events_def , actual_event);
+             		//actual_event.field_counter = 0;	
              };
 event_name:
-        TK_PAJE_DEFINE_CONTAINER_TYPE { } |
-	TK_PAJE_DEFINE_VARIABLE_TYPE { } |
-	TK_PAJE_DEFINE_STATE_TYPE { } |
-	TK_PAJE_DEFINE_EVENT_TYPE { } |
-	TK_PAJE_DEFINE_LINK_TYPE { } |
-	TK_PAJE_DEFINE_ENTITY_VALUE { } |
-	TK_PAJE_CREATE_CONTAINER { } |
-	TK_PAJE_DESTROY_CONTAINER { } |
-	TK_PAJE_SET_VARIABLE { } |
-	TK_PAJE_ADD_VARIABLE { } |
-	TK_PAJE_SUB_VARIABLE { } |
-	TK_PAJE_SET_STATE { } |
-	TK_PAJE_PUSH_STATE { } |
-	TK_PAJE_POP_STATE {} |
-	TK_PAJE_RESET_STATE { } |
-	TK_PAJE_START_LINK { } |
-	TK_PAJE_END_LINK { } |
-	TK_PAJE_NEW_EVENT {};
+        TK_PAJE_DEFINE_CONTAINER_TYPE { $$ = PajeDefineContainerTypeEventId;} |
+	TK_PAJE_DEFINE_VARIABLE_TYPE { $$ = PajeDefineVariableTypeEventId;} |
+	TK_PAJE_DEFINE_STATE_TYPE { $$ = PajeDefineStateTypeEventId;} |
+	TK_PAJE_DEFINE_EVENT_TYPE { $$ = PajeDefineEventTypeEventId;} |
+	TK_PAJE_DEFINE_LINK_TYPE { $$ = PajeDefineLinkTypeEventId;} |
+	TK_PAJE_DEFINE_ENTITY_VALUE { $$ = PajeDefineEntityValueEventId;} |
+	TK_PAJE_CREATE_CONTAINER { $$ = PajeCreateContainerEventId;} |
+	TK_PAJE_DESTROY_CONTAINER { $$ = PajeDestroyContainerEventId;} |
+	TK_PAJE_SET_VARIABLE { $$ = PajeSetVariableEventId;} |
+	TK_PAJE_ADD_VARIABLE { $$ = PajeAddVariableEventId;} |
+	TK_PAJE_SUB_VARIABLE { $$ = PajeSubVariableEventId;} |
+	TK_PAJE_SET_STATE { $$ = PajeSetStateEventId;} |
+	TK_PAJE_PUSH_STATE { $$ = PajePushStateEventId;} |
+	TK_PAJE_POP_STATE { $$ = PajePopStateEventId;} |
+	TK_PAJE_RESET_STATE { $$ = PajeResetStateEventId;} |
+	TK_PAJE_START_LINK { $$ = PajeStartLinkEventId;} |
+	TK_PAJE_END_LINK { $$ = PajeEndLinkEventId;} |
+	TK_PAJE_NEW_EVENT { $$ = PajeNewEventEventId;};
 event_id: TK_INT { };
 fields: field fields | ;
 field: TK_EVENT_DEF field_name field_type {
+					addField($2.fieldId, $3, actual_event);
              /* if ($2.fieldId == PAJE_Extra){
-		def->addField($2.fieldId, $3, yylineno, std::string($2.fieldName));
+		actual->addField($2.fieldId, $3, yylineno, std::string($2.fieldName));
               }else{
 		def->addField($2.fieldId, $3, yylineno);
 	      }*/
 	} TK_BREAK;
 field_name:
-        TK_EVENT_DEF_ALIAS { } |
-	TK_EVENT_DEF_TYPE {  } |
-	TK_EVENT_DEF_NAME {} |
-	TK_EVENT_DEF_COLOR { } |
-	TK_EVENT_DEF_START_CONTAINER_TYPE {  } |
-	TK_EVENT_DEF_END_CONTAINER_TYPE {  } |
-	TK_EVENT_DEF_CONTAINER {  } |
-	TK_EVENT_DEF_TIME {  } |
-	TK_EVENT_DEF_START_CONTAINER {  } |
-	TK_EVENT_DEF_END_CONTAINER {  } |
-	TK_EVENT_DEF_VALUE {  } |
-	TK_EVENT_DEF_KEY {  } |
-        TK_EVENT_DEF_LINE { } |
-        TK_EVENT_DEF_FILE {  } |
-	TK_STRING {  };
+       TK_EVENT_DEF_ALIAS { $$.fieldId = PAJE_Alias; } |
+	TK_EVENT_DEF_TYPE { $$.fieldId = PAJE_Type; } |
+	TK_EVENT_DEF_NAME { $$.fieldId = PAJE_Name; } |
+	TK_EVENT_DEF_COLOR { $$.fieldId = PAJE_Color; } |
+	TK_EVENT_DEF_START_CONTAINER_TYPE { $$.fieldId = PAJE_StartContainerType; } |
+	TK_EVENT_DEF_END_CONTAINER_TYPE { $$.fieldId = PAJE_EndContainerType; } |
+	TK_EVENT_DEF_CONTAINER { $$.fieldId = PAJE_Container; } |
+	TK_EVENT_DEF_TIME { $$.fieldId = PAJE_Time; } |
+	TK_EVENT_DEF_START_CONTAINER { $$.fieldId = PAJE_StartContainer; } |
+	TK_EVENT_DEF_END_CONTAINER { $$.fieldId = PAJE_EndContainer; } |
+	TK_EVENT_DEF_VALUE { $$.fieldId = PAJE_Value; } |
+	TK_EVENT_DEF_KEY { $$.fieldId = PAJE_Key; } |
+        TK_EVENT_DEF_LINE { $$.fieldId = PAJE_Line; } |
+        TK_EVENT_DEF_FILE { $$.fieldId = PAJE_File; } |
+	TK_STRING { $$.fieldId = PAJE_Extra; $$.fieldName = $1.str; };
 field_type:
-TK_EVENT_DEF_FIELD_TYPE_STRING { } |
-TK_EVENT_DEF_FIELD_TYPE_FLOAT {  } |
-TK_EVENT_DEF_FIELD_TYPE_DOUBLE { } |
-TK_EVENT_DEF_FIELD_TYPE_INT { } |
-TK_EVENT_DEF_FIELD_TYPE_HEX {  } |
-TK_EVENT_DEF_FIELD_TYPE_DATE { } |
-TK_EVENT_DEF_FIELD_TYPE_COLOR {  };
+TK_EVENT_DEF_FIELD_TYPE_STRING { $$ = PAJE_string; } |
+TK_EVENT_DEF_FIELD_TYPE_FLOAT { $$ = PAJE_float; } |
+TK_EVENT_DEF_FIELD_TYPE_DOUBLE { $$ = PAJE_double; } |
+TK_EVENT_DEF_FIELD_TYPE_INT { $$ = PAJE_int; } |
+TK_EVENT_DEF_FIELD_TYPE_HEX { $$ = PAJE_hex; } |
+TK_EVENT_DEF_FIELD_TYPE_DATE { $$ = PAJE_date; } |
+TK_EVENT_DEF_FIELD_TYPE_COLOR { $$ = PAJE_color; };
 
 events: events event | ;
 event: non_empty_event | empty_event;
