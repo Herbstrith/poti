@@ -111,7 +111,7 @@
 
 %%
 
-paje: declarations events { return 4;};
+paje: declarations{create_header(events_def);} events { return 4;};
 
 declarations: declaration declarations | ;
 declaration: TK_EVENT_DEF_BEGIN event_name event_id TK_BREAK
@@ -206,7 +206,7 @@ void lineAdd (char *str)
 
 void lineSend ()
 {
-  
+    printf("evento define container");
   int identifier = atoi(line.word[0]); 
   int i;
   for(i = 0; i <line.word_count;i++)
@@ -231,7 +231,7 @@ void lineSend ()
 
   
   
-  create_poti_event_poti_definitions(identifier,line);
+  create_poti_event(identifier,line, events_def);
 /*TODO:
    Sort events ids with respective header ids
 */

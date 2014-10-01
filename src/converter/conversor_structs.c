@@ -1,6 +1,6 @@
 #include "conversor_structs.h"
-
 /*
+
 void addField(int field_name,int field_type,header_event *event)
 {
 	event->parameters_order[event->field_counter] = field_name;
@@ -70,5 +70,5 @@ void addEventToList(header_event_list_item *list, header_event *new_event )
 	actual_item->next = new_item;
 
 
-}
-*/
+}*/
+

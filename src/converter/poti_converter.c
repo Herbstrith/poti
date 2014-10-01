@@ -21,8 +21,6 @@ void create_header_event(header_event *event)
 		case PajeDefineStateTypeEventId:
       poti_header_PajeDefineStateType(0);
 			break;
-
-
 		case PajeDefineVariableTypeEventId:
       poti_header_PajeDefineVariableType(0);    
 			break;
@@ -198,13 +196,13 @@ char* create_poti_event_poti_definitions(int identifier, paje_line line)
 			  break;	
 		
 	  }
-      return "ERROR:event definition not found";
+     // return "ERROR:event definition not found";
 }
 
 
 
 
-
+/*
 
 char* create_poti_event(int identifier,paje_line line)
 {
@@ -304,6 +302,112 @@ char* create_poti_event(int identifier,paje_line line)
 			  break;	
 		
 	  }
-      return "ERROR:event definition not found";
+     // return "ERROR:event definition not found";
+}
+*/
+
+
+void create_poti_event(int identifier,paje_line line, header_event_list_item *list)
+{
+
+  header_event *event_to_create = findHeaderFileId(list, identifier);
+  
+  switch (event_to_create->paje_event_type_definition)
+	  {
+		  case PajeDefineContainerTypeEventId:
+        poti_DefineContainerType(line.word[getPajeFieldPosition(event_to_create,PAJE_Alias)],line.word[getPajeFieldPosition(event_to_create,PAJE_Type)],line.word[getPajeFieldPosition(event_to_create,PAJE_Name)]);
+		  //	return "PajeDefineContainerType";
+			  break;
+		  case PajeDefineEventTypeEventId:
+        poti_DefineEventType(line.word[getPajeFieldPosition(event_to_create,PAJE_Alias)],line.word[getPajeFieldPosition(event_to_create,PAJE_Type)],line.word[getPajeFieldPosition(event_to_create,PAJE_Name)]);
+		  //	return "PajeDefineEventType";
+			  break;
+		  case PajeDefineStateTypeEventId:
+        poti_DefineStateType(line.word[getPajeFieldPosition(event_to_create,PAJE_Alias)],line.word[getPajeFieldPosition(event_to_create,PAJE_Type)],line.word[getPajeFieldPosition(event_to_create,PAJE_Name)]);
+		  //	return "PajeDefineStateType";
+			  break;
+		  case PajeDefineVariableTypeEventId:
+        poti_DefineVariableType(line.word[getPajeFieldPosition(event_to_create,PAJE_Alias)],line.word[getPajeFieldPosition(event_to_create,PAJE_Type)],line.word[getPajeFieldPosition(event_to_create,PAJE_Name)],line.word[getPajeFieldPosition(event_to_create,PAJE_Color)]);
+		  //	return "PajeDefineVariableType";
+			  break;
+		  case PajeDefineLinkTypeEventId:
+         poti_DefineLinkType(line.word[getPajeFieldPosition(event_to_create,PAJE_Alias)],line.word[getPajeFieldPosition(event_to_create,PAJE_Type)],line.word[getPajeFieldPosition(event_to_create,PAJE_StartContainerType)],line.word[getPajeFieldPosition(event_to_create,PAJE_EndContainerType)],line.word[getPajeFieldPosition(event_to_create,PAJE_Name)]);
+		  //	return "PajeDefineLinkType";
+			  break;
+		  case PajeDefineEntityValueEventId:
+        poti_DefineEntityValue(line.word[getPajeFieldPosition(event_to_create,PAJE_Alias)],line.word[getPajeFieldPosition(event_to_create,PAJE_Type)],line.word[getPajeFieldPosition(event_to_create,PAJE_Name)],line.word[getPajeFieldPosition(event_to_create,PAJE_Color)]);
+		  //	return "PajeDefineEntityValue";
+			  break;
+		  case PajeCreateContainerEventId:
+        poti_CreateContainer(strtod(line.word[getPajeFieldPosition(event_to_create,PAJE_Time)],NULL),line.word[getPajeFieldPosition(event_to_create,PAJE_Alias)],line.word[getPajeFieldPosition(event_to_create,PAJE_Type)],line.word[getPajeFieldPosition(event_to_create,PAJE_Container)],line.word[getPajeFieldPosition(event_to_create,PAJE_Name)]);
+		  //	return "PajeCreateContainer";
+			  break;
+		  case PajeDestroyContainerEventId:
+        poti_DestroyContainer(strtod(line.word[getPajeFieldPosition(event_to_create,PAJE_Time)],NULL),line.word[getPajeFieldPosition(event_to_create,PAJE_Type)],line.word[getPajeFieldPosition(event_to_create,PAJE_Container)]);
+		  //	return "PajeDestroyContainer";
+			  break;
+		  case PajeNewEventEventId:
+        poti_NewEvent(strtod(line.word[getPajeFieldPosition(event_to_create,PAJE_Time)],NULL),line.word[getPajeFieldPosition(event_to_create,PAJE_Container)],line.word[getPajeFieldPosition(event_to_create,PAJE_Type)],line.word[getPajeFieldPosition(event_to_create,PAJE_Value)]);
+			  //return "PajeNewEvent";
+			  break;
+		  case PajeSetStateEventId:
+        poti_SetState(strtod(line.word[getPajeFieldPosition(event_to_create,PAJE_Time)],NULL),line.word[getPajeFieldPosition(event_to_create,PAJE_Container)],line.word[getPajeFieldPosition(event_to_create,PAJE_Type)],line.word[getPajeFieldPosition(event_to_create,PAJE_Value)]);
+		  //	return "PajeSetState";
+			  break;
+		  case PajePushStateEventId:
+        poti_PushState(strtod(line.word[getPajeFieldPosition(event_to_create,PAJE_Time)],NULL),line.word[getPajeFieldPosition(event_to_create,PAJE_Container)],line.word[getPajeFieldPosition(event_to_create,PAJE_Type)],line.word[getPajeFieldPosition(event_to_create,PAJE_Value)]);
+			  //return "PajePushState";
+			  break;	
+		  case PajePopStateEventId:
+        poti_PopState(strtod(line.word[getPajeFieldPosition(event_to_create,PAJE_Time)],NULL),line.word[getPajeFieldPosition(event_to_create,PAJE_Container)],line.word[getPajeFieldPosition(event_to_create,PAJE_Type)]);
+			  //return "PajePopState";
+			  break;	
+		  case PajeResetStateEventId:
+        poti_ResetState(strtod(line.word[getPajeFieldPosition(event_to_create,PAJE_Time)],NULL),line.word[getPajeFieldPosition(event_to_create,PAJE_Container)],line.word[getPajeFieldPosition(event_to_create,PAJE_Type)]);
+			  //return "PajeResetState";
+			  break;
+		  case PajeSetVariableEventId:
+        poti_SetVariable (strtod(line.word[getPajeFieldPosition(event_to_create,PAJE_Time)],NULL),line.word[getPajeFieldPosition(event_to_create,PAJE_Container)],line.word[getPajeFieldPosition(event_to_create,PAJE_Type)],strtod(line.word[getPajeFieldPosition(event_to_create,PAJE_Value)],NULL));
+			  //return "PajeSetVariable";
+			  break;	
+		  case PajeAddVariableEventId:
+        poti_AddVariable(strtod(line.word[1],NULL),line.word[2],line.word[3],strtod(line.word[4],NULL));
+			  //return "PajeAddVariable";
+			  break;		
+		  case PajeSubVariableEventId:
+        poti_SubVariable(strtod(line.word[getPajeFieldPosition(event_to_create,PAJE_Time)],NULL),line.word[getPajeFieldPosition(event_to_create,PAJE_Container)],line.word[getPajeFieldPosition(event_to_create,PAJE_Type)],strtod(line.word[getPajeFieldPosition(event_to_create,PAJE_Value)],NULL));
+		  //	return "PajeSubVariable";
+			  break;	
+		  case PajeStartLinkEventId:
+        poti_StartLink(strtod(line.word[getPajeFieldPosition(event_to_create,PAJE_Time)],NULL),line.word[getPajeFieldPosition(event_to_create,PAJE_Container)],line.word[getPajeFieldPosition(event_to_create,PAJE_Type)],line.word[getPajeFieldPosition(event_to_create,PAJE_StartContainer)],line.word[getPajeFieldPosition(event_to_create,PAJE_Value)],line.word[getPajeFieldPosition(event_to_create,PAJE_Key)]);
+			  //return "PajeStartLink";
+			  break;
+		  case PajeEndLinkEventId:
+        poti_EndLinkstrtod(line.word[getPajeFieldPosition(event_to_create,PAJE_Time)],NULL),line.word[getPajeFieldPosition(event_to_create,PAJE_Container)],line.word[getPajeFieldPosition(event_to_create,PAJE_Type)],line.word[getPajeFieldPosition(event_to_create,PAJE_EndContainer)],line.word[getPajeFieldPosition(event_to_create,PAJE_Value)],line.word[getPajeFieldPosition(event_to_create,PAJE_Key)]);
+		  //	return "PajeEndLink";
+			  break;
+		  /*case PajeEventIdCount:
+        poti_EndLink(strtod(line.word[1],NULL),line.word[2],line.word[3],line.word[4],line.word[5],line.word[6]);
+		  //	return "PajeEventIdCount";
+			  break;*/
+		  case PajeUnknownEventId:
+			  //return "PajeUnknownEventId";
+			  break;
+		  case PajePushStateMarkEventId:
+        poti_PushStateMark(strtod(line.word[getPajeFieldPosition(event_to_create,PAJE_Time)],NULL),line.word[getPajeFieldPosition(event_to_create,PAJE_Container)],line.word[getPajeFieldPosition(event_to_create,PAJE_Type)],line.word[getPajeFieldPosition(event_to_create,PAJE_Value)], atoi(line.word[getPajeFieldPosition(event_to_create,PAJE_Mark)]) );
+		  //	return "PajePushState";
+			  break;
+		  /*case PajeStartLinkSizeEventId:
+        poti_StartLinkSize(strtod(line.word[1],NULL),line.word[2],line.word[3],line.word[4],line.word[5],line.word[6],atoi(line.word[7]));
+			  //return "PajeStartLink";
+			  break;
+		  case PajeStartLinkSizeMarkEventId:
+        poti_StartLinkSizeMark(strtod(line.word[1],NULL),line.word[2],line.word[3],line.word[4],line.word[5],line.word[6],
+                                atoi(line.word[7]),atoi(line.word[8]) );
+		  //	return "PajeStartLink";
+			  break;	*/
+		
+	  }
+
 }
 

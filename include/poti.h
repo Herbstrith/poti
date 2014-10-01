@@ -34,7 +34,7 @@ int poti_open (const char* filename);
 /*
  * Function to init poti with an external file descriptor
  */
-int poti_init (FILE *file);
+int poti_init (FILE *file, int output_mode);
 /*
  * Function to close opened file
  */

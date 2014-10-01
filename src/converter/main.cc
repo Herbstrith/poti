@@ -27,24 +27,26 @@ extern "C"
   extern char *yytext;
   extern int yychar;
   //extern PajeEventDefinition **defsv;
-  
+ // extern int paje_binary;
 }
 
 int main (int argc, char **argv)
 {
-		printf("begin conversion");
+		printf("Main-begin conversion");
   long long counter = 0;
 	//rst_init(8,6);
-		poti_init(NULL);
+    
 
-	  poti_header(1,0,POTI_BINARY_OUTPUT);
+		poti_init(NULL,POTI_BINARY_OUTPUT);
+
+//	  poti_header(1,0,POTI_BINARY_OUTPUT);
 
   //the global PajeDefinitions object
 //  globalDefinitions = new PajeDefinitions (false);
      
 
     yyparse();
-	 poti_close();
+	 rst_finalize();
   		printf("end main");
   		return 1;
 

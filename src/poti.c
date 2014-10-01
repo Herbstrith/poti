@@ -35,8 +35,9 @@ int poti_open (const char* filename)
   return 0;
 }
 
-int poti_init (FILE *file)
+int poti_init(FILE *file, int output_mode)
 {
+  paje_binary = output_mode;
   if(paje_binary == POTI_BINARY_OUTPUT || POTI_TEXTUAL_BINARY_OUTPUT == 2)
   {
     rst_init(5,5);
@@ -53,12 +54,13 @@ int poti_init (FILE *file)
 
 void poti_close ()
 {
+  rst_finalize();
   if (paje_file != stdout)
   {
     fclose( paje_file );
   }
   paje_file = 0;
-  rst_finalize();
+
 }
 
 void poti_header (int basic, int old_header, int output_mode)

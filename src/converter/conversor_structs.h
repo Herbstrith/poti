@@ -11,8 +11,8 @@ typedef struct HeaderEvent
 {
 	int paje_event_type_definition;	 //PajeTypeDefinitions
 	int paje_file_event_id;
-	int parameters_order[10];	//PAje value definitions
-	int parameters_types[10]; //PAJE type definitions
+	int parameters_order[20];	//PAje value definitions
+	int parameters_types[20]; //PAJE type definitions
 	int field_counter;
 
 }header_event;
@@ -96,23 +96,43 @@ void addEventToList(header_event_list_item *list, header_event *new_event )
 
 }
 
-int findHeaderFileId(header_event_list_item *list , int id)
+header_event* findHeaderFileId(header_event_list_item *list , int id)
 {
   header_event_list_item *actual_item;
 	
 	actual_item = list;
 	while(actual_item != NULL)
   {
-    if(actual_item->event_define.paje_file_event_id == id)
+    if(actual_item->event_define->paje_file_event_id == id)
     { 
-      return actual_item->event_define.paje_event_type_definition;
+      return actual_item->event_define;
+      //return actual_item->event_define->paje_event_type_definition;
     }
     if(actual_item->next == NULL) 
-			return -1;
+			break;
 
 		actual_item = actual_item->next;
   }   
   
+  //return -1;
+}
+
+
+int getPajeFieldPosition(header_event *event, int pajeField)
+{
+  
+  int i;
+  for(i= 0;i < 20;i++)
+  {
+    if(event->parameters_order[i] == pajeField)
+      return i+1; 
+  }
+  
   return -1;
 }
+
+
+
+
+
 #endif
