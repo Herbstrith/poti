@@ -49,12 +49,15 @@ the `cmake` and `make` command):
 
     $ ./examples/ex1 
 
+
+What i am working at
+-------
+This is a implementation of the binary trace generator librastro with the poti library aiming to increase performance
+
+
 Roadmap
 -------
 
-This is the current TODO list:
+TODO list:
+FIX THE POTI_READER
 
-* Check all function parameters and trace consistency according to the [Paje file format](http://paje.sf.net)
-* Use data structures instead of strings for all parameters
-* Add variable and instantaneous functions currently not implemented
-* Extended events (you'll need one day probably)
