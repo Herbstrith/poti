@@ -367,7 +367,7 @@ void create_poti_event(int identifier,paje_line line, header_event_list_item *li
 			  //return "PajeResetState";
 			  break;
 		  case PajeSetVariableEventId:
-        poti_SetVariable (strtod(line.word[getPajeFieldPosition(event_to_create,PAJE_Time)],NULL),line.word[getPajeFieldPosition(event_to_create,PAJE_Container)],line.word[getPajeFieldPosition(event_to_create,PAJE_Type)],strtod(line.word[getPajeFieldPosition(event_to_create,PAJE_Value)],NULL));
+        poti_SetVariable(strtod(line.word[getPajeFieldPosition(event_to_create,PAJE_Time)],NULL),line.word[getPajeFieldPosition(event_to_create,PAJE_Container)],line.word[getPajeFieldPosition(event_to_create,PAJE_Type)],strtod(line.word[getPajeFieldPosition(event_to_create,PAJE_Value)],NULL));
 			  //return "PajeSetVariable";
 			  break;	
 		  case PajeAddVariableEventId:
@@ -375,6 +375,9 @@ void create_poti_event(int identifier,paje_line line, header_event_list_item *li
 			  //return "PajeAddVariable";
 			  break;		
 		  case PajeSubVariableEventId:
+
+    printf("\nfield is at %d i+1 and value is %lf", getPajeFieldPosition(event_to_create,PAJE_Value), strtod(line.word[getPajeFieldPosition(event_to_create,PAJE_Value)],NULL));
+ 
         poti_SubVariable(strtod(line.word[getPajeFieldPosition(event_to_create,PAJE_Time)],NULL),line.word[getPajeFieldPosition(event_to_create,PAJE_Container)],line.word[getPajeFieldPosition(event_to_create,PAJE_Type)],strtod(line.word[getPajeFieldPosition(event_to_create,PAJE_Value)],NULL));
 		  //	return "PajeSubVariable";
 			  break;	
@@ -383,7 +386,7 @@ void create_poti_event(int identifier,paje_line line, header_event_list_item *li
 			  //return "PajeStartLink";
 			  break;
 		  case PajeEndLinkEventId:
-        poti_EndLinkstrtod(line.word[getPajeFieldPosition(event_to_create,PAJE_Time)],NULL),line.word[getPajeFieldPosition(event_to_create,PAJE_Container)],line.word[getPajeFieldPosition(event_to_create,PAJE_Type)],line.word[getPajeFieldPosition(event_to_create,PAJE_EndContainer)],line.word[getPajeFieldPosition(event_to_create,PAJE_Value)],line.word[getPajeFieldPosition(event_to_create,PAJE_Key)]);
+        poti_EndLink(strtod(line.word[getPajeFieldPosition(event_to_create,PAJE_Time)],NULL),line.word[getPajeFieldPosition(event_to_create,PAJE_Container)],line.word[getPajeFieldPosition(event_to_create,PAJE_Type)],line.word[getPajeFieldPosition(event_to_create,PAJE_EndContainer)],line.word[getPajeFieldPosition(event_to_create,PAJE_Value)],line.word[getPajeFieldPosition(event_to_create,PAJE_Key)]);
 		  //	return "PajeEndLink";
 			  break;
 		  /*case PajeEventIdCount:

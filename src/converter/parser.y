@@ -206,7 +206,7 @@ void lineAdd (char *str)
 
 void lineSend ()
 {
-    printf("evento define container");
+
   int identifier = atoi(line.word[0]); 
   int i;
   for(i = 0; i <line.word_count;i++)
