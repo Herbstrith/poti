@@ -52,6 +52,176 @@ static int parse_options (int key, char *arg, struct argp_state *state)
 
 static struct argp argp = { options, parse_options, args_doc, doc };
 
+int event_order[10];
+int event_order_limit;
+void set_event_order(int event_id)
+{
+
+	switch (event_id)
+	{
+		case PajeDefineContainerTypeEventId:
+			event_order[0] = PAJE_string;
+			event_order[1] = PAJE_string;
+			event_order[2] = PAJE_string;
+			event_order_limit = 3;
+			break;
+		case PajeDefineEventTypeEventId:
+			event_order[0] = PAJE_string;
+			event_order[1] = PAJE_string;
+			event_order[2] = PAJE_string;
+			event_order_limit = 3;
+			break;
+		case PajeDefineStateTypeEventId:
+			event_order[0] = PAJE_string;
+			event_order[1] = PAJE_string;
+			event_order[2] = PAJE_string;
+			event_order_limit = 3;
+			break;
+		case PajeDefineVariableTypeEventId:
+			event_order[0] = PAJE_string;
+			event_order[1] = PAJE_string;
+			event_order[2] = PAJE_string;
+			event_order[3] = PAJE_color;
+			event_order_limit = 4;
+			break;
+		case PajeDefineLinkTypeEventId:
+			event_order[0] = PAJE_string;
+			event_order[1] = PAJE_string;
+			event_order[2] = PAJE_string;
+			event_order[3] = PAJE_string;
+			event_order[4] = PAJE_string;
+			event_order_limit = 5;
+			break;
+		case PajeDefineEntityValueEventId:
+			event_order[0] = PAJE_string;
+			event_order[1] = PAJE_string;
+			event_order[2] = PAJE_string;
+			event_order[3] = PAJE_color;
+			event_order_limit = 4;
+			break;
+		case PajeCreateContainerEventId:
+			event_order[0] = PAJE_date;
+			event_order[1] = PAJE_string;
+			event_order[2] = PAJE_string;
+			event_order[3] = PAJE_string;
+			event_order[4] = PAJE_string;
+			event_order_limit = 5;			
+			break;
+		case PajeDestroyContainerEventId:
+			event_order[0] = PAJE_date;
+			event_order[1] = PAJE_string;
+			event_order[2] = PAJE_string;		
+			event_order_limit = 3;	
+			break;
+		case PajeNewEventEventId:
+		
+			break;
+		case PajeSetStateEventId:
+			event_order[0] = PAJE_date;
+			event_order[1] = PAJE_string;
+			event_order[2] = PAJE_string;
+			event_order[3] = PAJE_double;
+			event_order_limit = 4;
+			break;
+		case PajePushStateEventId:
+			event_order[0] = PAJE_date;
+			event_order[1] = PAJE_string;
+			event_order[2] = PAJE_string;
+			event_order[3] = PAJE_string;
+			event_order_limit = 4;
+			break;	
+		case PajePopStateEventId:
+			event_order[0] = PAJE_date;
+			event_order[1] = PAJE_string;
+			event_order[2] = PAJE_string;
+			event_order_limit = 3;
+			break;	
+		case PajeResetStateEventId:
+			event_order[0] = PAJE_date;
+			event_order[1] = PAJE_string;
+			event_order[2] = PAJE_string;
+			event_order_limit = 3;
+			break;
+		case PajeSetVariableEventId:
+			event_order[0] = PAJE_date;
+			event_order[1] = PAJE_string;
+			event_order[2] = PAJE_string;
+			event_order[3] = PAJE_double;
+			event_order_limit = 4;
+			break;	
+		case PajeAddVariableEventId:
+			event_order[0] = PAJE_date;
+			event_order[1] = PAJE_string;
+			event_order[2] = PAJE_string;
+			event_order[3] = PAJE_double;
+			event_order_limit = 4;
+			break;		
+		case PajeSubVariableEventId:
+			event_order[0] = PAJE_date;
+			event_order[1] = PAJE_string;
+			event_order[2] = PAJE_string;
+			event_order[3] = PAJE_double;
+			event_order_limit = 4;
+			break;	
+		case PajeStartLinkEventId:
+			event_order[0] = PAJE_date;
+			event_order[1] = PAJE_string;
+			event_order[2] = PAJE_string;
+			event_order[3] = PAJE_string;
+			event_order[4] = PAJE_string;
+			event_order[5] = PAJE_string;
+			event_order_limit = 6;
+			break;
+		case PajeEndLinkEventId:
+			event_order[0] = PAJE_date;
+			event_order[1] = PAJE_string;
+			event_order[2] = PAJE_string;
+			event_order[3] = PAJE_string;
+			event_order[4] = PAJE_string;
+			event_order[5] = PAJE_string;
+			event_order_limit = 6;
+			break;
+		case PajeEventIdCount:
+
+			break;
+		//poti extended events : TODO merge with same events
+		case PajeUnknownEventId:
+
+			break;
+		case PajePushStateMarkEventId:
+			event_order[0] = PAJE_date;
+			event_order[1] = PAJE_string;
+			event_order[2] = PAJE_string;
+			event_order[3] = PAJE_double;
+			event_order[4] = PAJE_string;
+			event_order_limit = 5;
+			break;
+		case PajeStartLinkSizeEventId:
+			event_order[0] = PAJE_date;
+			event_order[1] = PAJE_string;
+			event_order[2] = PAJE_string;
+			event_order[3] = PAJE_string;
+			event_order[4] = PAJE_double;
+			event_order[5] = PAJE_string;
+			event_order[6] = PAJE_double;
+			event_order_limit = 7;
+			break;
+		case PajeStartLinkSizeMarkEventId:
+			event_order[0] = PAJE_date;
+			event_order[1] = PAJE_string;
+			event_order[2] = PAJE_string;
+			event_order[3] = PAJE_string;
+			event_order[4] = PAJE_string;
+			event_order[5] = PAJE_double;
+			event_order[6] = PAJE_string;
+			event_order_limit = 7;
+			break;	
+	}
+
+}
+
+
+
 const char* eventidToString(u_int32_t event)
 {
 
@@ -264,91 +434,150 @@ void poti_print_event (rst_event_t *event)
 	//poti event event
 	else
 	{
+		
 	  int i;
+		int event_id;
 	  if (event->file->resolution > RST_MICROSECONDS){
+				event_id = event->type;
 	    	printf("%d ",event->type);
 	  }else{
+				event_id = event->type;
 	    	printf("%d ",event->type);
 	  }
+		set_event_order(event_id);
+		int f;
+		int double_mark=0,int_mark=0,float_mark=0,string_mark = 0;
 
-	  if (event->ct.n_double > 0) {	
-	    for (i = 0; i < event->ct.n_double; i++) {
-		/*if(i+1 >= event->ct.n_double)
+		for(f = 0; f < event_order_limit;f++)
 		{
-	  		printf("%f", event->v_double[i]);
-			break;
-		}*/
-	      printf("%f ", event->v_double[i]);
-	    }
 
-	  }
+				if((event_order[f] == PAJE_string || event_order[f] == PAJE_color)&& f == event_order_limit-1)
+				{
 
-	  if (event->ct.n_uint64 > 0) {
-	    for (i = 0; i < event->ct.n_uint64; i++) {
-		if(i+1 >= event->ct.n_uint64)
-		{
-	  		printf("%" PRIu64 "", event->v_uint64[i]);
-			break;
-		}
-	      printf("%" PRIu64 " ", event->v_uint64[i]);
-	    }
-	  }
+					printf("%s", event->v_string[string_mark]);
+					break;
 
-	  if (event->ct.n_string > 0) {
-	    for (i = 0; i < event->ct.n_string; i++) {
-              if(i+1 >= event->ct.n_string)
-		{
-			printf("%s", event->v_string[i]);
-			break;
-		}
-	      printf("%s ", event->v_string[i]);
-	    }
-	  }
 
-	  if (event->ct.n_float > 0) {
+				}
+				if((event_order[f] == PAJE_double || event_order[f] == PAJE_date) && f== event_order_limit-1)
+				{
 
-	    for (i = 0; i < event->ct.n_float; i++) {
-		if(i+1 >= event->ct.n_float)
-		{
-	  		printf("%f", event->v_float[i]);
-			break;
-		}
-	      printf("%f ", event->v_float[i]);
-	    }
-	  }
-	  if (event->ct.n_uint32 > 0) {
+					printf("%lf", event->v_double[double_mark]);
+					break;
+		
+				}				
 
-	    for (i = 0; i < event->ct.n_uint32; i++) {
-		if(i+1 >= event->ct.n_uint32)
-		{
-	  		printf("%d", event->v_uint32[i]);
-			break;
-		}
-	      printf("%d ", event->v_uint32[i]);
-	    }
-	  }
-	  if (event->ct.n_uint16 > 0) {
-	    for (i = 0; i < event->ct.n_uint16; i++) {
-		if(i+1 >= event->ct.n_uint16)
-		{
-	  		printf("%d", event->v_uint16[i]);
-			break;
-		}
-	      printf("%d ", event->v_uint16[i]);
-	    }
-	  }
-	  if (event->ct.n_uint8 > 0) {
-	    for (i = 0; i < event->ct.n_uint8; i++) {
-		if(i+1 >= event->ct.n_uint8)
-		{
-	  		printf("%c", event->v_uint8[i]);
-			break;
-		}
-	      printf("%c ", event->v_uint8[i]);
-	    }
+					
+				if(event_order[f] == PAJE_string || event_order[f] == PAJE_color)
+				{
+					printf("%s ", event->v_string[string_mark]);
 
-	  }
-	  
+					string_mark = string_mark +1;
+				}
+				if(event_order[f] == PAJE_double || event_order[f] == PAJE_date)
+				{
+					printf("%lf ", event->v_double[double_mark]);
+
+					double_mark = double_mark +1;
+				}
+
+				
+				
+/*
+
+
+				if (event->ct.n_uint64 > 0) {
+					for (i = 0; i < event->ct.n_uint64; i++) {
+				if(i+1 >= event->ct.n_uint64)
+				{
+						printf("%" PRIu64 "", event->v_uint64[i]);
+					break;
+				}
+					  printf("%" PRIu64 " ", event->v_uint64[i]);
+					}
+				}
+				if (event->ct.n_double > 0) {	
+					for (i = 0; i < event->ct.n_double; i++) {
+				if(i+1 >= event->ct.n_double)
+				{
+						printf("%lf", event->v_double[i]);
+					break;
+				}
+					  printf("%f ", event->v_double[i]);
+					}
+
+				}
+
+				
+
+				if (event->ct.n_string > 0) {
+					for (i = 0; i < event->ct.n_string; i++) {
+				          if(i+1 >= event->ct.n_string)
+				{
+					printf("%s", event->v_string[i]);
+					break;
+				}
+					  printf("%s ", event->v_string[i]);
+					}
+				}
+
+				if (event->ct.n_float > 0) {
+
+					for (i = 0; i < event->ct.n_float; i++) {
+				if(i+1 >= event->ct.n_float)
+				{
+						printf("%f", event->v_float[i]);
+					break;
+				}
+					  printf("%f ", event->v_float[i]);
+					}
+				}
+*/
+	/*
+				if (event->ct.n_uint64 > 0) {
+								for (i = 0; i < event->ct.n_uint64; i++) {
+							if(i+1 >= event->ct.n_uint64)
+							{
+									printf("%" PRIu64 "", event->v_uint64[i]);
+								break;
+							}
+									printf("%" PRIu64 " ", event->v_uint64[i]);
+								}
+							}
+
+				if (event->ct.n_uint32 > 0) {
+
+					for (i = 0; i < event->ct.n_uint32; i++) {
+				if(i+1 >= event->ct.n_uint32)
+				{
+						printf("%d", event->v_uint32[i]);
+					break;
+				}
+					  printf("%d ", event->v_uint32[i]);
+					}
+				}
+				if (event->ct.n_uint16 > 0) {
+					for (i = 0; i < event->ct.n_uint16; i++) {
+				if(i+1 >= event->ct.n_uint16)
+				{
+						printf("%d", event->v_uint16[i]);
+					break;
+				}
+					  printf("%d ", event->v_uint16[i]);
+					}
+				}
+				if (event->ct.n_uint8 > 0) {
+					for (i = 0; i < event->ct.n_uint8; i++) {
+				if(i+1 >= event->ct.n_uint8)
+				{
+						printf("%c", event->v_uint8[i]);
+					break;
+				}
+					  printf("%c ", event->v_uint8[i]);
+					}
+
+				}*/
+		}  
 	printf("\n");
 
 	}
