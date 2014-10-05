@@ -343,7 +343,7 @@ void create_poti_event(int identifier,paje_line line, header_event_list_item *li
 		  //	return "PajeCreateContainer";
 			  break;
 		  case PajeDestroyContainerEventId:
-        poti_DestroyContainer(strtod(line.word[getPajeFieldPosition(event_to_create,PAJE_Time)],NULL),line.word[getPajeFieldPosition(event_to_create,PAJE_Type)],line.word[getPajeFieldPosition(event_to_create,PAJE_Container)]);
+        poti_DestroyContainer(strtod(line.word[getPajeFieldPosition(event_to_create,PAJE_Time)],NULL),line.word[getPajeFieldPosition(event_to_create,PAJE_Type)],line.word[getPajeFieldPosition(event_to_create,PAJE_Name)]);
 		  //	return "PajeDestroyContainer";
 			  break;
 		  case PajeNewEventEventId:
