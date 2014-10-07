@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <argp.h>
+#define __STDC_FORMAT_MACROS
+#include <inttypes.h>
 #include "poti_private.h"
 
 extern "C"
