@@ -1,5 +1,9 @@
 How to initialize the poti library:
 
-poti_init (0, 0) - works with pj_dump, pajeng, viva and all tools relying on libpaje
-poti_init (1, 0) - works with the development version of ViTE
-poti_init (1, 1) - works with ViTE 1.2
+poti_init (0, 0, POTI_TEXTUAL_OUTPUT) - for the standard output
+poti_init (0, 0, POTI_BINARY_OUTPUT)  - for the binary output, outputs to file rastro-5-5.rst
+poti_init (0, 0, POTI_TEXTUAL_BINARY_OUTPUT) - for both outputs.
+
+poti_init (0, 0, 0) - works with pj_dump, pajeng, viva and all tools relying on libpaje
+poti_init (1, 0, 0) - works with the development version of ViTE
+poti_init (1, 1, 0) - works with ViTE 1.2

@@ -14,15 +14,14 @@ verification in the parameters you pass for the library functions.*
 Dependencies
 ------------
 
-Poti needs nothing in special, you should be able to compile it using
-your preferred compiler, and use it in any C program.
+Poti binary needs PajeNG and librastro to be installed on the user machine.
 
 Clone and Compilation
 ---------------------
 
 No secrets here, just do:
 
-    $ git clone git://github.com/schnorr/poti.git
+    $ git clone git://github.com/herbstrith/poti.git
     $ cd poti
     $ mkdir build
     $ cd build
@@ -59,5 +58,6 @@ Roadmap
 -------
 
 TODO list:
-FIX THE POTI_READER
+Proper cmake configurations
+Converter Clean up(code and cmake)
 
