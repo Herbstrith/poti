@@ -106,7 +106,7 @@ void create_header(header_event_list_item *list)
 
 
 char* create_poti_event_poti_definitions(int identifier, paje_line line)
-{
+{        
   switch (identifier)
 	  {
 		  case PAJE_DefineContainerType:
@@ -371,12 +371,12 @@ void create_poti_event(int identifier,paje_line line, header_event_list_item *li
 			  //return "PajeSetVariable";
 			  break;	
 		  case PajeAddVariableEventId:
-        poti_AddVariable(strtod(line.word[1],NULL),line.word[2],line.word[3],strtod(line.word[4],NULL));
+        poti_AddVariable(strtod(line.word[getPajeFieldPosition(event_to_create,PAJE_Time)],NULL),line.word[getPajeFieldPosition(event_to_create,PAJE_Container)],line.word[getPajeFieldPosition(event_to_create,PAJE_Type)],strtod(line.word[getPajeFieldPosition(event_to_create,PAJE_Value)],NULL));
 			  //return "PajeAddVariable";
 			  break;		
 		  case PajeSubVariableEventId:
 
-    printf("\nfield is at %d i+1 and value is %lf", getPajeFieldPosition(event_to_create,PAJE_Value), strtod(line.word[getPajeFieldPosition(event_to_create,PAJE_Value)],NULL));
+    //printf("\nfield is at %d i+1 and value is %lf", getPajeFieldPosition(event_to_create,PAJE_Value), strtod(line.word[getPajeFieldPosition(event_to_create,PAJE_Value)],NULL));
  
         poti_SubVariable(strtod(line.word[getPajeFieldPosition(event_to_create,PAJE_Time)],NULL),line.word[getPajeFieldPosition(event_to_create,PAJE_Container)],line.word[getPajeFieldPosition(event_to_create,PAJE_Type)],strtod(line.word[getPajeFieldPosition(event_to_create,PAJE_Value)],NULL));
 		  //	return "PajeSubVariable";
