@@ -19,45 +19,45 @@ void rst_event_sssss_ptr(rst_buffer_t *ptr, u_int16_t type, const char* s0, cons
 void rst_event_sssss_f_ (int16_t *type, const char* s0, const char* s1, const char* s2, const char* s3, const char* s4);
 #define rst_event_sssss(type, s0, s1, s2, s3, s4) rst_event_sssss_ptr(RST_PTR, type, s0, s1, s2, s3, s4)
 
-/* Rastro function prototype for 'dssss' */
-void rst_event_dssss_ptr(rst_buffer_t *ptr, u_int16_t type, double d0, const char* s0, const char* s1, const char* s2, const char* s3);
-void rst_event_dssss_f_ (int16_t *type, double* d0, const char* s0, const char* s1, const char* s2, const char* s3);
-#define rst_event_dssss(type, d0, s0, s1, s2, s3) rst_event_dssss_ptr(RST_PTR, type, d0, s0, s1, s2, s3)
+/* Rastro function prototype for 'sssss' */
+void rst_event_sssss_ptr(rst_buffer_t *ptr, u_int16_t type, const char* s0, const char* s1, const char* s2, const char* s3, const char* s4);
+void rst_event_sssss_f_ (int16_t *type, const char* s0, const char* s1, const char* s2, const char* s3, const char* s4);
+#define rst_event_sssss(type, s0, s1, s2, s3, s4) rst_event_sssss_ptr(RST_PTR, type, s0, s1, s2, s3, s4)
 
-/* Rastro function prototype for 'dss' */
-void rst_event_dss_ptr(rst_buffer_t *ptr, u_int16_t type, double d0, const char* s0, const char* s1);
-void rst_event_dss_f_ (int16_t *type, double* d0, const char* s0, const char* s1);
-#define rst_event_dss(type, d0, s0, s1) rst_event_dss_ptr(RST_PTR, type, d0, s0, s1)
+/* Rastro function prototype for 'sss' */
+void rst_event_sss_ptr(rst_buffer_t *ptr, u_int16_t type, const char* s0, const char* s1, const char* s2);
+void rst_event_sss_f_ (int16_t *type, const char* s0, const char* s1, const char* s2);
+#define rst_event_sss(type, s0, s1, s2) rst_event_sss_ptr(RST_PTR, type, s0, s1, s2)
 
-/* Rastro function prototype for 'dssd' */
-void rst_event_dssd_ptr(rst_buffer_t *ptr, u_int16_t type, double d0, const char* s0, const char* s1, double d1);
-void rst_event_dssd_f_ (int16_t *type, double* d0, const char* s0, const char* s1, double* d1);
-#define rst_event_dssd(type, d0, s0, s1, d1) rst_event_dssd_ptr(RST_PTR, type, d0, s0, s1, d1)
+/* Rastro function prototype for 'ssss' */
+void rst_event_ssss_ptr(rst_buffer_t *ptr, u_int16_t type, const char* s0, const char* s1, const char* s2, const char* s3);
+void rst_event_ssss_f_ (int16_t *type, const char* s0, const char* s1, const char* s2, const char* s3);
+#define rst_event_ssss(type, s0, s1, s2, s3) rst_event_ssss_ptr(RST_PTR, type, s0, s1, s2, s3)
 
-/* Rastro function prototype for 'dsss' */
-void rst_event_dsss_ptr(rst_buffer_t *ptr, u_int16_t type, double d0, const char* s0, const char* s1, const char* s2);
-void rst_event_dsss_f_ (int16_t *type, double* d0, const char* s0, const char* s1, const char* s2);
-#define rst_event_dsss(type, d0, s0, s1, s2) rst_event_dsss_ptr(RST_PTR, type, d0, s0, s1, s2)
+/* Rastro function prototype for 'ssss' */
+void rst_event_ssss_ptr(rst_buffer_t *ptr, u_int16_t type, const char* s0, const char* s1, const char* s2, const char* s3);
+void rst_event_ssss_f_ (int16_t *type, const char* s0, const char* s1, const char* s2, const char* s3);
+#define rst_event_ssss(type, s0, s1, s2, s3) rst_event_ssss_ptr(RST_PTR, type, s0, s1, s2, s3)
 
-/* Rastro function prototype for 'dsssi' */
-void rst_event_dsssi_ptr(rst_buffer_t *ptr, u_int16_t type, double d0, const char* s0, const char* s1, const char* s2, u_int32_t i0);
-void rst_event_dsssi_f_ (int16_t *type, double* d0, const char* s0, const char* s1, const char* s2, int32_t* i0);
-#define rst_event_dsssi(type, d0, s0, s1, s2, i0) rst_event_dsssi_ptr(RST_PTR, type, d0, s0, s1, s2, i0)
+/* Rastro function prototype for 'sssss' */
+void rst_event_sssss_ptr(rst_buffer_t *ptr, u_int16_t type, const char* s0, const char* s1, const char* s2, const char* s3, const char* s4);
+void rst_event_sssss_f_ (int16_t *type, const char* s0, const char* s1, const char* s2, const char* s3, const char* s4);
+#define rst_event_sssss(type, s0, s1, s2, s3, s4) rst_event_sssss_ptr(RST_PTR, type, s0, s1, s2, s3, s4)
 
-/* Rastro function prototype for 'dsssss' */
-void rst_event_dsssss_ptr(rst_buffer_t *ptr, u_int16_t type, double d0, const char* s0, const char* s1, const char* s2, const char* s3, const char* s4);
-void rst_event_dsssss_f_ (int16_t *type, double* d0, const char* s0, const char* s1, const char* s2, const char* s3, const char* s4);
-#define rst_event_dsssss(type, d0, s0, s1, s2, s3, s4) rst_event_dsssss_ptr(RST_PTR, type, d0, s0, s1, s2, s3, s4)
+/* Rastro function prototype for 'ssssss' */
+void rst_event_ssssss_ptr(rst_buffer_t *ptr, u_int16_t type, const char* s0, const char* s1, const char* s2, const char* s3, const char* s4, const char* s5);
+void rst_event_ssssss_f_ (int16_t *type, const char* s0, const char* s1, const char* s2, const char* s3, const char* s4, const char* s5);
+#define rst_event_ssssss(type, s0, s1, s2, s3, s4, s5) rst_event_ssssss_ptr(RST_PTR, type, s0, s1, s2, s3, s4, s5)
 
-/* Rastro function prototype for 'dsssssi' */
-void rst_event_dsssssi_ptr(rst_buffer_t *ptr, u_int16_t type, double d0, const char* s0, const char* s1, const char* s2, const char* s3, const char* s4, u_int32_t i0);
-void rst_event_dsssssi_f_ (int16_t *type, double* d0, const char* s0, const char* s1, const char* s2, const char* s3, const char* s4, int32_t* i0);
-#define rst_event_dsssssi(type, d0, s0, s1, s2, s3, s4, i0) rst_event_dsssssi_ptr(RST_PTR, type, d0, s0, s1, s2, s3, s4, i0)
+/* Rastro function prototype for 'sssssss' */
+void rst_event_sssssss_ptr(rst_buffer_t *ptr, u_int16_t type, const char* s0, const char* s1, const char* s2, const char* s3, const char* s4, const char* s5, const char* s6);
+void rst_event_sssssss_f_ (int16_t *type, const char* s0, const char* s1, const char* s2, const char* s3, const char* s4, const char* s5, const char* s6);
+#define rst_event_sssssss(type, s0, s1, s2, s3, s4, s5, s6) rst_event_sssssss_ptr(RST_PTR, type, s0, s1, s2, s3, s4, s5, s6)
 
-/* Rastro function prototype for 'dsssssii' */
-void rst_event_dsssssii_ptr(rst_buffer_t *ptr, u_int16_t type, double d0, const char* s0, const char* s1, const char* s2, const char* s3, const char* s4, u_int32_t i0, u_int32_t i1);
-void rst_event_dsssssii_f_ (int16_t *type, double* d0, const char* s0, const char* s1, const char* s2, const char* s3, const char* s4, int32_t* i0, int32_t* i1);
-#define rst_event_dsssssii(type, d0, s0, s1, s2, s3, s4, i0, i1) rst_event_dsssssii_ptr(RST_PTR, type, d0, s0, s1, s2, s3, s4, i0, i1)
+/* Rastro function prototype for 'ssssssss' */
+void rst_event_ssssssss_ptr(rst_buffer_t *ptr, u_int16_t type, const char* s0, const char* s1, const char* s2, const char* s3, const char* s4, const char* s5, const char* s6, const char* s7);
+void rst_event_ssssssss_f_ (int16_t *type, const char* s0, const char* s1, const char* s2, const char* s3, const char* s4, const char* s5, const char* s6, const char* s7);
+#define rst_event_ssssssss(type, s0, s1, s2, s3, s4, s5, s6, s7) rst_event_ssssssss_ptr(RST_PTR, type, s0, s1, s2, s3, s4, s5, s6, s7)
 
 void rst_init_f_(int64_t *id1, int64_t *id2);
 void rst_finalize_f_ (void);

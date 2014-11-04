@@ -213,8 +213,10 @@ void poti_CreateContainer(double timestamp,
   {
     char temp[50];
     sprintf(temp, "\"%s\"", name);
-    rst_event_dssss(PajeCreateContainerEventId,
-             paje_event_timestamp(timestamp),
+    char temp2[50];
+    sprintf(temp2, "%lf", paje_event_timestamp(timestamp));
+    rst_event_sssss(PajeCreateContainerEventId,
+             temp2,
              alias,
              type,
              container,
@@ -236,8 +238,10 @@ void poti_DestroyContainer(double timestamp,
   }
   if(paje_binary == POTI_BINARY_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
   {
-    rst_event_dss(PajeDestroyContainerEventId,
-             paje_event_timestamp(timestamp),
+  char temp2[50];
+    sprintf(temp2, "%lf", paje_event_timestamp(timestamp));
+    rst_event_sss(PajeDestroyContainerEventId,
+             temp2,
              type,
              container);
   }
@@ -251,6 +255,7 @@ void poti_SetVariable (double timestamp,
 {
   if(paje_binary == POTI_TEXTUAL_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
   {
+
     fprintf(paje_file,"%d %.9f %s %s %f\n",
             PajeSetVariableEventId,
             paje_event_timestamp(timestamp),
@@ -260,11 +265,16 @@ void poti_SetVariable (double timestamp,
   }
   if(paje_binary == POTI_BINARY_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
   {
-    rst_event_dssd(PajeSetVariableEventId,
-              paje_event_timestamp(timestamp),
+    char temp2[50];
+    sprintf(temp2, "%lf", paje_event_timestamp(timestamp));
+     char temp3[50];
+    sprintf(temp3, "%lf", value);
+
+    rst_event_ssss(PajeSetVariableEventId,
+             temp2,
               container,
               type,
-              value);
+              temp3);
   }
 
 }
@@ -285,11 +295,15 @@ void poti_AddVariable (double timestamp,
   }
   if(paje_binary == POTI_BINARY_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
   {
-    rst_event_dssd( PajeAddVariableEventId,
-              paje_event_timestamp(timestamp),
+      char temp2[50];
+    sprintf(temp2, "%lf", paje_event_timestamp(timestamp));
+     char temp3[50];
+    sprintf(temp3, "%lf", value);
+    rst_event_ssss( PajeAddVariableEventId,
+              temp2,
               container,
               type,
-              value);
+              temp3);
   }
 }
 
@@ -309,11 +323,17 @@ void poti_SubVariable (double timestamp,
   }
   if(paje_binary == POTI_BINARY_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
   {
-    rst_event_dssd(PajeSubVariableEventId,
-              paje_event_timestamp(timestamp),
+    char temp2[50];
+    sprintf(temp2, "%lf", paje_event_timestamp(timestamp));
+
+     char temp3[50];
+    sprintf(temp3, "%lf", value);
+
+    rst_event_ssss(PajeSubVariableEventId,
+              temp2,
               container,
               type,
-              value);
+              temp3);
   }
 
 }
@@ -334,8 +354,11 @@ void poti_SetState(double timestamp,
   }
   if(paje_binary == POTI_BINARY_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
   {
-    rst_event_dsss(PajeSetStateEventId,
-             paje_event_timestamp(timestamp),
+
+    char temp2[50];
+    sprintf(temp2, "%lf", paje_event_timestamp(timestamp));
+    rst_event_ssss(PajeSetStateEventId,
+             temp2,
              container,
              type,
              value);
@@ -360,8 +383,12 @@ void poti_PushState(double timestamp,
   }
   if(paje_binary == POTI_BINARY_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
   {
-    rst_event_dsss(PajePushStateEventId,
-             paje_event_timestamp(timestamp),
+
+    char temp2[50];
+    sprintf(temp2, "%lf", paje_event_timestamp(timestamp));
+
+    rst_event_ssss(PajePushStateEventId,
+             temp2,
              container,
              type,
              value);
@@ -387,12 +414,18 @@ void poti_PushStateMark(double timestamp,
     }
     if(paje_binary == POTI_BINARY_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
     {
-      rst_event_dsssi(PajePushStateMarkEventId,
-                  paje_event_timestamp(timestamp),
+
+      char temp2[50];
+    sprintf(temp2, "%lf", paje_event_timestamp(timestamp));
+
+    char temp4[50];
+    sprintf(temp4, "%d", mark);
+      rst_event_sssss(PajePushStateMarkEventId,
+                  temp2,
                   container,
                   type,
                   value,
-                  mark);
+                  temp4);
     }
   }else{
     poti_PushState (timestamp, container, type, value);
@@ -413,8 +446,12 @@ void poti_PopState(double timestamp,
   }
   if(paje_binary == POTI_BINARY_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
   {
-    rst_event_dss(PajePopStateEventId,
-             paje_event_timestamp(timestamp),
+
+    char temp2[50];
+    sprintf(temp2, "%lf", paje_event_timestamp(timestamp));
+
+    rst_event_sss(PajePopStateEventId,
+             temp2,
              container,
              type);
   }
@@ -436,8 +473,11 @@ void poti_ResetState(double timestamp,
   }
   if(paje_binary == POTI_BINARY_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
   {
-    rst_event_dss(PajeResetStateEventId,
-             paje_event_timestamp(timestamp),
+
+    char temp2[50];
+    sprintf(temp2, "%lf", paje_event_timestamp(timestamp));
+    rst_event_sss(PajeResetStateEventId,
+             temp2,
              container,
              type);
   }
@@ -464,8 +504,12 @@ void poti_StartLink(double timestamp,
   }
   if(paje_binary == POTI_BINARY_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
   {
-    rst_event_dsssss(PajeStartLinkEventId,
-             paje_event_timestamp(timestamp),
+
+    char temp2[50];
+    sprintf(temp2, "%lf", paje_event_timestamp(timestamp));
+
+    rst_event_ssssss(PajeStartLinkEventId,
+             temp2,
              container,
              type,
              sourceContainer,
@@ -498,14 +542,20 @@ void poti_StartLinkSize(double timestamp,
     }
    if(paje_binary == POTI_BINARY_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
     {   
-      rst_event_dsssssi(PajeStartLinkSizeEventId,
-                  paje_event_timestamp(timestamp),
+  
+      char temp2[50];
+    sprintf(temp2, "%lf", paje_event_timestamp(timestamp));
+
+     char temp3[50];
+    sprintf(temp3, "%d", size);
+      rst_event_sssssss(PajeStartLinkSizeEventId,
+                  temp2,
                   container,
                   type,
                   sourceContainer,
                   value,
                   key,
-                  size);
+                  temp3);
     }
 
   }else{
@@ -538,15 +588,23 @@ void poti_StartLinkSizeMark(double timestamp,
     }
     if(paje_binary == POTI_BINARY_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
    {
-    rst_event_dsssssii(PajeStartLinkSizeMarkEventId,
-                paje_event_timestamp(timestamp),
+
+
+    char temp2[50];
+    sprintf(temp2, "%lf", paje_event_timestamp(timestamp));
+    char temp3[50];
+    sprintf(temp3, "%d", size);
+    char temp4[50];
+    sprintf(temp4, "%d", mark);
+    rst_event_ssssssss(PajeStartLinkSizeMarkEventId,
+                temp2,
                 container,
                 type,
                 sourceContainer,
                 value,
                 key,
-                size,
-                mark);
+                temp3,
+                temp4);
   }
 
   }else{
@@ -575,8 +633,12 @@ void poti_EndLink(double timestamp,
 
   if(paje_binary == POTI_BINARY_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
   {
-    rst_event_dsssss(PajeEndLinkEventId,
-             paje_event_timestamp(timestamp),
+
+
+    char temp2[50];
+    sprintf(temp2, "%lf", paje_event_timestamp(timestamp));
+    rst_event_ssssss(PajeEndLinkEventId,
+             temp2,
              container,
              type,
              endContainer,
@@ -603,8 +665,12 @@ void poti_NewEvent(double timestamp,
 
   if(paje_binary == POTI_BINARY_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
   {
-    rst_event_dsss(PajeNewEventEventId,
-             paje_event_timestamp(timestamp),
+
+    char temp2[50];
+    sprintf(temp2, "%lf", paje_event_timestamp(timestamp));
+
+    rst_event_ssss(PajeNewEventEventId,
+             temp2,
              container,
              type,
              value);
