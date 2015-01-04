@@ -1,18 +1,20 @@
 %{
-#include <stdio.h>
-#include <search.h>
-#include "main.h"
-#include <poti.h>
-#include <poti_private.h>
-#include <rastro.h>
-#include <string.h>
-#include <conversor_structs.h>
-#include "poti_converter.c"
+  #include <stdio.h>
+  #include <search.h>
+  #include "main.h"
+  #include <poti.h>
+  #include <rastro.h>
+  #include <string.h>
+
   PajeEventDefinition *eventBeingDefined;
   PajeDefinitions *globalDefinitions;
-
+  
   extern "C"
   {
+    #include "conversor_structs.h"
+    #include "poti_converter.c"
+    
+    
     extern FILE *yyin;
     extern int yylineno;
     int yylex(void);
@@ -124,8 +126,8 @@ declaration: TK_EVENT_DEF_BEGIN event_name event_id TK_BREAK
              }
              fields TK_EVENT_DEF_END TK_BREAK
              {
-								addEventToList(events_def , actual_event);
-								print_list(events_def);
+								addEventToList(events_def, actual_event);
+								//print_list(events_def);
              };
 event_name:
           TK_PAJE_DEFINE_CONTAINER_TYPE { $$ = PajeDefineContainerTypeEventId;} |
@@ -195,18 +197,21 @@ argument: TK_STRING { $$ = $1; } | TK_FLOAT { $$ = $1; } | TK_INT { $$ = $1; };
 void lineReset ()
 {
   line.lineNumber = yylineno;
-  line.word_count = 0;
+  int i;
+  for(i = 0; i <line.word_count;i++)
+  {
+    free(line.word[i]);
+  }
+  line.word_count = 0; 
 }
 
 void lineAdd (char *str)
 {
-  line.word[line.word_count++] = strdup(str);
-  
+  line.word[line.word_count++] = strdup(str); 
 }
 
 void lineSend ()
 {
-
   int identifier = atoi(line.word[0]); 
   int i;
   for(i = 0; i <line.word_count;i++)
@@ -226,11 +231,8 @@ void lineSend ()
       }
       
     }
-
   }
 
-  
-  
   create_poti_event(identifier,line, events_def);
 /*TODO:
    Sort events ids with respective header ids

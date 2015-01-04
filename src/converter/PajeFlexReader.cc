@@ -38,14 +38,11 @@ PajeFlexReader::PajeFlexReader(std::string f, PajeDefinitions *definitions)
 
 PajeFlexReader::PajeFlexReader(PajeDefinitions *definitions)
 {
-	
   initialize (definitions);
 }
 
 void PajeFlexReader::initialize (PajeDefinitions *definitions)
 {
-	
-  
   defs = globalDefinitions = definitions;
   flexReader = this;
   hasData = true;

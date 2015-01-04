@@ -77,11 +77,7 @@ add_subdirectory (${CMAKE_HOME_DIRECTORY}/src/converter/)
 ADD_SUBDIRECTORY(examples)
 ADD_SUBDIRECTORY(pkgconfig)
 
-
-
 # Include directories (shared by everyone)
-
-
 
 INSTALL(TARGETS poti DESTINATION lib)
 INSTALL(FILES ${POTI_HEADERS} DESTINATION include)

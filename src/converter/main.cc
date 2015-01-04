@@ -11,13 +11,12 @@
 #include <PajeException.h>
 #include <poti.h>
 
+#include "main.h"
+
 extern "C"{
 #include "parser.hh"
-
 #include <rastro.h>
-
 }
-#include "main.h"
 
 extern "C"
 {
@@ -26,29 +25,20 @@ extern "C"
   int yyparse ();
   extern char *yytext;
   extern int yychar;
-  //extern PajeEventDefinition **defsv;
- // extern int paje_binary;
 }
 
 int main (int argc, char **argv)
 {
-		printf("Main-begin conversion");
+  printf("Begin conversion");
   long long counter = 0;
-	//rst_init(8,6);
-    
-
-		poti_init(NULL,POTI_BINARY_OUTPUT);
-
-//	  poti_header(1,0,POTI_BINARY_OUTPUT);
-
+  poti_init(NULL,POTI_BINARY_OUTPUT);
+  //	  poti_header(1,0,POTI_BINARY_OUTPUT);
   //the global PajeDefinitions object
-//  globalDefinitions = new PajeDefinitions (false);
-     
-
-    yyparse();
-	 rst_finalize();
-  		printf("end main");
-  		return 1;
+  //  globalDefinitions = new PajeDefinitions (false);
+  yyparse();
+  rst_finalize();
+  printf("End convesion -- output to rastro-5-5.rst");
+  return 1;
 
 }
 

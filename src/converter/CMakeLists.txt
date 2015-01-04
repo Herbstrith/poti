@@ -17,24 +17,24 @@ CMAKE_MINIMUM_REQUIRED (VERSION 2.8)
 FIND_PACKAGE(FLEX REQUIRED)
 FIND_PACKAGE(BISON REQUIRED)
 
-
-
 FLEX_TARGET(scanner scanner.l ${CMAKE_CURRENT_BINARY_DIR}/lexer.cc COMPILE_FLAGS "-F")
 BISON_TARGET(parser parser.y ${CMAKE_CURRENT_BINARY_DIR}/parser.cc VERBOSE parser.output)
 
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_BINARY_DIR})
-INCLUDE_DIRECTORIES(${CMAKE_HOME_DIRECTORY}/src/converter/)
-INCLUDE_DIRECTORIES(${CMAKE_HOME_DIRECTORY}/include/)
+INCLUDE_DIRECTORIES(${CMAKE_HOME_DIRECTORY}/src/converter)
+INCLUDE_DIRECTORIES(${CMAKE_HOME_DIRECTORY}/include)
 INCLUDE_DIRECTORIES(${PAJENG_INCLUDE_PATH})
-INCLUDE_DIRECTORIES(${poti_SOURCE_DIR}/include/)
-MESSAGE ( "READ ${CMAKE_HOME_DIRECTORY}/src/converter/ and ${poti_SOURCE_DIR}/include/" )
+INCLUDE_DIRECTORIES(${poti_SOURCE_DIR}/include)
+
+MESSAGE ( "READ ${CMAKE_HOME_DIRECTORY}/src/converter and ${poti_SOURCE_DIR}/include/" )
 ADD_LIBRARY(conversor_library
   ${FLEX_scanner_OUTPUTS}
   ${BISON_parser_OUTPUTS}
-  ${${poti_SOURCE_DIR}/include/}
-  ${${CMAKE_HOME_DIRECTORY}/src/converter/}
-  PajeFlexReader.cc
-  #conversor_structs.c
+  ${${poti_SOURCE_DIR}/include}
+  ${${CMAKE_HOME_DIRECTORY}/src/converter}
+  ${CMAKE_HOME_DIRECTORY}/src/converter/conversor_structs.h
+  ${CMAKE_HOME_DIRECTORY}/src/converter/PajeFlexReader.cc
+  ${CMAKE_HOME_DIRECTORY}/src/converter/conversor_structs.c
   )
 TARGET_LINK_LIBRARIES(conversor_library poti)
 TARGET_LINK_LIBRARIES(conversor_library rastro)
@@ -49,3 +49,4 @@ TARGET_LINK_LIBRARIES(conversor conversor_library)
 TARGET_LINK_LIBRARIES(conversor ${PAJENG_LIBRARY_PATH}/libpaje.so)
 TARGET_LINK_LIBRARIES(conversor_library ${FLEX_LIBRARIES})
 TARGET_LINK_LIBRARIES(conversor_library ${PAJENG_LIBRARY_PATH}/libpaje.so)
+
