@@ -21,7 +21,6 @@
 #include <string.h>
 #include <poti.h>
 #include <poti_config.h>
-#include <PajeDefinitions.h>
 
 typedef enum {
   PAJE_DefineContainerType,

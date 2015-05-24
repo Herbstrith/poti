@@ -19,12 +19,7 @@
 #include "poti_private.h"
 //#include "poti_header_rastro.h"
 //#include "poti_events_rastro.h"
-#include <PajeDefinitions.h>
-extern "C"
-{
-  #include "poti_header_rastro.h"
-
-}
+#include "poti_header_rastro.h"
 
 extern FILE *paje_file;
 extern int paje_extended;

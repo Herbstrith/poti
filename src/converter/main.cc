@@ -6,26 +6,18 @@
 #include <stdio.h>
 #include <search.h>
 
-#include <PajeEventDefinition.h>
-#include <PajeTraceEvent.h>
-#include <PajeException.h>
 #include <poti.h>
 
 #include "main.h"
 
-extern "C"{
 #include "parser.hh"
 #include <rastro.h>
-}
 
-extern "C"
-{
   extern int yylineno;
   int yylex(void);
   int yyparse ();
   extern char *yytext;
   extern int yychar;
-}
 
 int main (int argc, char **argv)
 {
