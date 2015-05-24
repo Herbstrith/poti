@@ -51,6 +51,7 @@ static struct argp argp = { options, parse_options, args_doc, doc };
 
 int event_order[10];
 int event_order_limit;
+void set_event_order(int event_id);
 void set_event_order(int event_id)
 {
 
@@ -432,12 +433,11 @@ void poti_print_event (rst_event_t *event)
 	else
 	{
 		
-	  int i;
 		int event_id = event->type;
 	    	printf("%d ",event->type);
 		set_event_order(event_id);
 		int f;
-		int double_mark=0,int_mark=0,float_mark=0,string_mark = 0;
+		int double_mark=0,string_mark = 0;
 
 		for(f = 0; f < event_order_limit;f++)
 		{
