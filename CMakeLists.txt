@@ -30,11 +30,7 @@ CONFIGURE_FILE("${poti_SOURCE_DIR}/include/poti_config.h.in" "${CMAKE_BINARY_DIR
 SET(POTI_SRC src/poti.c src/poti_header.c src/poti_events.c src/poti_events_rastro.c src/poti_header_rastro.c )
 SET(POTI_HEADERS include/poti.h include/poti_events_rastro.h include/poti_header_rastro.h ${CMAKE_BINARY_DIR}/include/poti_config.h)
 
-
-FIND_PACKAGE(Boost REQUIRED)
-
 FIND_PACKAGE(librastro REQUIRED)
-
 INCLUDE_DIRECTORIES(${LIBRASTRO_INCLUDE_PATH})
 LINK_DIRECTORIES (${LIBRASTRO_LIBRARY_PATH})
 
