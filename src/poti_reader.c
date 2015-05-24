@@ -438,14 +438,8 @@ void poti_print_event (rst_event_t *event)
 	{
 		
 	  int i;
-		int event_id;
-	  if (event->file->resolution > RST_MICROSECONDS){
-				event_id = event->type;
+		int event_id = event->type;
 	    	printf("%d ",event->type);
-	  }else{
-				event_id = event->type;
-	    	printf("%d ",event->type);
-	  }
 		set_event_order(event_id);
 		int f;
 		int double_mark=0,int_mark=0,float_mark=0,string_mark = 0;
