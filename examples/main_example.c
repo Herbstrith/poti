@@ -15,11 +15,7 @@
     along with Poti. If not, see <http://www.gnu.org/licenses/>.
 */
 #include <poti.h>
-extern "C"
-{
-  #include <rastro.h>
-  //#include <poti.h>
-}
+#include <rastro.h>
 
 int main (int argc, char **argv)
 {
