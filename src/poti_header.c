@@ -514,13 +514,14 @@ void _poti_header(int basic, int old_header)
     paje_extended = 1;
   }
 
-  fprintf(paje_file,
+  if (poti_mode & POTI_TEXT){
+    fprintf(paje_file,
           "#\n"
           "# Extended events with additional information\n"
           "# Note that not all paje file format parsers support this\n"
           "# If you have problems parsing this file with your visualization tool\n"
           "#\n");
-  //rst_event_s(PajeHeaderExtendedId,"#Extended events with additional information");
+  }
 
   poti_header_PajePushStateMark (old_header);
   poti_header_PajeStartLinkSize (old_header);
