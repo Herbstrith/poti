@@ -20,82 +20,17 @@
 #include <stdlib.h>
 #include <string.h>
 
-typedef enum {
-  PajeDefineContainerTypeEventId,
-  PajeDefineEventTypeEventId,
-  PajeDefineStateTypeEventId,
-  PajeDefineVariableTypeEventId,
-  PajeDefineLinkTypeEventId,
-  PajeDefineEntityValueEventId,
-  PajeCreateContainerEventId,
-  PajeDestroyContainerEventId,
-  PajeNewEventEventId,
-  PajeSetStateEventId,
-  PajePushStateEventId,
-  PajePopStateEventId,
-  PajeResetStateEventId,
-  PajeSetVariableEventId,
-  PajeAddVariableEventId,
-  PajeSubVariableEventId,
-  PajeStartLinkEventId,
-  PajeEndLinkEventId,
-  PajeTraceFileEventId,
-  PajeEventIdCount,
-  PajeUnknownEventId,
-} PajeEventId;
+#define POTI_TEXT    (0x1)
+#define POTI_BINARY  (0x2)
 
-typedef enum {
-  PAJE_Event,
-  PAJE_Time,
-  PAJE_Name,
-  PAJE_Type,
-  PAJE_Container,
-  PAJE_StartContainerType,
-  PAJE_EndContainerType,
-  PAJE_StartContainer,
-  PAJE_EndContainer,
-  PAJE_Value,
-  PAJE_Key,
-  PAJE_Alias,
-  PAJE_Color,
-  PAJE_Line,
-  PAJE_File,
-  PAJE_Filename,
-  PAJE_Extra, //for user-defined fields
-  PAJE_Unknown_Field
-} PajeField;
-
-typedef enum {
-  PAJE_string,
-  PAJE_float,
-  PAJE_double,
-  PAJE_int,
-  PAJE_hex,
-  PAJE_date,
-  PAJE_color,
-  PAJE_unknown_field_type
-} PajeFieldType;
-
-#define POTI_TEXTUAL_OUTPUT 0
-#define POTI_BINARY_OUTPUT  1
-#define POTI_TEXTUAL_BINARY_OUTPUT 2
-/*
- * Function to open output into a file, else output to stdout
- */
-int poti_open (const char* filename);
 /*
  * Function to init poti with an external file descriptor
  */
-int poti_init (FILE *file, int output_mode);
+int poti_init(int output, const char *filename, int header_basic, int header_old);
 /*
  * Function to close opened file
  */
 void poti_close (void);
-
-/*
- * Function to generate the header 
- */
-void poti_header (int basic, int old_header, int output_mode);
 
 /*
  * Functions to define the type hierarchy of a Paje trace file 

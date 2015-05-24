@@ -18,57 +18,39 @@
 #include <poti.h>
 #include <rastro.h>
 
-FILE* paje_file = 0;
+FILE* paje_file = NULL;
 int paje_extended = 0;
-//0 for textual,1 for binary,2 for both
-int paje_binary = 0;
+int poti_mode = 0;
 
-int poti_open (const char* filename)
+int poti_init(int output, const char *filename, int header_basic, int header_old)
 {
-  FILE* fout = fopen(filename,"w");
-  if (fout ==0) return -1;
-  paje_file = fout;
+  poti_mode = output;
+  if(poti_mode & POTI_BINARY) {
+    rst_init_filename (filename);
+  }else if(poti_mode & POTI_TEXT) {
+    if (filename == NULL){
+      paje_file = stdout;
+    }else{
+      paje_file = fopen (filename, "w");
+      if (!paje_file) return 1;
+      fprintf(paje_file,"#POTI_GIT_VERSION %s\n", POTI_GITVERSION);
+      fprintf(paje_file,"#POTI_GIT_DATE (date of the cmake configuration) %s\n", POTI_GITDATE);
+    }
+  }
+  _poti_header (header_basic, header_old);
   return 0;
 }
 
-int poti_init(FILE *file, int output_mode)
-{
-  paje_binary = output_mode;
-  if(paje_binary == POTI_BINARY_OUTPUT || POTI_TEXTUAL_BINARY_OUTPUT == 2)
-  {
-    rst_init(5,5);
-    return 0;
-  }
-  if (file){
-    paje_file = file;
-    return 0;
-  }else{
-    return -1;
-  }
-}
-
-
 void poti_close ()
 {
-  rst_finalize();
-  if (paje_file != stdout)
-  {
-    fclose( paje_file );
+  if (poti_mode & POTI_BINARY) {
+    rst_finalize();
+  }else if(poti_mode & POTI_TEXT) {
+    if (paje_file != stdout) {
+      fclose(paje_file);
+    }
+    paje_file = NULL;
   }
-  paje_file = 0;
-
+  poti_mode = 0;
 }
 
-void poti_header (int basic, int old_header, int output_mode)
-{
-
-
-  if (paje_file ==0)
-    paje_file = stdout;
-
-  fprintf(paje_file,"#POTI_GIT_VERSION %s\n", POTI_GITVERSION);
-  fprintf(paje_file,"#POTI_GIT_DATE (date of the cmake configuration) %s\n", POTI_GITDATE);
-
-
-  _poti_header (basic, old_header,output_mode);
-}

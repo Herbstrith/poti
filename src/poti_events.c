@@ -26,34 +26,25 @@ static double paje_event_timestamp(double timestamp)
   return timestamp - first_timestamp;
 }
 
-extern FILE *paje_file;
-extern int paje_extended;
-extern int paje_binary;
-
 void poti_DefineContainerType(const char *alias,
                              const char *containerType,
                              const char *name)
 {
 
-  if(paje_binary == POTI_TEXTUAL_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
-  {
+  if(poti_mode & POTI_TEXT){
   fprintf(paje_file,"%d %s %s \"%s\"\n",
          PajeDefineContainerTypeEventId,
          alias,
          containerType,
          name);
+  }else if(poti_mode & POTI_BINARY){
+    char temp[50];
+    sprintf(temp, "\"%s\"", name);
+    rst_event_sss(PajeDefineContainerTypeEventId,
+		  alias,
+		  containerType,
+		  temp);
   }
-  if(paje_binary == POTI_BINARY_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
-  {
-  char temp[50];
-  sprintf(temp, "\"%s\"", name);
-  rst_event_sss(PajeDefineContainerTypeEventId,
-		alias,
-		containerType,
-		temp);
-  }
- 
- 
 }
 
 void poti_DefineVariableType(const char *alias,
@@ -61,17 +52,14 @@ void poti_DefineVariableType(const char *alias,
                              const char *name,
                              const char *color)
 {
-  if(paje_binary == POTI_TEXTUAL_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
-  {
+  if(poti_mode & POTI_TEXT){
     fprintf (paje_file,"%d %s %s \"%s\" \"%s\"\n",
              PajeDefineVariableTypeEventId,
              alias,
              containerType,
              name,
              color);
-  }
-  if(paje_binary == POTI_BINARY_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
-  {
+  }else if(poti_mode & POTI_BINARY){
     char temp[50];
     sprintf(temp, "\"%s\"", name);
     char temp2[50];
@@ -88,16 +76,13 @@ void poti_DefineStateType(const char *alias,
                          const char *containerType,
                          const char *name)
 {
-  if(paje_binary == POTI_TEXTUAL_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
-  {
+  if(poti_mode & POTI_TEXT){
     fprintf(paje_file,"%d %s %s \"%s\"\n",
            PajeDefineStateTypeEventId,
            alias,
            containerType,
            name);
-  }
-  if(paje_binary == POTI_BINARY_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
-  {
+  }else if(poti_mode & POTI_BINARY){
     char temp[50];
     sprintf(temp, "\"%s\"", name);
 
@@ -112,16 +97,13 @@ void poti_DefineEventType(const char *alias,
                           const char *containerType,
                           const char *name)
 {
-  if(paje_binary == POTI_TEXTUAL_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
-  {
+  if(poti_mode & POTI_TEXT){
     fprintf(paje_file,"%d %s %s \"%s\"\n",
             PajeDefineEventTypeEventId,
             alias,
             containerType,
             name);
-  }
-  if(paje_binary == POTI_BINARY_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
-  {
+  }else if(poti_mode & POTI_BINARY){
     char temp[50];
     sprintf(temp, "\"%s\"", name);
 
@@ -135,8 +117,7 @@ void poti_DefineLinkType(const char *alias,
                         const char *endContainerType,
                         const char *name)
 {
-  if(paje_binary == POTI_TEXTUAL_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
-  {
+  if(poti_mode & POTI_TEXT){
     fprintf(paje_file,"%d %s %s %s %s \"%s\"\n",
            PajeDefineLinkTypeEventId,
            alias,
@@ -144,9 +125,7 @@ void poti_DefineLinkType(const char *alias,
            startContainerType,
            endContainerType,
            name);
-  }
-  if(paje_binary == POTI_BINARY_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
-  {
+  }else if(poti_mode & POTI_BINARY){
     char temp[50];
       sprintf(temp, "\"%s\"", name);
     rst_event_sssss(PajeDefineLinkTypeEventId,
@@ -163,17 +142,14 @@ void poti_DefineEntityValue(const char *alias,
                            const char *name,
                            const char *color)
 {
-  if(paje_binary == POTI_TEXTUAL_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
-  {
+  if(poti_mode & POTI_TEXT){
     fprintf(paje_file,"%d %s %s \"%s\" \"%s\"\n",
             PajeDefineEntityValueEventId,
             alias,
             entityType,
             name,
             color);
-  }
-  if(paje_binary == POTI_BINARY_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
-  {  
+  }else if(poti_mode & POTI_BINARY){
     char temp[50];
     sprintf(temp, "\"%s\"", name);
     char temp2[50];
@@ -192,8 +168,7 @@ void poti_CreateContainer(double timestamp,
                          const char *container,
                          const char *name)
 {
-  if(paje_binary == POTI_TEXTUAL_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
-  {
+  if(poti_mode & POTI_TEXT){
     fprintf(paje_file,"%d %.9f %s %s %s \"%s\"\n",
            PajeCreateContainerEventId,
            paje_event_timestamp(timestamp),
@@ -201,9 +176,7 @@ void poti_CreateContainer(double timestamp,
            type,
            container,
            name);
-  }
-  if(paje_binary == POTI_BINARY_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
-  {
+  }else if(poti_mode & POTI_BINARY){
     char temp[50];
     sprintf(temp, "\"%s\"", name);
     rst_event_dssss(PajeCreateContainerEventId,
@@ -219,16 +192,13 @@ void poti_DestroyContainer(double timestamp,
                           const char *type,
                           const char *container)
 {
-  if(paje_binary == POTI_TEXTUAL_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
-  {
+  if(poti_mode & POTI_TEXT){
     fprintf(paje_file,"%d %.9f %s %s\n",
            PajeDestroyContainerEventId,
            paje_event_timestamp(timestamp),
            type,
            container);
-  }
-  if(paje_binary == POTI_BINARY_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
-  {
+  }else if(poti_mode & POTI_BINARY){
     rst_event_dss(PajeDestroyContainerEventId,
              paje_event_timestamp(timestamp),
              type,
@@ -242,24 +212,20 @@ void poti_SetVariable (double timestamp,
                        const char *type,
                        double value)
 {
-  if(paje_binary == POTI_TEXTUAL_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
-  {
+  if(poti_mode & POTI_TEXT){
     fprintf(paje_file,"%d %.9f %s %s %f\n",
             PajeSetVariableEventId,
             paje_event_timestamp(timestamp),
             container,
             type,
             value);
-  }
-  if(paje_binary == POTI_BINARY_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
-  {
+  }else if(poti_mode & POTI_BINARY){
     rst_event_dssd(PajeSetVariableEventId,
               paje_event_timestamp(timestamp),
               container,
               type,
               value);
   }
-
 }
 
 void poti_AddVariable (double timestamp,
@@ -267,17 +233,14 @@ void poti_AddVariable (double timestamp,
                        const char *type,
                        double value)
 {
-  if(paje_binary == POTI_TEXTUAL_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
-  {
+  if(poti_mode & POTI_TEXT){
     fprintf(paje_file,"%d %.9f %s %s %f\n",
              PajeAddVariableEventId,
             paje_event_timestamp(timestamp),
             container,
             type,
             value);
-  }
-  if(paje_binary == POTI_BINARY_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
-  {
+  }else if(poti_mode & POTI_BINARY){
     rst_event_dssd( PajeAddVariableEventId,
               paje_event_timestamp(timestamp),
               container,
@@ -291,24 +254,20 @@ void poti_SubVariable (double timestamp,
                        const char *type,
                        double value)
 {
-  if(paje_binary == POTI_TEXTUAL_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
-  {
+  if(poti_mode & POTI_TEXT){
     fprintf(paje_file,"%d %.9f %s %s %f\n",
             PajeSubVariableEventId,
             paje_event_timestamp(timestamp),
             container,
             type,
             value);
-  }
-  if(paje_binary == POTI_BINARY_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
-  {
+  }else if(poti_mode & POTI_BINARY){
     rst_event_dssd(PajeSubVariableEventId,
               paje_event_timestamp(timestamp),
               container,
               type,
               value);
   }
-
 }
 
 void poti_SetState(double timestamp,
@@ -316,24 +275,20 @@ void poti_SetState(double timestamp,
                   const char *type,
                   const char *value)
 {
-  if(paje_binary == POTI_TEXTUAL_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
-  {
+  if(poti_mode & POTI_TEXT){
     fprintf(paje_file,"%d %.9f %s %s %s\n",
            PajeSetStateEventId,
            paje_event_timestamp(timestamp),
            container,
            type,
            value);
-  }
-  if(paje_binary == POTI_BINARY_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
-  {
+  }else if(poti_mode & POTI_BINARY){
     rst_event_dsss(PajeSetStateEventId,
              paje_event_timestamp(timestamp),
              container,
              type,
              value);
   }
-
 }
 
 
@@ -342,17 +297,14 @@ void poti_PushState(double timestamp,
                    const char *type,
                    const char *value)
 {
-  if(paje_binary == POTI_TEXTUAL_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
-  {
+  if(poti_mode & POTI_TEXT){
     fprintf(paje_file,"%d %.9f %s %s %s\n",
           PajePushStateEventId,
            paje_event_timestamp(timestamp),
            container,
            type,
            value);
-  }
-  if(paje_binary == POTI_BINARY_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
-  {
+  }else if(poti_mode & POTI_BINARY){
     rst_event_dsss(PajePushStateEventId,
              paje_event_timestamp(timestamp),
              container,
@@ -368,8 +320,7 @@ void poti_PushStateMark(double timestamp,
                         const int mark)
 {
   if (paje_extended){
-    if(paje_binary == POTI_TEXTUAL_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
-    {
+    if(poti_mode & POTI_TEXT){
       fprintf(paje_file,"%d %.9f %s %s %s %d\n",
               PajePushStateMarkEventId,
               paje_event_timestamp(timestamp),
@@ -377,9 +328,7 @@ void poti_PushStateMark(double timestamp,
               type,
               value,
               mark);
-    }
-    if(paje_binary == POTI_BINARY_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
-    {
+    }else if(poti_mode & POTI_BINARY){
       rst_event_dsssi(PajePushStateMarkEventId,
                   paje_event_timestamp(timestamp),
                   container,
@@ -396,45 +345,36 @@ void poti_PopState(double timestamp,
                   const char *container,
                   const char *type)
 {
-  if(paje_binary == POTI_TEXTUAL_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
-  {
+  if(poti_mode & POTI_TEXT){
     fprintf(paje_file,"%d %.9f %s %s\n",
            PajePopStateEventId,
            paje_event_timestamp(timestamp),
            container,
            type);
-  }
-  if(paje_binary == POTI_BINARY_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
-  {
+  }else if(poti_mode & POTI_BINARY){
     rst_event_dss(PajePopStateEventId,
              paje_event_timestamp(timestamp),
              container,
              type);
   }
-
 }
 
 void poti_ResetState(double timestamp,
                    const char *container,
                    const char *type)
 {
-
-  if(paje_binary == POTI_TEXTUAL_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
-  {
+  if(poti_mode & POTI_TEXT){
     fprintf(paje_file,"%d %.9f %s %s\n",
           PajeResetStateEventId,
            paje_event_timestamp(timestamp),
            container,
            type);
-  }
-  if(paje_binary == POTI_BINARY_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
-  {
+  }else if(poti_mode & POTI_BINARY){
     rst_event_dss(PajeResetStateEventId,
              paje_event_timestamp(timestamp),
              container,
              type);
   }
-
 }
 
 void poti_StartLink(double timestamp,
@@ -444,8 +384,7 @@ void poti_StartLink(double timestamp,
                    const char *value,
                    const char *key)
 {
-  if(paje_binary == POTI_TEXTUAL_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
-  {
+  if(poti_mode & POTI_TEXT){
   fprintf(paje_file,"%d %.9f %s %s %s %s %s\n",
          PajeStartLinkEventId,
          paje_event_timestamp(timestamp),
@@ -454,9 +393,7 @@ void poti_StartLink(double timestamp,
          sourceContainer,
          value,
          key);
-  }
-  if(paje_binary == POTI_BINARY_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
-  {
+  }else if(poti_mode & POTI_BINARY){
     rst_event_dsssss(PajeStartLinkEventId,
              paje_event_timestamp(timestamp),
              container,
@@ -465,7 +402,6 @@ void poti_StartLink(double timestamp,
              value,
              key);
   }
-
 }
 
 void poti_StartLinkSize(double timestamp,
@@ -477,8 +413,7 @@ void poti_StartLinkSize(double timestamp,
                         const int size)
 {
   if (paje_extended){
-    if(paje_binary == POTI_TEXTUAL_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
-    {
+    if(poti_mode & POTI_TEXT){
       fprintf(paje_file,"%d %.9f %s %s %s %s %s %d\n",
               PajeStartLinkSizeEventId,
               paje_event_timestamp(timestamp),
@@ -488,9 +423,7 @@ void poti_StartLinkSize(double timestamp,
               value,
               key,
               size);
-    }
-   if(paje_binary == POTI_BINARY_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
-    {   
+    }else if(poti_mode & POTI_BINARY){
       rst_event_dsssssi(PajeStartLinkSizeEventId,
                   paje_event_timestamp(timestamp),
                   container,
@@ -500,7 +433,6 @@ void poti_StartLinkSize(double timestamp,
                   key,
                   size);
     }
-
   }else{
     poti_StartLink (timestamp, container, type, sourceContainer, value, key);
   }
@@ -516,8 +448,7 @@ void poti_StartLinkSizeMark(double timestamp,
                             const int mark)
 {
   if (paje_extended){
-    if(paje_binary == POTI_TEXTUAL_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
-    {
+    if(poti_mode & POTI_TEXT){
       fprintf(paje_file,"%d %.9f %s %s %s %s %s %d %d\n",
               PajeStartLinkSizeMarkEventId,
               paje_event_timestamp(timestamp),
@@ -528,10 +459,8 @@ void poti_StartLinkSizeMark(double timestamp,
               key,
               size,
               mark);
-    }
-    if(paje_binary == POTI_BINARY_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
-   {
-    rst_event_dsssssii(PajeStartLinkSizeMarkEventId,
+    }else if(poti_mode & POTI_BINARY){
+      rst_event_dsssssii(PajeStartLinkSizeMarkEventId,
                 paje_event_timestamp(timestamp),
                 container,
                 type,
@@ -540,8 +469,7 @@ void poti_StartLinkSizeMark(double timestamp,
                 key,
                 size,
                 mark);
-  }
-
+    }
   }else{
     poti_StartLink (timestamp, container, type, sourceContainer, value, key);
   }
@@ -554,8 +482,7 @@ void poti_EndLink(double timestamp,
                  const char *value,
                  const char *key)
 {
-  if(paje_binary == POTI_TEXTUAL_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
-  {
+  if(poti_mode & POTI_TEXT){
     fprintf(paje_file,"%d %.9f %s %s %s %s %s\n",
            PajeEndLinkEventId,
            paje_event_timestamp(timestamp),
@@ -564,10 +491,7 @@ void poti_EndLink(double timestamp,
            endContainer,
            value,
            key);
-  }
-
-  if(paje_binary == POTI_BINARY_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
-  {
+  }else if(poti_mode & POTI_BINARY){
     rst_event_dsssss(PajeEndLinkEventId,
              paje_event_timestamp(timestamp),
              container,
@@ -576,7 +500,6 @@ void poti_EndLink(double timestamp,
              value,
              key);
   }
-
 }
 
 void poti_NewEvent(double timestamp,
@@ -584,23 +507,18 @@ void poti_NewEvent(double timestamp,
                  const char *type,
                  const char *value )
 {
-  if(paje_binary == POTI_TEXTUAL_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
-  {
+  if(poti_mode & POTI_TEXT){
     fprintf(paje_file,"%d %.9f %s %s %s\n",
            PajeNewEventEventId,
            paje_event_timestamp(timestamp),
            container,
            type,
            value);
-  }
-
-  if(paje_binary == POTI_BINARY_OUTPUT || paje_binary == POTI_TEXTUAL_BINARY_OUTPUT)
-  {
+  }else if(poti_mode & POTI_BINARY){
     rst_event_dsss(PajeNewEventEventId,
              paje_event_timestamp(timestamp),
              container,
              type,
              value);
   }
-
 }

@@ -15,15 +15,13 @@
     along with Poti. If not, see <http://www.gnu.org/licenses/>.
 */
 #include <poti.h>
-#include <rastro.h>
 
 int main (int argc, char **argv)
 {
   //first, dump the pajeheader
   //first parameter is a boolean indicating a basic header or not
   //second parameter is a boolean indicating an old header or not
-  rst_init(6,6);
-  poti_header (0,0,2);
+  poti_init(POTI_TEXT, "output.paje", 0, 0);
   //int new_push_state_identifier = poti_header_PajePushState (old_header, "Mark", PAJE_string);
 
   //Defining my types

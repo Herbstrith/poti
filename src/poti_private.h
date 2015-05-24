@@ -22,6 +22,67 @@
 #include <poti.h>
 #include <poti_config.h>
 
+extern FILE* paje_file;
+extern int paje_extended;
+extern int poti_mode;
+
+typedef enum {
+  PajeDefineContainerTypeEventId,
+  PajeDefineEventTypeEventId,
+  PajeDefineStateTypeEventId,
+  PajeDefineVariableTypeEventId,
+  PajeDefineLinkTypeEventId,
+  PajeDefineEntityValueEventId,
+  PajeCreateContainerEventId,
+  PajeDestroyContainerEventId,
+  PajeNewEventEventId,
+  PajeSetStateEventId,
+  PajePushStateEventId,
+  PajePopStateEventId,
+  PajeResetStateEventId,
+  PajeSetVariableEventId,
+  PajeAddVariableEventId,
+  PajeSubVariableEventId,
+  PajeStartLinkEventId,
+  PajeEndLinkEventId,
+  PajeTraceFileEventId,
+  PajeEventIdCount,
+  PajeUnknownEventId,
+} PajeEventId;
+
+typedef enum {
+  PAJE_Event,
+  PAJE_Time,
+  PAJE_Name,
+  PAJE_Type,
+  PAJE_Container,
+  PAJE_StartContainerType,
+  PAJE_EndContainerType,
+  PAJE_StartContainer,
+  PAJE_EndContainer,
+  PAJE_Value,
+  PAJE_Key,
+  PAJE_Alias,
+  PAJE_Color,
+  PAJE_Line,
+  PAJE_File,
+  PAJE_Filename,
+  PAJE_Extra, //for user-defined fields
+  PAJE_Unknown_Field
+} PajeField;
+
+typedef enum {
+  PAJE_string,
+  PAJE_float,
+  PAJE_double,
+  PAJE_int,
+  PAJE_hex,
+  PAJE_date,
+  PAJE_color,
+  PAJE_unknown_field_type
+} PajeFieldType;
+
+
 typedef enum {
   PAJE_DefineContainerType,
   PAJE_DefineVariableType,
@@ -59,6 +120,6 @@ typedef enum {
   PAJE_Mark=36
 } PotiField;
 
-void _poti_header (int basic, int old_header,int output_mode);
+void _poti_header (int basic, int old_header);
 
 #endif

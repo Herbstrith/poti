@@ -1,5 +1,5 @@
 %{
-#include <PajeEventDefinition.h>
+#include <poti.h>
 
 #include "parser.hh"
 

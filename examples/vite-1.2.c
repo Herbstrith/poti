@@ -14,8 +14,6 @@
     You should have received a copy of the GNU Public License
     along with Poti. If not, see <http://www.gnu.org/licenses/>.
 */
-//#include <poti.h>
-#include <rastro.h>
 #include <poti.h>
 
 int main (int argc, char **argv)
@@ -24,8 +22,7 @@ int main (int argc, char **argv)
   //So:
   //first parameter set to 1 means basic header with no extended events
   //second parameter set to 1 means old header
-  rst_init(1, 2);
-  poti_header (1, 1,0);
+  poti_init(POTI_TEXT, "output.paje", 1, 1);
 
   //Defining my types
   poti_DefineContainerType ("ROOT", "0", "ROOT");
@@ -66,6 +63,6 @@ int main (int argc, char **argv)
   poti_DestroyContainer (1.23, "THREAD", "thread-1");
   poti_DestroyContainer (1.34, "ROOT", "root");
 
-  rst_finalize();
+  poti_close();
   return 0;
 }
