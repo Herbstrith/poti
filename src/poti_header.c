@@ -19,7 +19,7 @@
 
 static void poti_header_PajeDefineContainerType (int old_header)
 {
-  if (poti_mode | POTI_TEXT) {
+  if (poti_mode & POTI_TEXT) {
     fprintf(paje_file, "%%EventDef PajeDefineContainerType %d\n", PajeDefineContainerTypeEventId);
     fprintf(paje_file, "%%       Alias string\n");
     if (old_header){
@@ -29,7 +29,7 @@ static void poti_header_PajeDefineContainerType (int old_header)
     }
     fprintf(paje_file, "%%       Name string\n");
     fprintf(paje_file, "%%EndEventDef\n");
-  }else if(poti_mode | POTI_BINARY){
+  }else if(poti_mode & POTI_BINARY){
     rst_event_iiiiiii(PajeHeaderEventId,
 		    PajeDefineContainerTypeEventId,
 		    PAJE_Alias,PAJE_string,
