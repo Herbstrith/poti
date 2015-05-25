@@ -65,7 +65,7 @@ INSTALL(TARGETS poti
 INSTALL(FILES include/poti.h
   DESTINATION include)
 
-#add_subdirectory (${CMAKE_HOME_DIRECTORY}/src/converter/)
+add_subdirectory (${CMAKE_HOME_DIRECTORY}/src/converter/)
 ADD_SUBDIRECTORY(examples)
 ADD_SUBDIRECTORY(pkgconfig)
 
