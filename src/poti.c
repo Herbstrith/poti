@@ -14,9 +14,11 @@
     You should have received a copy of the GNU Lesser Public License
     along with Poti. If not, see <http://www.gnu.org/licenses/>.
 */
+#include <bzlib.h>
 #include "poti_private.h"
 #include <poti.h>
 #include <rastro.h>
+
 
 FILE* paje_file = NULL;
 int paje_extended = 0;

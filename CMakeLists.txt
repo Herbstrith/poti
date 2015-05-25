@@ -16,7 +16,10 @@ CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
 PROJECT(poti)
 SET(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake")
 
-
+find_package(BZip2)
+if (BZIP2_FOUND)
+  include_directories(${BZIP_INCLUDE_DIRS})
+endif (BZIP2_FOUND)
 
 EXEC_PROGRAM("git --git-dir=${PROJECT_SOURCE_DIR}/.git log --oneline -1" OUTPUT_VARIABLE "POTI_GITVERSION")
 EXEC_PROGRAM("git --git-dir=${PROJECT_SOURCE_DIR}/.git log -n 1 --format=%ai" OUTPUT_VARIABLE "POTI_GITDATE")
@@ -43,6 +46,8 @@ INCLUDE_DIRECTORIES(${CMAKE_BINARY_DIR}/include/)
 
 
 ADD_LIBRARY(poti SHARED ${POTI_SRC})
+target_link_libraries (poti ${BZIP2_LIBRARIES})
+
 
 SET_TARGET_PROPERTIES(
   poti
