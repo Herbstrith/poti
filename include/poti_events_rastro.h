@@ -60,6 +60,7 @@ void rst_event_dsssssii_f_ (int16_t *type, double* d0, const char* s0, const cha
 #define rst_event_dsssssii(type, d0, s0, s1, s2, s3, s4, i0, i1) rst_event_dsssssii_ptr(RST_PTR, type, d0, s0, s1, s2, s3, s4, i0, i1)
 
 void rst_init_f_(int64_t *id1, int64_t *id2);
+void rst_init_filename(const char *filename);
 void rst_finalize_f_ (void);
 
 #endif //__AUTO_RASTRO_FILE_H__
