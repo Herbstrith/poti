@@ -112,7 +112,11 @@ void set_event_order(int event_id)
 			event_order_limit = 3;	
 			break;
 		case PajeNewEventEventId:
-		
+			event_order[0] = PAJE_date;
+			event_order[1] = PAJE_string;
+			event_order[2] = PAJE_string;
+			event_order[3] = PAJE_string;
+			event_order_limit = 4;
 			break;
 		case PajeSetStateEventId:
 			event_order[0] = PAJE_date;
