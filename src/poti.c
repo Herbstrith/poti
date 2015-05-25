@@ -37,7 +37,7 @@ int poti_init(int output, const char *filename, int header_basic, int header_old
       fprintf(paje_file,"#POTI_GIT_DATE (date of the cmake configuration) %s\n", POTI_GITDATE);
     }
   }
-  if (header_basic > 0 && header_old > 0){
+  if (header_basic >= 0 && header_old >= 0){
     _poti_header (header_basic, header_old);
   }
   return 0;
