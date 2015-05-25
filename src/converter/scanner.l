@@ -1,9 +1,8 @@
 %{
 #include <poti.h>
-
-#include "parser.hh"
-
-extern "C" int yylex();
+#include <PajeEnum.h>
+#include "parser.h"
+int yylex();
 %}
 
 %option yylineno

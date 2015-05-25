@@ -1,40 +1,24 @@
 %{
   #include <stdio.h>
   #include <search.h>
-  #include "main.h"
   #include <poti.h>
-  #include <rastro.h>
   #include <string.h>
+  #include <PajeEnum.h>
+  #include "conversor_structs.h"
 
-  PajeEventDefinition *eventBeingDefined;
-  PajeDefinitions *globalDefinitions;
+  void create_poti_event (PajeEventId eventId, paje_line line);
   
-  extern "C"
-  {
-    #include "conversor_structs.h"
-    #include "poti_converter.c"
-    
-    
-    extern FILE *yyin;
-    extern int yylineno;
-    int yylex(void);
-    void yyerror (char const *mensagem);
-    int yyparse ();
+  extern FILE *yyin;
+  extern int yylineno;
+  int yylex(void);
+  void yyerror (char const *mensagem);
+  int yyparse ();
 
-    void lineReset ();
-    void lineAdd (char *str);
-    void lineSend ();
-  }
-
-  PajeEventDefinition **defsv;
-  PajeEventDefinition *def;
-  PajeFlexReader *flexReader;
-
+  int lineReset (void);
+  int lineAdd (char *str);
+  int lineSend (void);
 
   paje_line line; //the current line being read
-	header_event_list_item *events_def=(header_event_list_item*)malloc(sizeof(header_event_list_item));
-	header_event *actual_event ;
-
 %}
 
 %union {
@@ -113,22 +97,11 @@
 
 %%
 
-paje: declarations{create_header(events_def);} events { return 4;};
+paje: {init_paje_defs();} declarations events;
 
 declarations: declaration declarations | ;
-declaration: TK_EVENT_DEF_BEGIN event_name event_id TK_BREAK
-             {
-								actual_event = (header_event*)malloc(sizeof(header_event));
-             		actual_event->field_counter = 0;	
-							  actual_event->paje_event_type_definition = $2;
-							  actual_event->paje_file_event_id = $3;
-                //def = new HeaderDefine($2, $3, yylineno, globalDefinitions);
-             }
-             fields TK_EVENT_DEF_END TK_BREAK
-             {
-								addEventToList(events_def, actual_event);
-								//print_list(events_def);
-             };
+declaration: {clear_paje_def();} TK_EVENT_DEF_BEGIN event_name event_id {identifier_paje_def($3, $4);} TK_BREAK fields TK_EVENT_DEF_END TK_BREAK {save_paje_def();};
+
 event_name:
           TK_PAJE_DEFINE_CONTAINER_TYPE { $$ = PajeDefineContainerTypeEventId;} |
           TK_PAJE_DEFINE_VARIABLE_TYPE { $$ = PajeDefineVariableTypeEventId;} |
@@ -150,14 +123,7 @@ event_name:
           TK_PAJE_NEW_EVENT { $$ = PajeNewEventEventId;};
 event_id: TK_INT { };
 fields: field fields | ;
-field: TK_EVENT_DEF field_name field_type {
-					addField($2.fieldId, $3, actual_event);
-             /* if ($2.fieldId == PAJE_Extra){
-		actual->addField($2.fieldId, $3, yylineno, std::string($2.fieldName));
-              }else{
-		def->addField($2.fieldId, $3, yylineno);
-	      }*/
-	} TK_BREAK;
+field: TK_EVENT_DEF field_name field_type TK_BREAK { add_field_paje_def ($2.fieldId, $3); };
 field_name:
           TK_EVENT_DEF_ALIAS { $$.fieldId = PAJE_Alias; } |
 	        TK_EVENT_DEF_TYPE { $$.fieldId = PAJE_Type; } |
@@ -172,8 +138,9 @@ field_name:
 	        TK_EVENT_DEF_VALUE { $$.fieldId = PAJE_Value; } |
 	        TK_EVENT_DEF_KEY { $$.fieldId = PAJE_Key; } |
           TK_EVENT_DEF_LINE { $$.fieldId = PAJE_Line; } |
-          TK_EVENT_DEF_FILE { $$.fieldId = PAJE_File; } |
-	        TK_STRING { $$.fieldId = PAJE_Extra; $$.fieldName = $1.str; };
+          TK_EVENT_DEF_FILE { $$.fieldId = PAJE_File; };
+  /*drop support for generic field names*/
+  /* TK_STRING { $$.fieldId = PAJE_Extra; $$.fieldName = $1.str; }; *\/ */
 field_type:
           TK_EVENT_DEF_FIELD_TYPE_STRING { $$ = PAJE_string; } |
           TK_EVENT_DEF_FIELD_TYPE_FLOAT { $$ = PAJE_float; } |
@@ -191,10 +158,7 @@ arguments: arguments argument { lineAdd($2.str); } | ;
 argument: TK_STRING { $$ = $1; } | TK_FLOAT { $$ = $1; } | TK_INT { $$ = $1; };
 
 %%
-
-
-
-void lineReset ()
+int lineReset (void)
 {
   line.lineNumber = yylineno;
   int i;
@@ -203,16 +167,18 @@ void lineReset ()
     free(line.word[i]);
   }
   line.word_count = 0; 
+  return 0;
 }
 
-void lineAdd (char *str)
+int lineAdd (char *str)
 {
   line.word[line.word_count++] = strdup(str); 
+  return 0;
 }
 
-void lineSend ()
+int lineSend (void)
 {
-  int identifier = atoi(line.word[0]); 
+  int identifier = atoi(line.word[0]);
   int i;
   for(i = 0; i <line.word_count;i++)
   {
@@ -232,13 +198,8 @@ void lineSend ()
       
     }
   }
-
-  create_poti_event(identifier,line, events_def);
-/*TODO:
-   Sort events ids with respective header ids
-*/
-
-  
+  create_poti_event (identifier, line);
+  return 0;
 }
 
 

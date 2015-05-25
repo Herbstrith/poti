@@ -1,106 +1,73 @@
 #include "conversor_structs.h"
 
-void addField(int field_name,int field_type,header_event *event)
-{
-	event->parameters_order[event->field_counter] = field_name;
-	event->parameters_types[event->field_counter] = field_type;	
-	event->field_counter= event->field_counter + 1;
-} 	
+void create_header_event(PajeEventId eventId);
 
-void print_header_event(header_event *event)
-{
-	printf("eventdef is a %d \n with file id %d \n and %d fields: \n",
-           event->paje_event_type_definition,
-           event->paje_file_event_id,
-           event->field_counter);
-	int i = 0;
-	while(i < event->field_counter)
-  {
-	  printf("field number %d name is %d and of type %d \n",i, event->parameters_order[i],event->parameters_types[i]);
-	  i++;
-  }
-	
+static struct paje_def *def = NULL; //the current def being read
+static struct paje_def **defs = NULL;
+static int ndefs;
+
+void clear_paje_def (){
+  def = malloc(sizeof(struct paje_def));
+  bzero(def, sizeof(struct paje_def));
 }
 
-void print_list(header_event_list_item *list)
+void identifier_paje_def (PajeEventId eventId, int identifier)
 {
-	printf("Printing list \n");
-	header_event_list_item *actual_item;
-	actual_item = list;
-	while(actual_item != NULL)
-	{
-		print_header_event(actual_item->event_define);
-		if(actual_item->next == NULL)
-			break;
-
-    actual_item = actual_item->next;
-	}
+  def->eventId = eventId;
+  def->identifier = identifier;
 }
 
-void addEventToList(header_event_list_item *list, header_event *new_event )
-{
-	if(list->init == 0)
-	{
-		list->event_define = new_event;
-		list->init =1;
-		list->next = NULL;
-		return;
-	}
-	header_event_list_item *actual_item;
-	
-	actual_item = list;
-	
-	while(actual_item != NULL)
-  {
-		if(actual_item->next == NULL) 
-			break;
-
-		actual_item = actual_item->next;
-  }
-
-	header_event_list_item *new_item = (header_event_list_item*)malloc(sizeof(header_event_list_item));
-	new_item->event_define = new_event;
-	new_item->next = NULL;
-	actual_item->next = new_item;
-
+void add_field_paje_def (PajeField name, PajeFieldType type){
+  def->names = realloc(def->names, sizeof(PajeField*)*(def->nfields+1));
+  def->types = realloc(def->types, sizeof(PajeFieldType*)*(def->nfields+1));
+  def->names[def->nfields] = name;
+  def->types[def->nfields] = type;
+  def->nfields++;
 }
 
-header_event* findHeaderFileId(header_event_list_item *list , int id)
-{
-  header_event_list_item *actual_item;
-	
-	actual_item = list;
-	while(actual_item != NULL)
-  {
-    if(actual_item->event_define->paje_file_event_id == id)
-    { 
-      return actual_item->event_define;
-      //return actual_item->event_define->paje_event_type_definition;
-    }
-    if(actual_item->next == NULL) 
-			break;
-
-		actual_item = actual_item->next;
-  }   
-  
-  return NULL;
-}
-
-
-int getPajeFieldPosition(header_event *event, int pajeField)
-{
-  
+void save_paje_def (){
+  printf("name:%d identifier:%d with %d fields\n", def->eventId, def->identifier, def->nfields);
   int i;
-  for(i= 0;i < 20;i++)
-  {
-    if(event->parameters_order[i] == pajeField)
-      return i+1; 
+  for (i = 0; i < def->nfields; i++){
+    printf("  %d %d\n", def->names[i], def->types[i]);
   }
-  
+
+  create_header_event(def->eventId);
+
+  defs = realloc(defs, (ndefs+1)*sizeof(struct paje_def*));
+  defs[ndefs] = def;
+  ndefs++;
+}
+
+void init_paje_defs (void){
+  def = NULL;
+  ndefs = 0;
+  defs = NULL;
+}
+
+PajeEventId getPajeEventId (int identifier)
+{
+  int i;
+  for (i = 0; i < ndefs; i++){
+    if (defs[i]->identifier == identifier){
+      return defs[i]->eventId;
+    }
+  }
   return -1;
 }
 
-
-
-
-
+int getPajeFieldPosition(int identifier, PajeField pajeField)
+{
+  int i;
+  for (i = 0; i < ndefs; i++){
+    if (defs[i]->identifier == identifier){
+      int j;
+      for (j = 0; j < defs[i]->nfields; j++){
+	if (defs[i]->names[j] == pajeField){
+	  return j+1;
+	}
+      }
+    }
+  }
+  return -1;
+}
