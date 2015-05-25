@@ -193,17 +193,3 @@ void rst_event_dsssssii_f_( int16_t *type, double* d0, const char* s0, const cha
 {
   rst_event_dsssssii ((u_int16_t)* type, (double)* d0,  s0,  s1,  s2,  s3,  s4, (u_int32_t)* i0, (u_int32_t)* i1);
 }
-
-void rst_init_f_(int64_t *id1, int64_t *id2)
-{
-  rst_init((u_int64_t)* id1, (u_int64_t)* id2);
-}
-
-void rst_init_filename(const char *filename)
-{
-  rst_init_filename_(filename);
-}
-void rst_finalize_f_ ()
-{
-  rst_finalize();
-}
