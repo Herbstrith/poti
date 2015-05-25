@@ -17,7 +17,7 @@
 #include "poti_private.h"
 #include "poti_header_rastro.h"
 
-static void poti_header_PajeDefineContainerType (int old_header)
+void poti_header_PajeDefineContainerType (int old_header)
 {
   if (poti_mode & POTI_TEXT) {
     fprintf(paje_file, "%%EventDef PajeDefineContainerType %d\n", PajeDefineContainerTypeEventId);
@@ -38,7 +38,7 @@ static void poti_header_PajeDefineContainerType (int old_header)
   }
 }
 
-static void poti_header_PajeDefineVariableType (int old_header)
+void poti_header_PajeDefineVariableType (int old_header)
 {
   if(poti_mode & POTI_TEXT){
     fprintf(paje_file, "%%EventDef PajeDefineVariableType %d\n", PajeDefineVariableTypeEventId);
@@ -61,7 +61,7 @@ static void poti_header_PajeDefineVariableType (int old_header)
   }
 }
 
-static void poti_header_PajeDefineStateType (int old_header)
+void poti_header_PajeDefineStateType (int old_header)
 {
   if(poti_mode & POTI_TEXT){
     fprintf(paje_file, "%%EventDef PajeDefineStateType %d\n", PajeDefineStateTypeEventId);
@@ -82,7 +82,7 @@ static void poti_header_PajeDefineStateType (int old_header)
   }
 }
 
-static void poti_header_PajeDefineEventType (int old_header)
+void poti_header_PajeDefineEventType (int old_header)
 {
   if(poti_mode & POTI_TEXT){
     fprintf(paje_file, "%%EventDef PajeDefineEventType %d\n", PajeDefineEventTypeEventId);
@@ -103,7 +103,7 @@ static void poti_header_PajeDefineEventType (int old_header)
   }
 }
 
-static void poti_header_PajeDefineLinkType (int old_header)
+void poti_header_PajeDefineLinkType (int old_header)
 {
   if(poti_mode & POTI_TEXT){
     fprintf(paje_file, "%%EventDef PajeDefineLinkType %d\n", PajeDefineLinkTypeEventId);
@@ -130,7 +130,7 @@ static void poti_header_PajeDefineLinkType (int old_header)
   }
 }
 
-static void poti_header_PajeDefineEntityValue (int old_header)
+void poti_header_PajeDefineEntityValue (int old_header)
 {
   if(poti_mode & POTI_TEXT){
     fprintf(paje_file, "%%EventDef PajeDefineEntityValue %d\n", PajeDefineEntityValueEventId);
@@ -153,7 +153,7 @@ static void poti_header_PajeDefineEntityValue (int old_header)
   }
 }
 
-static void poti_header_PajeCreateContainer (int old_header)
+void poti_header_PajeCreateContainer (int old_header)
 {
   if(poti_mode & POTI_TEXT){
     fprintf(paje_file, "%%EventDef PajeCreateContainer %d\n", PajeCreateContainerEventId);
@@ -174,7 +174,7 @@ static void poti_header_PajeCreateContainer (int old_header)
   }
 }
 
-static void poti_header_PajeDestroyContainer (int old_header)
+void poti_header_PajeDestroyContainer (int old_header)
 {
   if(poti_mode & POTI_TEXT){
     fprintf(paje_file, "%%EventDef PajeDestroyContainer %d\n", PajeDestroyContainerEventId);
@@ -191,7 +191,7 @@ static void poti_header_PajeDestroyContainer (int old_header)
   }
 }
 
-static void poti_header_PajeSetVariable (int old_header)
+void poti_header_PajeSetVariable (int old_header)
 {
   if(poti_mode & POTI_TEXT){
     fprintf(paje_file, "%%EventDef PajeSetVariable %d\n", PajeSetVariableEventId);
@@ -210,7 +210,7 @@ static void poti_header_PajeSetVariable (int old_header)
   }
 }
 
-static void poti_header_PajeAddVariable (int old_header)
+void poti_header_PajeAddVariable (int old_header)
 {
   if(poti_mode & POTI_TEXT){
     fprintf(paje_file, "%%EventDef PajeAddVariable %d\n", PajeAddVariableEventId);
@@ -230,7 +230,7 @@ static void poti_header_PajeAddVariable (int old_header)
 
 }
 
-static void poti_header_PajeSubVariable (int old_header)
+void poti_header_PajeSubVariable (int old_header)
 {
   if(poti_mode & POTI_TEXT){
     fprintf(paje_file, "%%EventDef PajeSubVariable %d\n", PajeSubVariableEventId);
@@ -250,7 +250,7 @@ static void poti_header_PajeSubVariable (int old_header)
 }
 
 
-static void poti_header_PajeSetState (int old_header)
+void poti_header_PajeSetState (int old_header)
 {
   if(poti_mode & POTI_TEXT){
     fprintf(paje_file, "%%EventDef PajeSetState %d\n", PajeSetStateEventId);
@@ -270,7 +270,7 @@ static void poti_header_PajeSetState (int old_header)
 
 }
 
-static void poti_header_PajePushState (int old_header)
+void poti_header_PajePushState (int old_header)
 {
   if(poti_mode & POTI_TEXT){
     fprintf(paje_file, "%%EventDef PajePushState %d\n", PajePushStateEventId);
@@ -289,7 +289,7 @@ static void poti_header_PajePushState (int old_header)
   }
 }
 
-static void poti_header_PajePushStateMark (int old_header)
+void poti_header_PajePushStateMark (int old_header)
 {
   if(poti_mode & POTI_TEXT){
     fprintf(paje_file, "%%EventDef PajePushState %d\n", PajePushStateMarkEventId);
@@ -311,7 +311,7 @@ static void poti_header_PajePushStateMark (int old_header)
 
 }
 
-static void poti_header_PajePopState (int old_header)
+void poti_header_PajePopState (int old_header)
 {
   if(poti_mode & POTI_TEXT){
     fprintf(paje_file, "%%EventDef PajePopState %d\n", PajePopStateEventId);
@@ -328,7 +328,7 @@ static void poti_header_PajePopState (int old_header)
   } 
 }
 
-static void poti_header_PajeResetState (int old_header)
+void poti_header_PajeResetState (int old_header)
 {
   if (old_header) return;
   if(poti_mode & POTI_TEXT){
@@ -346,7 +346,7 @@ static void poti_header_PajeResetState (int old_header)
   }
 }
 
-static void poti_header_PajeStartLink (int old_header)
+void poti_header_PajeStartLink (int old_header)
 {
   if(poti_mode & POTI_TEXT){
     fprintf(paje_file, "%%EventDef PajeStartLink %d\n", PajeStartLinkEventId);
@@ -373,7 +373,7 @@ static void poti_header_PajeStartLink (int old_header)
   }
 }
 
-static void poti_header_PajeStartLinkSize (int old_header)
+void poti_header_PajeStartLinkSize (int old_header)
 {
   if(poti_mode & POTI_TEXT){
     fprintf(paje_file, "%%EventDef PajeStartLink %d\n", PajeStartLinkSizeEventId);
@@ -403,7 +403,7 @@ static void poti_header_PajeStartLinkSize (int old_header)
 }
 
 
-static void poti_header_PajeStartLinkSizeMark (int old_header)
+void poti_header_PajeStartLinkSizeMark (int old_header)
 {
   if(poti_mode & POTI_TEXT){
     fprintf(paje_file, "%%EventDef PajeStartLink %d\n", PajeStartLinkSizeMarkEventId);
@@ -434,7 +434,7 @@ static void poti_header_PajeStartLinkSizeMark (int old_header)
   }
 }
 
-static void poti_header_PajeEndLink (int old_header)
+void poti_header_PajeEndLink (int old_header)
 {
   if(poti_mode & POTI_TEXT){
     fprintf(paje_file, "%%EventDef PajeEndLink %d\n", PajeEndLinkEventId);
@@ -461,7 +461,7 @@ static void poti_header_PajeEndLink (int old_header)
   }
 }
 
-static void poti_header_PajeNewEvent (int old_header)
+void poti_header_PajeNewEvent (int old_header)
 {
   if(poti_mode & POTI_TEXT){
     fprintf(paje_file, "%%EventDef PajeNewEvent %d\n", PajeNewEventEventId);

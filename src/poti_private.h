@@ -120,6 +120,27 @@ typedef enum {
   PAJE_Mark=36
 } PotiField;
 
+void poti_header_PajeDefineContainerType (int old_header);
+void poti_header_PajeDefineVariableType (int old_header);
+void poti_header_PajeDefineStateType (int old_header);
+void poti_header_PajeDefineEventType (int old_header);
+void poti_header_PajeDefineLinkType (int old_header);
+void poti_header_PajeDefineEntityValue (int old_header);
+void poti_header_PajeCreateContainer (int old_header);
+void poti_header_PajeDestroyContainer (int old_header);
+void poti_header_PajeSetVariable (int old_header);
+void poti_header_PajeAddVariable (int old_header);
+void poti_header_PajeSubVariable (int old_header);
+void poti_header_PajeSetState (int old_header);
+void poti_header_PajePushState (int old_header);
+void poti_header_PajePushStateMark (int old_header);
+void poti_header_PajePopState (int old_header);
+void poti_header_PajeResetState (int old_header);
+void poti_header_PajeStartLink (int old_header);
+void poti_header_PajeStartLinkSize (int old_header);
+void poti_header_PajeStartLinkSizeMark (int old_header);
+void poti_header_PajeEndLink (int old_header);
+void poti_header_PajeNewEvent (int old_header);
 void _poti_header (int basic, int old_header);
 
 #endif
