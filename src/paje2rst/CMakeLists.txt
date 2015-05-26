@@ -29,11 +29,11 @@ INCLUDE_DIRECTORIES(${CMAKE_HOME_DIRECTORY}/src/paje2rst)
 INCLUDE_DIRECTORIES(${CMAKE_HOME_DIRECTORY}/include)
 INCLUDE_DIRECTORIES(${PAJENG_INCLUDE_PATH})
 
-ADD_EXECUTABLE(conversor
+ADD_EXECUTABLE(paje2rst
   main.c
   ${FLEX_scanner_OUTPUTS}
   ${BISON_parser_OUTPUTS}
   poti_converter.c
   conversor_structs.c
   )
-TARGET_LINK_LIBRARIES(conversor poti rastro ${FLEX_LIBRARIES})
+TARGET_LINK_LIBRARIES(paje2rst poti rastro ${FLEX_LIBRARIES})
