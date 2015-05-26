@@ -60,10 +60,6 @@ PROPERTIES
 # bump when the API change (new functions in the header file)
 SET(POTI_APIVERSION 3)
 
-# The poti binary reader
-ADD_EXECUTABLE(poti_reader src/poti_reader.c)
-TARGET_LINK_LIBRARIES(poti_reader poti rastro)
-
 INSTALL(TARGETS poti
   RUNTIME DESTINATION bin
   LIBRARY DESTINATION lib
@@ -72,6 +68,7 @@ INSTALL(TARGETS poti
 INSTALL(FILES include/poti.h
   DESTINATION include)
 
+add_subdirectory(src/rst2paje/)
 add_subdirectory (${CMAKE_HOME_DIRECTORY}/src/converter/)
 ADD_SUBDIRECTORY(examples)
 ADD_SUBDIRECTORY(pkgconfig)
