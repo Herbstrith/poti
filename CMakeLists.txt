@@ -39,7 +39,6 @@ FIND_PACKAGE(librastro REQUIRED)
 INCLUDE_DIRECTORIES(${LIBRASTRO_INCLUDE_PATH})
 LINK_DIRECTORIES (${LIBRASTRO_LIBRARY_PATH})
 
-#INCLUDE_DIRECTORIES(${poti_SOURCE_DIR}/src/converter/)
 INCLUDE_DIRECTORIES(${poti_SOURCE_DIR}/include/)
 INCLUDE_DIRECTORIES(${poti_SOURCE_DIR}/src/)
 INCLUDE_DIRECTORIES(${CMAKE_BINARY_DIR}/include/)
@@ -69,7 +68,7 @@ INSTALL(FILES include/poti.h
   DESTINATION include)
 
 add_subdirectory(src/rst2paje/)
-add_subdirectory (${CMAKE_HOME_DIRECTORY}/src/converter/)
+add_subdirectory(src/paje2rst/)
 ADD_SUBDIRECTORY(examples)
 ADD_SUBDIRECTORY(pkgconfig)
 
