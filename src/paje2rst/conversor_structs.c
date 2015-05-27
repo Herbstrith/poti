@@ -42,12 +42,6 @@ void add_field_paje_def (PajeField name, PajeFieldType type){
 }
 
 void save_paje_def (){
-  printf("name:%d identifier:%d with %d fields\n", def->eventId, def->identifier, def->nfields);
-  int i;
-  for (i = 0; i < def->nfields; i++){
-    printf("  %d %d\n", def->names[i], def->types[i]);
-  }
-
   create_header_event(def->eventId);
 
   defs = realloc(defs, (ndefs+1)*sizeof(struct paje_def*));
