@@ -625,6 +625,7 @@ int main (int argc, char *argv[])
       printf ("#POTI_GIT_VERSION %s\n#POTI_GIT_DATE (date of the cmake configuration) %s\n",
               POTI_GITVERSION,
               POTI_GITDATE);
+      printf ("#This file was translated from binary using rst2paje.\n");
     }
   }
 
