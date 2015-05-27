@@ -57,7 +57,7 @@ static struct argp argp = { options, parse_options, args_doc, doc };
 extern FILE* yyin;
 void yyerror (char const *s);
 void yyerror (char const *s) {
-  fprintf (stderr, "%s\n", s);
+  fprintf (stderr, "%d %s\n", yylineno, s);
 }
 
 int main (int argc, char **argv)

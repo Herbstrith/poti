@@ -18,4 +18,5 @@
 #define __MAIN_H
 #include <poti.h>
 int yyparse(void);
+extern int yylineno;
 #endif
