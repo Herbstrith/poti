@@ -25,14 +25,12 @@ static char doc[] = "Reads the poti binary trace";
 static char args_doc[] = "{rastro-0-0.rst rastro-1-0.rst ...}";
 
 static struct argp_option options[] = {
-  {"sync", 's', "SYNC_FILE", 0, "Synchronization file (from rastro_timesync)"},
   { 0 }
 };
 
 struct arguments {
   char *input[RST_MAX_INPUT_SIZE];
   int input_size;
-  char *synchronization_file;
 };
 
 
@@ -44,7 +42,6 @@ static int parse_options (int key, char *arg, struct argp_state *state)
 {
   struct arguments *arguments = (struct arguments*)state->input;
   switch (key){
-  case 's': arguments->synchronization_file = arg; break;
   case ARGP_KEY_ARG:
     if (arguments->input_size == RST_MAX_INPUT_SIZE) {
       /* Too many arguments. */
@@ -617,7 +614,7 @@ int main (int argc, char *argv[])
   for (i = 0; i < arguments.input_size; i++){
     int status = rst_open_file (&rastro, 100000,
                                 arguments.input[i],
-                                arguments.synchronization_file);
+                                NULL);
     if (status == RST_NOK){
       fprintf(stderr,
               "[rastro_read] at %s, "
