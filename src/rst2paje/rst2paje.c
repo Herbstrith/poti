@@ -21,8 +21,8 @@
 #include "poti_private.h"
 #include <rastro.h>
 
-static char doc[] = "Reads the poti binary trace";
-static char args_doc[] = "{rastro-0-0.rst rastro-1-0.rst ...}";
+static char doc[] = "Translates from binary to textual Paje file format";
+static char args_doc[] = "{pajebinary.rst}";
 
 static struct argp_option options[] = {
   { 0 }
