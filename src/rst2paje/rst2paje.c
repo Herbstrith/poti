@@ -599,7 +599,7 @@ int main (int argc, char *argv[])
   bzero (&arguments, sizeof(struct arguments));
   if (argp_parse (&argp, argc, argv, 0, 0, &arguments) == ARGP_KEY_ERROR){
     fprintf(stderr,
-            "[rastro_read] at %s, "
+            "[rst2paje] at %s, "
             "error during the parsing of parameters\n",
             __FUNCTION__);
     return 1;
@@ -615,7 +615,7 @@ int main (int argc, char *argv[])
 			      NULL);
   if (status == RST_NOK){
     fprintf(stderr,
-	    "[rastro_read] at %s, "
+	    "[rst2paje] at %s, "
 	    "trace file %s could not be opened\n",
 	    __FUNCTION__, arguments.input[0]);
     return 1;
