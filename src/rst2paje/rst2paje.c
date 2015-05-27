@@ -608,25 +608,22 @@ int main (int argc, char *argv[])
   rst_rastro_t rastro;
   bzero(&rastro, sizeof(rst_rastro_t));
   rst_event_t event;
-  int i;
 
   /* opening rst files */
-  for (i = 0; i < arguments.input_size; i++){
-    int status = rst_open_file (&rastro, 100000,
-                                arguments.input[i],
-                                NULL);
-    if (status == RST_NOK){
-      fprintf(stderr,
-              "[rastro_read] at %s, "
-              "trace file %s could not be opened\n",
-              __FUNCTION__, arguments.input[i]);
-      return 1;
-    }else{
-      printf ("#POTI_GIT_VERSION %s\n#POTI_GIT_DATE (date of the cmake configuration) %s\n",
-              POTI_GITVERSION,
-              POTI_GITDATE);
-      printf ("#This file was translated from binary using rst2paje.\n");
-    }
+  int status = rst_open_file (&rastro, 100000,
+			      arguments.input[0],
+			      NULL);
+  if (status == RST_NOK){
+    fprintf(stderr,
+	    "[rastro_read] at %s, "
+	    "trace file %s could not be opened\n",
+	    __FUNCTION__, arguments.input[0]);
+    return 1;
+  }else{
+    printf ("#POTI_GIT_VERSION %s\n#POTI_GIT_DATE (date of the cmake configuration) %s\n",
+	    POTI_GITVERSION,
+	    POTI_GITDATE);
+    printf ("#This file was translated from binary using rst2paje.\n");
   }
 
   /* reading all the files */
