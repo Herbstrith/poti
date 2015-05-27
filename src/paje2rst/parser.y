@@ -55,6 +55,7 @@
   } argument_data;
 }
 
+
 %token TK_EVENT_DEF_BEGIN
 %token TK_EVENT_DEF
 %token TK_EVENT_DEF_END
@@ -153,10 +154,9 @@ field_name:
 	        TK_EVENT_DEF_END_CONTAINER { $$.fieldId = PAJE_EndContainer; } |
 	        TK_EVENT_DEF_VALUE { $$.fieldId = PAJE_Value; } |
 	        TK_EVENT_DEF_KEY { $$.fieldId = PAJE_Key; } |
-          TK_EVENT_DEF_LINE { $$.fieldId = PAJE_Line; } |
-          TK_EVENT_DEF_FILE { $$.fieldId = PAJE_File; };
-  /*drop support for generic field names*/
-  /* TK_STRING { $$.fieldId = PAJE_Extra; $$.fieldName = $1.str; }; *\/ */
+                TK_EVENT_DEF_LINE { $$.fieldId = PAJE_Line; } |
+                TK_EVENT_DEF_FILE { $$.fieldId = PAJE_File; } |
+                TK_STRING { $$.fieldId = PAJE_Extra; $$.fieldName = $1.str; };
 field_type:
           TK_EVENT_DEF_FIELD_TYPE_STRING { $$ = PAJE_string; } |
           TK_EVENT_DEF_FIELD_TYPE_FLOAT { $$ = PAJE_float; } |
