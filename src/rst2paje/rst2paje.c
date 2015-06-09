@@ -32,13 +32,17 @@ struct arguments {
   char *input[RST_MAX_INPUT_SIZE];
   int input_size;
 };
+typedef struct event_parameters{
+  int length;
+  int *parameters;
+}event_parameters;
 
 
 void poti_print_event(rst_event_t *event);
 const char* eventidToString(u_int32_t event);
 const char* fieldToString(u_int32_t event);
 const char* typeToString(u_int32_t event);
-int* set_event_order(int event_id, int event_params_size)
+event_parameters set_event_order(int event_id);
 
 static int parse_options (int key, char *arg, struct argp_state *state)
 {
@@ -64,166 +68,188 @@ static int parse_options (int key, char *arg, struct argp_state *state)
 
 static struct argp argp = { options, parse_options, args_doc, doc };
 
-int* set_event_order(int event_id, int event_params_size)
+event_parameters set_event_order(int event_id)
 {
-  int *event_order;
+  event_parameters my_order;
+  //int *event_order;
   switch (event_id){
     case PajeDefineContainerTypeEventId:
-      event_order = malloc(sizeof(int) * 3);
-      event_order[0] = PAJE_string;
-      event_order[1] = PAJE_string;
-      event_order[2] = PAJE_string;
+      my_order.parameters = malloc(sizeof(int) * 3);
+      my_order.length = 3;
+      my_order.parameters[0] = PAJE_string;
+      my_order.parameters[1] = PAJE_string;
+      my_order.parameters[2] = PAJE_string;
       break;
     case PajeDefineEventTypeEventId:
-      event_order = malloc(sizeof(int) * 3);
-      event_order[0] = PAJE_string;
-      event_order[1] = PAJE_string;
-      event_order[2] = PAJE_string;
+      my_order.parameters = malloc(sizeof(int) * 3);
+      my_order.length = 3;
+      my_order.parameters[0] = PAJE_string;
+      my_order.parameters[1] = PAJE_string;
+      my_order.parameters[2] = PAJE_string;
       break;
     case PajeDefineStateTypeEventId:
-      event_order = malloc(sizeof(int) * 3);
-      event_order[0] = PAJE_string;
-      event_order[1] = PAJE_string;
-      event_order[2] = PAJE_string;
+      my_order.parameters = malloc(sizeof(int) * 3);
+      my_order.length = 3;
+      my_order.parameters[0] = PAJE_string;
+      my_order.parameters[1] = PAJE_string;
+      my_order.parameters[2] = PAJE_string;
       break;
     case PajeDefineVariableTypeEventId:
-      event_order = malloc(sizeof(int) * 4);
-      event_order[0] = PAJE_string;
-      event_order[1] = PAJE_string;
-      event_order[2] = PAJE_string;
-      event_order[3] = PAJE_color;
+      my_order.parameters = malloc(sizeof(int) * 4);
+      my_order.length = 4;
+      my_order.parameters[0] = PAJE_string;
+      my_order.parameters[1] = PAJE_string;
+      my_order.parameters[2] = PAJE_string;
+      my_order.parameters[3] = PAJE_color;
       break;
     case PajeDefineLinkTypeEventId:
-      event_order = malloc(sizeof(int) * 5);
-      event_order[0] = PAJE_string;
-      event_order[1] = PAJE_string;
-      event_order[2] = PAJE_string;
-      event_order[3] = PAJE_string;
-      event_order[4] = PAJE_string;
+      my_order.parameters = malloc(sizeof(int) * 5);
+      my_order.length = 5;
+      my_order.parameters[0] = PAJE_string;
+      my_order.parameters[1] = PAJE_string;
+      my_order.parameters[2] = PAJE_string;
+      my_order.parameters[3] = PAJE_string;
+      my_order.parameters[4] = PAJE_string;
       break;
     case PajeDefineEntityValueEventId:
-      event_order = malloc(sizeof(int) * 4);
-      event_order[0] = PAJE_string;
-      event_order[1] = PAJE_string;
-      event_order[2] = PAJE_string;
-      event_order[3] = PAJE_color;
+      my_order.parameters = malloc(sizeof(int) * 4);
+      my_order.length = 4;
+      my_order.parameters[0] = PAJE_string;
+      my_order.parameters[1] = PAJE_string;
+      my_order.parameters[2] = PAJE_string;
+      my_order.parameters[3] = PAJE_color;
       break;
     case PajeCreateContainerEventId:
-      event_order = malloc(sizeof(int) * 5);
-      event_order[0] = PAJE_date;
-      event_order[1] = PAJE_string;
-      event_order[2] = PAJE_string;
-      event_order[3] = PAJE_string;
-      event_order[4] = PAJE_string;
+      my_order.parameters = malloc(sizeof(int) * 5);
+      my_order.length = 5;
+      my_order.parameters[0] = PAJE_date;
+      my_order.parameters[1] = PAJE_string;
+      my_order.parameters[2] = PAJE_string;
+      my_order.parameters[3] = PAJE_string;
+      my_order.parameters[4] = PAJE_string;
       break;
     case PajeDestroyContainerEventId:
-      event_order = malloc(sizeof(int) * 3);
-      event_order[0] = PAJE_date;
-      event_order[1] = PAJE_string;
-      event_order[2] = PAJE_string;		
+      my_order.parameters = malloc(sizeof(int) * 3);
+      my_order.length = 3;
+      my_order.parameters[0] = PAJE_date;
+      my_order.parameters[1] = PAJE_string;
+      my_order.parameters[2] = PAJE_string;		
       break;
     case PajeNewEventEventId:
-      event_order = malloc(sizeof(int) * 4);
-      event_order[0] = PAJE_date;
-      event_order[1] = PAJE_string;
-      event_order[2] = PAJE_string;
-      event_order[3] = PAJE_string;
+      my_order.parameters = malloc(sizeof(int) * 4);
+      my_order.length = 4;
+      my_order.parameters[0] = PAJE_date;
+      my_order.parameters[1] = PAJE_string;
+      my_order.parameters[2] = PAJE_string;
+      my_order.parameters[3] = PAJE_string;
       break;
     case PajeSetStateEventId:
-      event_order = malloc(sizeof(int) * 4);
-      event_order[0] = PAJE_date;
-      event_order[1] = PAJE_string;
-      event_order[2] = PAJE_string;
-      event_order[3] = PAJE_double;
+      my_order.parameters = malloc(sizeof(int) * 4);
+      my_order.length = 4;
+      my_order.parameters[0] = PAJE_date;
+      my_order.parameters[1] = PAJE_string;
+      my_order.parameters[2] = PAJE_string;
+      my_order.parameters[3] = PAJE_double;
       break;
     case PajePushStateEventId:
-      event_order = malloc(sizeof(int) * 4);
-      event_order[0] = PAJE_date;
-      event_order[1] = PAJE_string;
-      event_order[2] = PAJE_string;
-      event_order[3] = PAJE_string;
+      my_order.parameters = malloc(sizeof(int) * 4);
+      my_order.length = 4;
+      my_order.parameters[0] = PAJE_date;
+      my_order.parameters[1] = PAJE_string;
+      my_order.parameters[2] = PAJE_string;
+      my_order.parameters[3] = PAJE_string;
       break;	
     case PajePopStateEventId:
-      event_order = malloc(sizeof(int) * 3);
-      event_order[0] = PAJE_date;
-      event_order[1] = PAJE_string;
-      event_order[2] = PAJE_string;
+      my_order.parameters = malloc(sizeof(int) * 3);
+      my_order.length = 3;
+      my_order.parameters[0] = PAJE_date;
+      my_order.parameters[1] = PAJE_string;
+      my_order.parameters[2] = PAJE_string;
       break;	
     case PajeResetStateEventId:
-      event_order = malloc(sizeof(int) * 3);
-      event_order[0] = PAJE_date;
-      event_order[1] = PAJE_string;
-      event_order[2] = PAJE_string;
+      my_order.parameters = malloc(sizeof(int) * 3);
+      my_order.length = 3;
+      my_order.parameters[0] = PAJE_date;
+      my_order.parameters[1] = PAJE_string;
+      my_order.parameters[2] = PAJE_string;
       break;
     case PajeSetVariableEventId:
-      event_order = malloc(sizeof(int) * 4);
-      event_order[0] = PAJE_date;
-      event_order[1] = PAJE_string;
-      event_order[2] = PAJE_string;
-      event_order[3] = PAJE_double;
+      my_order.parameters = malloc(sizeof(int) * 4);
+      my_order.length = 4;
+      my_order.parameters[0] = PAJE_date;
+      my_order.parameters[1] = PAJE_string;
+      my_order.parameters[2] = PAJE_string;
+      my_order.parameters[3] = PAJE_double;
       break;	
     case PajeAddVariableEventId:
-      event_order = malloc(sizeof(int) * 4);
-      event_order[0] = PAJE_date;
-      event_order[1] = PAJE_string;
-      event_order[2] = PAJE_string;
-      event_order[3] = PAJE_double;
+      my_order.parameters = malloc(sizeof(int) * 4);
+      my_order.length = 4;
+      my_order.parameters[0] = PAJE_date;
+      my_order.parameters[1] = PAJE_string;
+      my_order.parameters[2] = PAJE_string;
+      my_order.parameters[3] = PAJE_double;
       break;		
     case PajeSubVariableEventId:
-      event_order = malloc(sizeof(int) * 4);
-      event_order[0] = PAJE_date;
-      event_order[1] = PAJE_string;
-      event_order[2] = PAJE_string;
-      event_order[3] = PAJE_double;
+      my_order.parameters = malloc(sizeof(int) * 4);
+      my_order.length = 4;
+      my_order.parameters[0] = PAJE_date;
+      my_order.parameters[1] = PAJE_string;
+      my_order.parameters[2] = PAJE_string;
+      my_order.parameters[3] = PAJE_double;
       break;	
     case PajeStartLinkEventId:
-      event_order = malloc(sizeof(int) * 6);
-      event_order[0] = PAJE_date;
-      event_order[1] = PAJE_string;
-      event_order[2] = PAJE_string;
-      event_order[3] = PAJE_string;
-      event_order[4] = PAJE_string;
-      event_order[5] = PAJE_string;
+      my_order.parameters = malloc(sizeof(int) * 6);
+      my_order.length = 6;
+      my_order.parameters[0] = PAJE_date;
+      my_order.parameters[1] = PAJE_string;
+      my_order.parameters[2] = PAJE_string;
+      my_order.parameters[3] = PAJE_string;
+      my_order.parameters[4] = PAJE_string;
+      my_order.parameters[5] = PAJE_string;
       break;
     case PajeEndLinkEventId:
-      event_order = malloc(sizeof(int) * 6);
-      event_order[0] = PAJE_date;
-      event_order[1] = PAJE_string;
-      event_order[2] = PAJE_string;
-      event_order[3] = PAJE_string;
-      event_order[4] = PAJE_string;
-      event_order[5] = PAJE_string;
+      my_order.parameters = malloc(sizeof(int) * 6);
+      my_order.length = 6;
+      my_order.parameters[0] = PAJE_date;
+      my_order.parameters[1] = PAJE_string;
+      my_order.parameters[2] = PAJE_string;
+      my_order.parameters[3] = PAJE_string;
+      my_order.parameters[4] = PAJE_string;
+      my_order.parameters[5] = PAJE_string;
       break;
     case PajePushStateMarkEventId:
-      event_order = malloc(sizeof(int) * 5);
-      event_order[0] = PAJE_date;
-      event_order[1] = PAJE_string;
-      event_order[2] = PAJE_string;
-      event_order[3] = PAJE_double;
-      event_order[4] = PAJE_string;
+      my_order.parameters = malloc(sizeof(int) * 5);
+      my_order.length = 5;
+      my_order.parameters[0] = PAJE_date;
+      my_order.parameters[1] = PAJE_string;
+      my_order.parameters[2] = PAJE_string;
+      my_order.parameters[3] = PAJE_double;
+      my_order.parameters[4] = PAJE_string;
       break;
     case PajeStartLinkSizeEventId:
-      event_order = malloc(sizeof(int) * 7);
-      event_order[0] = PAJE_date;
-      event_order[1] = PAJE_string;
-      event_order[2] = PAJE_string;
-      event_order[3] = PAJE_string;
-      event_order[4] = PAJE_double;
-      event_order[5] = PAJE_string;
-      event_order[6] = PAJE_double;
+      my_order.parameters = malloc(sizeof(int) * 7);
+      my_order.length = 7;
+      my_order.parameters[0] = PAJE_date;
+      my_order.parameters[1] = PAJE_string;
+      my_order.parameters[2] = PAJE_string;
+      my_order.parameters[3] = PAJE_string;
+      my_order.parameters[4] = PAJE_double;
+      my_order.parameters[5] = PAJE_string;
+      my_order.parameters[6] = PAJE_double;
       break;
     case PajeStartLinkSizeMarkEventId:
-      event_order = malloc(sizeof(int) * 7);
-      event_order[0] = PAJE_date;
-      event_order[1] = PAJE_string;
-      event_order[2] = PAJE_string;
-      event_order[3] = PAJE_string;
-      event_order[4] = PAJE_string;
-      event_order[5] = PAJE_double;
-      event_order[6] = PAJE_string;
+      my_order.parameters = malloc(sizeof(int) * 7);
+      my_order.length = 7;
+      my_order.parameters[0] = PAJE_date;
+      my_order.parameters[1] = PAJE_string;
+      my_order.parameters[2] = PAJE_string;
+      my_order.parameters[3] = PAJE_string;
+      my_order.parameters[4] = PAJE_string;
+      my_order.parameters[5] = PAJE_double;
+      my_order.parameters[6] = PAJE_string;
       break;	
   }
-  return event_order;
+  return my_order;
 }
 
 const char* eventidToString(u_int32_t event)
@@ -398,30 +424,30 @@ void poti_print_event (rst_event_t *event)
     //print poti event event
     int event_id = event->type;
     printf("%d ",event->type);
-    int *event_order = set_event_order(event_id);
+    event_parameters event_parameters = set_event_order(event_id);
     int double_mark=0,string_mark = 0;
-    int params_size = sizeof(event_order) / sizeof(event_order[0]);
+    //int params_size = sizeof(event_order) / sizeof(event_order[0]);
     int f;
-    for(f = 0; f < params_size;f++) {
-      if((event_order[f] == PAJE_string || event_order[f] == PAJE_color)&& f == event_order_limit-1){
+    for(f = 0; f < event_parameters.length;f++) {
+      if((event_parameters.parameters[f] == PAJE_string || event_parameters.parameters[f] == PAJE_color) && f ==event_parameters.length-1){
 	      printf("%s", event->v_string[string_mark]);
 	      break;
       }
-      if((event_order[f] == PAJE_double || event_order[f] == PAJE_date) && f== event_order_limit-1){
+      if((event_parameters.parameters[f] == PAJE_double || event_parameters.parameters[f] == PAJE_date) && f== event_parameters.length-1){
 	      printf("%lf", event->v_double[double_mark]);
 	      break;
 		  }						
-      if(event_order[f] == PAJE_string || event_order[f] == PAJE_color){
+      if(event_parameters.parameters[f] == PAJE_string || event_parameters.parameters[f] == PAJE_color){
 	      printf("%s ", event->v_string[string_mark]);
 	      string_mark = string_mark +1;
       }
-      if(event_order[f] == PAJE_double || event_order[f] == PAJE_date){
+      if(event_parameters.parameters[f] == PAJE_double || event_parameters.parameters[f] == PAJE_date){
 	      printf("%lf ", event->v_double[double_mark]);
 	      double_mark = double_mark +1;
       }
     }  
     printf("\n");
-    free(event_order);
+    //free(event_order);
   }
 }
 
