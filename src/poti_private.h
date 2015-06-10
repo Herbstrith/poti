@@ -27,9 +27,17 @@ extern FILE* paje_file;
 extern int paje_extended;
 extern int poti_mode;
 
+typedef struct StringParamsList{
+  char* string;
+  short string_position;
+  struct  StringParamsList* next;
+}StringParamsList;
+
+
+extern StringParamsList *stringList;
 typedef enum {
   PajeHeaderEventId=999,
-  //poti extender header ids
+  //poti extended header ids
   PajeStartLinkSizeMarkEventId = 22,
   PajeStartLinkSizeEventId = 23,
   PajePushStateMarkEventId = 25

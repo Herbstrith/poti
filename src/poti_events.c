@@ -17,15 +17,6 @@
 #include "poti_private.h"
 #include "poti_events_rastro.h"
 
-typedef struct StringParamsList{
-  char* string;
-  short string_position;
-  struct  StringParamsList* next;
-}StringParamsList;
-
-
-StringParamsList *stringList = NULL;
-
 short FindStringParam(const char* param);
 
 short FindStringParam(const char* param)
@@ -47,7 +38,6 @@ short FindStringParam(const char* param)
   }
   actual = stringList;
   while(actual != NULL){
-    //printf(" iter %s \n",actual->string);
     if(strcmp(actual->string, param) == 0){
       return actual->string_position;
       break;
@@ -90,13 +80,10 @@ void poti_DefineContainerType(const char *alias,
   }else if(poti_mode & POTI_BINARY){
     char temp[50];
     sprintf(temp, "\"%s\"", name);
-    FindStringParam(temp);
-    FindStringParam(containerType);
-    FindStringParam(alias);
-    rst_event_sss(PajeDefineContainerTypeEventId,
-		  alias,
-		  containerType,
-		  temp);
+    rst_event_ccc(PajeDefineContainerTypeEventId,
+		              FindStringParam(alias),
+		              FindStringParam(containerType),
+		              FindStringParam(temp));
   }
 }
 
@@ -117,15 +104,11 @@ void poti_DefineVariableType(const char *alias,
     sprintf(temp, "\"%s\"", name);
     char temp2[50];
     sprintf(temp2, "\"%s\"", color);
-    FindStringParam(temp);
-    FindStringParam(containerType);
-    FindStringParam(alias);
-    FindStringParam(temp2);
-    rst_event_ssss( PajeDefineVariableTypeEventId,
-		    alias,
-		    containerType,
-		    temp,
-		    temp2);
+    rst_event_cccc( PajeDefineVariableTypeEventId,
+                  FindStringParam(alias),
+                  FindStringParam(containerType),
+                  FindStringParam(temp),
+                  FindStringParam(temp2));
   }
 }
 
@@ -142,13 +125,10 @@ void poti_DefineStateType(const char *alias,
   }else if(poti_mode & POTI_BINARY){
     char temp[50];
     sprintf(temp, "\"%s\"", name);
-    FindStringParam(temp);
-    FindStringParam(containerType);
-    FindStringParam(alias);
-    rst_event_sss(PajeDefineStateTypeEventId,
-	    alias,
-	    containerType,
-	    temp);
+    rst_event_ccc(PajeDefineStateTypeEventId,
+                  FindStringParam(alias),
+                  FindStringParam(containerType),
+                  FindStringParam(temp));
   }
 }
 
@@ -165,10 +145,10 @@ void poti_DefineEventType(const char *alias,
   }else if(poti_mode & POTI_BINARY){
     char temp[50];
     sprintf(temp, "\"%s\"", name);
-    FindStringParam(temp);
-    FindStringParam(containerType);
-    FindStringParam(alias);
-    rst_event_sss(PajeDefineEventTypeEventId,alias,containerType,temp);
+    rst_event_ccc(PajeDefineEventTypeEventId,
+                  FindStringParam(alias),    
+                  FindStringParam(containerType),   
+                  FindStringParam(temp));
   }
 }
 
@@ -189,17 +169,12 @@ void poti_DefineLinkType(const char *alias,
   }else if(poti_mode & POTI_BINARY){
     char temp[50];
     sprintf(temp, "\"%s\"", name);
-    FindStringParam(temp);
-    FindStringParam(containerType);
-    FindStringParam(alias);
-    FindStringParam(startContainerType);
-    FindStringParam(endContainerType);
-    rst_event_sssss(PajeDefineLinkTypeEventId,
-        alias,
-        containerType,
-        startContainerType,
-        endContainerType,
-        temp);
+    rst_event_ccccc(PajeDefineLinkTypeEventId,
+                  FindStringParam(alias),
+                  FindStringParam(containerType),
+                  FindStringParam(startContainerType),
+                  FindStringParam(endContainerType),
+                  FindStringParam(temp));
   }
 }
 
@@ -220,15 +195,11 @@ void poti_DefineEntityValue(const char *alias,
     sprintf(temp, "\"%s\"", name);
     char temp2[50];
     sprintf(temp2, "\"%s\"", color);
-     FindStringParam(temp);
-    FindStringParam(temp2);
-    FindStringParam(alias);
-    FindStringParam(entityType);
-    rst_event_ssss(PajeDefineEntityValueEventId,
-		    alias,
-		    entityType,
-		    temp,
-		    temp2);
+    rst_event_cccc(PajeDefineEntityValueEventId,
+                  FindStringParam(alias),
+                  FindStringParam(entityType),
+                  FindStringParam(temp),
+		              FindStringParam(temp2));
   }
 }
 
@@ -250,16 +221,12 @@ void poti_CreateContainer(double timestamp,
   }else if(poti_mode & POTI_BINARY){
     char temp[50];
     sprintf(temp, "\"%s\"", name);
-    FindStringParam(alias);
-    FindStringParam(temp);
-    FindStringParam(container);
-    FindStringParam(type);
-    rst_event_dssss(PajeCreateContainerEventId,
-             paje_event_timestamp(timestamp),
-             alias,
-             type,
-             container,
-             temp);
+    rst_event_dcccc(PajeCreateContainerEventId,
+              paje_event_timestamp(timestamp),
+              FindStringParam(alias),
+              FindStringParam(type),
+              FindStringParam(container),
+              FindStringParam(temp));
   }
 }
 
@@ -274,12 +241,10 @@ void poti_DestroyContainer(double timestamp,
            type,
            container);
   }else if(poti_mode & POTI_BINARY){
-    FindStringParam(type);
-    FindStringParam(container);
-    rst_event_dss(PajeDestroyContainerEventId,
-             paje_event_timestamp(timestamp),
-             type,
-             container);
+    rst_event_dcc(PajeDestroyContainerEventId,
+              paje_event_timestamp(timestamp),
+              FindStringParam(type),
+              FindStringParam(container));
   }
 
 }
@@ -297,10 +262,10 @@ void poti_SetVariable (double timestamp,
             type,
             value);
   }else if(poti_mode & POTI_BINARY){
-    rst_event_dssd(PajeSetVariableEventId,
+      rst_event_dccd(PajeSetVariableEventId,
               paje_event_timestamp(timestamp),
-              container,
-              type,
+              FindStringParam(container),
+              FindStringParam(type),
               value);
   }
 }
@@ -318,10 +283,10 @@ void poti_AddVariable (double timestamp,
             type,
             value);
   }else if(poti_mode & POTI_BINARY){
-    rst_event_dssd( PajeAddVariableEventId,
+    rst_event_dccd( PajeAddVariableEventId,
               paje_event_timestamp(timestamp),
-              container,
-              type,
+              FindStringParam(container),
+              FindStringParam(type),
               value);
   }
 }
@@ -339,10 +304,10 @@ void poti_SubVariable (double timestamp,
             type,
             value);
   }else if(poti_mode & POTI_BINARY){
-    rst_event_dssd(PajeSubVariableEventId,
+    rst_event_dccd(PajeSubVariableEventId,
               paje_event_timestamp(timestamp),
-              container,
-              type,
+              FindStringParam(container),
+              FindStringParam(type),
               value);
   }
 }
@@ -360,11 +325,11 @@ void poti_SetState(double timestamp,
            type,
            value);
   }else if(poti_mode & POTI_BINARY){
-    rst_event_dsss(PajeSetStateEventId,
+    rst_event_dccc(PajeSetStateEventId,
              paje_event_timestamp(timestamp),
-             container,
-             type,
-             value);
+              FindStringParam(container),
+            FindStringParam(type),
+            FindStringParam(value));
   }
 }
 
@@ -382,11 +347,12 @@ void poti_PushState(double timestamp,
            type,
            value);
   }else if(poti_mode & POTI_BINARY){
-    rst_event_dsss(PajePushStateEventId,
+    rst_event_dccc(PajePushStateEventId,
              paje_event_timestamp(timestamp),
-             container,
-             type,
-             value);
+             FindStringParam(container),
+            FindStringParam(type),
+            FindStringParam(value)
+    );
   }
 }
 
@@ -406,11 +372,11 @@ void poti_PushStateMark(double timestamp,
               value,
               mark);
     }else if(poti_mode & POTI_BINARY){
-      rst_event_dsssi(PajePushStateMarkEventId,
+      rst_event_dccci(PajePushStateMarkEventId,
                   paje_event_timestamp(timestamp),
-                  container,
-                  type,
-                  value,
+                 FindStringParam(container),
+                  FindStringParam(type),
+                  FindStringParam(value),
                   mark);
     }
   }else{
@@ -429,10 +395,10 @@ void poti_PopState(double timestamp,
            container,
            type);
   }else if(poti_mode & POTI_BINARY){
-    rst_event_dss(PajePopStateEventId,
+    rst_event_dcc(PajePopStateEventId,
              paje_event_timestamp(timestamp),
-             container,
-             type);
+             FindStringParam(container),
+             FindStringParam(type));
   }
 }
 
@@ -447,10 +413,10 @@ void poti_ResetState(double timestamp,
            container,
            type);
   }else if(poti_mode & POTI_BINARY){
-    rst_event_dss(PajeResetStateEventId,
-             paje_event_timestamp(timestamp),
-             container,
-             type);
+    rst_event_dcc(PajeResetStateEventId,
+              paje_event_timestamp(timestamp),
+              FindStringParam(container),
+              FindStringParam(type));
   }
 }
 
@@ -462,7 +428,7 @@ void poti_StartLink(double timestamp,
                    const char *key)
 {
   if(poti_mode & POTI_TEXT){
-  fprintf(paje_file,"%d %.9f %s %s %s %s %s\n",
+    fprintf(paje_file,"%d %.9f %s %s %s %s %s\n",
          PajeStartLinkEventId,
          paje_event_timestamp(timestamp),
          container,
@@ -471,13 +437,13 @@ void poti_StartLink(double timestamp,
          value,
          key);
   }else if(poti_mode & POTI_BINARY){
-    rst_event_dsssss(PajeStartLinkEventId,
-             paje_event_timestamp(timestamp),
-             container,
-             type,
-             sourceContainer,
-             value,
-             key);
+    rst_event_dccccc(PajeStartLinkEventId,
+              paje_event_timestamp(timestamp),
+              FindStringParam(container),
+              FindStringParam(type),
+              FindStringParam(sourceContainer),
+              FindStringParam(value),
+              FindStringParam(key));
   }
 }
 
@@ -501,13 +467,13 @@ void poti_StartLinkSize(double timestamp,
               key,
               size);
     }else if(poti_mode & POTI_BINARY){
-      rst_event_dsssssi(PajeStartLinkSizeEventId,
+      rst_event_dccccci(PajeStartLinkSizeEventId,
                   paje_event_timestamp(timestamp),
-                  container,
-                  type,
-                  sourceContainer,
-                  value,
-                  key,
+                  FindStringParam(container),
+                  FindStringParam(type),
+                  FindStringParam(sourceContainer),
+                  FindStringParam(value),
+                  FindStringParam(key),
                   size);
     }
   }else{
@@ -537,13 +503,13 @@ void poti_StartLinkSizeMark(double timestamp,
               size,
               mark);
     }else if(poti_mode & POTI_BINARY){
-      rst_event_dsssssii(PajeStartLinkSizeMarkEventId,
+      rst_event_dcccccii(PajeStartLinkSizeMarkEventId,
                 paje_event_timestamp(timestamp),
-                container,
-                type,
-                sourceContainer,
-                value,
-                key,
+                FindStringParam(container),
+                FindStringParam(type),
+                FindStringParam(sourceContainer),
+                FindStringParam(value),
+                FindStringParam(key),
                 size,
                 mark);
     }
@@ -569,13 +535,13 @@ void poti_EndLink(double timestamp,
            value,
            key);
   }else if(poti_mode & POTI_BINARY){
-    rst_event_dsssss(PajeEndLinkEventId,
+    rst_event_dccccc(PajeEndLinkEventId,
              paje_event_timestamp(timestamp),
-             container,
-             type,
-             endContainer,
-             value,
-             key);
+             FindStringParam(container),
+              FindStringParam(type),
+              FindStringParam(endContainer),
+              FindStringParam(value),
+              FindStringParam(key));
   }
 }
 
@@ -592,10 +558,10 @@ void poti_NewEvent(double timestamp,
            type,
            value);
   }else if(poti_mode & POTI_BINARY){
-    rst_event_dsss(PajeNewEventEventId,
+    rst_event_dccc(PajeNewEventEventId,
              paje_event_timestamp(timestamp),
-             container,
-             type,
-             value);
+            FindStringParam(container),
+            FindStringParam(type),
+            FindStringParam(value));
   }
 }

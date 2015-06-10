@@ -193,3 +193,215 @@ void rst_event_dsssssii_f_( int16_t *type, double* d0, const char* s0, const cha
 {
   rst_event_dsssssii ((u_int16_t)* type, (double)* d0,  s0,  s1,  s2,  s3,  s4, (u_int32_t)* i0, (u_int32_t)* i1);
 }
+
+
+
+/* Rastro function implementation for 'ccc' */
+void rst_event_ccc_ptr(rst_buffer_t *ptr, u_int16_t type, u_int8_t c0, u_int8_t c1, u_int8_t c2)
+{
+  rst_startevent(ptr, type<<18|0x26660);
+  RST_PUT(ptr, u_int8_t, c0);
+  RST_PUT(ptr, u_int8_t, c1);
+  RST_PUT(ptr, u_int8_t, c2);
+  rst_endevent(ptr);
+}
+/* Rastro function implementation for 'ccc' - fortran support */
+void rst_event_ccc_f_( int16_t *type, int8_t* c0, int8_t* c1, int8_t* c2)
+{
+  rst_event_ccc ((u_int16_t)* type, (u_int8_t)* c0, (u_int8_t)* c1, (u_int8_t)* c2);
+}
+
+/* Rastro function implementation for 'cccc' */
+void rst_event_cccc_ptr(rst_buffer_t *ptr, u_int16_t type, u_int8_t c0, u_int8_t c1, u_int8_t c2, u_int8_t c3)
+{
+  rst_startevent(ptr, type<<18|0x26666);
+  RST_PUT(ptr, u_int8_t, c0);
+  RST_PUT(ptr, u_int8_t, c1);
+  RST_PUT(ptr, u_int8_t, c2);
+  RST_PUT(ptr, u_int8_t, c3);
+  rst_endevent(ptr);
+}
+/* Rastro function implementation for 'cccc' - fortran support */
+void rst_event_cccc_f_( int16_t *type, int8_t* c0, int8_t* c1, int8_t* c2, int8_t* c3)
+{
+  rst_event_cccc ((u_int16_t)* type, (u_int8_t)* c0, (u_int8_t)* c1, (u_int8_t)* c2, (u_int8_t)* c3);
+}
+
+/* Rastro function implementation for 'ccccc' */
+void rst_event_ccccc_ptr(rst_buffer_t *ptr, u_int16_t type, u_int8_t c0, u_int8_t c1, u_int8_t c2, u_int8_t c3, u_int8_t c4)
+{
+  rst_startevent(ptr, type<<18|0x6666);
+  RST_PUT(ptr, u_int32_t, 0x26000000);
+  RST_PUT(ptr, u_int8_t, c0);
+  RST_PUT(ptr, u_int8_t, c1);
+  RST_PUT(ptr, u_int8_t, c2);
+  RST_PUT(ptr, u_int8_t, c3);
+  RST_PUT(ptr, u_int8_t, c4);
+  rst_endevent(ptr);
+}
+/* Rastro function implementation for 'ccccc' - fortran support */
+void rst_event_ccccc_f_( int16_t *type, int8_t* c0, int8_t* c1, int8_t* c2, int8_t* c3, int8_t* c4)
+{
+  rst_event_ccccc ((u_int16_t)* type, (u_int8_t)* c0, (u_int8_t)* c1, (u_int8_t)* c2, (u_int8_t)* c3, (u_int8_t)* c4);
+}
+
+/* Rastro function implementation for 'dcccc' */
+void rst_event_dcccc_ptr(rst_buffer_t *ptr, u_int16_t type, double d0, u_int8_t c0, u_int8_t c1, u_int8_t c2, u_int8_t c3)
+{
+  rst_startevent(ptr, type<<18|0x2666);
+  RST_PUT(ptr, u_int32_t, 0x26000000);
+  RST_PUT(ptr, double, d0);
+  RST_PUT(ptr, u_int8_t, c0);
+  RST_PUT(ptr, u_int8_t, c1);
+  RST_PUT(ptr, u_int8_t, c2);
+  RST_PUT(ptr, u_int8_t, c3);
+  rst_endevent(ptr);
+}
+/* Rastro function implementation for 'dcccc' - fortran support */
+void rst_event_dcccc_f_( int16_t *type, double* d0, int8_t* c0, int8_t* c1, int8_t* c2, int8_t* c3)
+{
+  rst_event_dcccc ((u_int16_t)* type, (double)* d0, (u_int8_t)* c0, (u_int8_t)* c1, (u_int8_t)* c2, (u_int8_t)* c3);
+}
+
+/* Rastro function implementation for 'dcc' */
+void rst_event_dcc_ptr(rst_buffer_t *ptr, u_int16_t type, double d0, u_int8_t c0, u_int8_t c1)
+{
+  rst_startevent(ptr, type<<18|0x22660);
+  RST_PUT(ptr, double, d0);
+  RST_PUT(ptr, u_int8_t, c0);
+  RST_PUT(ptr, u_int8_t, c1);
+  rst_endevent(ptr);
+}
+/* Rastro function implementation for 'dcc' - fortran support */
+void rst_event_dcc_f_( int16_t *type, double* d0, int8_t* c0, int8_t* c1)
+{
+  rst_event_dcc ((u_int16_t)* type, (double)* d0, (u_int8_t)* c0, (u_int8_t)* c1);
+}
+
+/* Rastro function implementation for 'dccd' */
+void rst_event_dccd_ptr(rst_buffer_t *ptr, u_int16_t type, double d0, u_int8_t c0, u_int8_t c1, double d1)
+{
+  rst_startevent(ptr, type<<18|0x22266);
+  RST_PUT(ptr, double, d0);
+  RST_PUT(ptr, double, d1);
+  RST_PUT(ptr, u_int8_t, c0);
+  RST_PUT(ptr, u_int8_t, c1);
+  rst_endevent(ptr);
+}
+/* Rastro function implementation for 'dccd' - fortran support */
+void rst_event_dccd_f_( int16_t *type, double* d0, int8_t* c0, int8_t* c1, double* d1)
+{
+  rst_event_dccd ((u_int16_t)* type, (double)* d0, (u_int8_t)* c0, (u_int8_t)* c1, (double)* d1);
+}
+
+/* Rastro function implementation for 'dccc' */
+void rst_event_dccc_ptr(rst_buffer_t *ptr, u_int16_t type, double d0, u_int8_t c0, u_int8_t c1, u_int8_t c2)
+{
+  rst_startevent(ptr, type<<18|0x22666);
+  RST_PUT(ptr, double, d0);
+  RST_PUT(ptr, u_int8_t, c0);
+  RST_PUT(ptr, u_int8_t, c1);
+  RST_PUT(ptr, u_int8_t, c2);
+  rst_endevent(ptr);
+}
+/* Rastro function implementation for 'dccc' - fortran support */
+void rst_event_dccc_f_( int16_t *type, double* d0, int8_t* c0, int8_t* c1, int8_t* c2)
+{
+  rst_event_dccc ((u_int16_t)* type, (double)* d0, (u_int8_t)* c0, (u_int8_t)* c1, (u_int8_t)* c2);
+}
+
+/* Rastro function implementation for 'dccci' */
+void rst_event_dccci_ptr(rst_buffer_t *ptr, u_int16_t type, double d0, u_int8_t c0, u_int8_t c1, u_int8_t c2, u_int32_t i0)
+{
+  rst_startevent(ptr, type<<18|0x2766);
+  RST_PUT(ptr, u_int32_t, 0x26000000);
+  RST_PUT(ptr, double, d0);
+  RST_PUT(ptr, u_int32_t, i0);
+  RST_PUT(ptr, u_int8_t, c0);
+  RST_PUT(ptr, u_int8_t, c1);
+  RST_PUT(ptr, u_int8_t, c2);
+  rst_endevent(ptr);
+}
+/* Rastro function implementation for 'dccci' - fortran support */
+void rst_event_dccci_f_( int16_t *type, double* d0, int8_t* c0, int8_t* c1, int8_t* c2, int32_t* i0)
+{
+  rst_event_dccci ((u_int16_t)* type, (double)* d0, (u_int8_t)* c0, (u_int8_t)* c1, (u_int8_t)* c2, (u_int32_t)* i0);
+}
+
+/* Rastro function implementation for 'dccccc' */
+void rst_event_dccccc_ptr(rst_buffer_t *ptr, u_int16_t type, double d0, u_int8_t c0, u_int8_t c1, u_int8_t c2, u_int8_t c3, u_int8_t c4)
+{
+  rst_startevent(ptr, type<<18|0x2666);
+  RST_PUT(ptr, u_int32_t, 0x26600000);
+  RST_PUT(ptr, double, d0);
+  RST_PUT(ptr, u_int8_t, c0);
+  RST_PUT(ptr, u_int8_t, c1);
+  RST_PUT(ptr, u_int8_t, c2);
+  RST_PUT(ptr, u_int8_t, c3);
+  RST_PUT(ptr, u_int8_t, c4);
+  rst_endevent(ptr);
+}
+/* Rastro function implementation for 'dccccc' - fortran support */
+void rst_event_dccccc_f_( int16_t *type, double* d0, int8_t* c0, int8_t* c1, int8_t* c2, int8_t* c3, int8_t* c4)
+{
+  rst_event_dccccc ((u_int16_t)* type, (double)* d0, (u_int8_t)* c0, (u_int8_t)* c1, (u_int8_t)* c2, (u_int8_t)* c3, (u_int8_t)* c4);
+}
+
+/* Rastro function implementation for 'dccccci' */
+void rst_event_dccccci_ptr(rst_buffer_t *ptr, u_int16_t type, double d0, u_int8_t c0, u_int8_t c1, u_int8_t c2, u_int8_t c3, u_int8_t c4, u_int32_t i0)
+{
+  rst_startevent(ptr, type<<18|0x2766);
+  RST_PUT(ptr, u_int32_t, 0x26660000);
+  RST_PUT(ptr, double, d0);
+  RST_PUT(ptr, u_int32_t, i0);
+  RST_PUT(ptr, u_int8_t, c0);
+  RST_PUT(ptr, u_int8_t, c1);
+  RST_PUT(ptr, u_int8_t, c2);
+  RST_PUT(ptr, u_int8_t, c3);
+  RST_PUT(ptr, u_int8_t, c4);
+  rst_endevent(ptr);
+}
+/* Rastro function implementation for 'dccccci' - fortran support */
+void rst_event_dccccci_f_( int16_t *type, double* d0, int8_t* c0, int8_t* c1, int8_t* c2, int8_t* c3, int8_t* c4, int32_t* i0)
+{
+  rst_event_dccccci ((u_int16_t)* type, (double)* d0, (u_int8_t)* c0, (u_int8_t)* c1, (u_int8_t)* c2, (u_int8_t)* c3, (u_int8_t)* c4, (u_int32_t)* i0);
+}
+
+/* Rastro function implementation for 'dcccccii' */
+void rst_event_dcccccii_ptr(rst_buffer_t *ptr, u_int16_t type, double d0, u_int8_t c0, u_int8_t c1, u_int8_t c2, u_int8_t c3, u_int8_t c4, u_int32_t i0, u_int32_t i1)
+{
+  rst_startevent(ptr, type<<18|0x2776);
+  RST_PUT(ptr, u_int32_t, 0x26666000);
+  RST_PUT(ptr, double, d0);
+  RST_PUT(ptr, u_int32_t, i0);
+  RST_PUT(ptr, u_int32_t, i1);
+  RST_PUT(ptr, u_int8_t, c0);
+  RST_PUT(ptr, u_int8_t, c1);
+  RST_PUT(ptr, u_int8_t, c2);
+  RST_PUT(ptr, u_int8_t, c3);
+  RST_PUT(ptr, u_int8_t, c4);
+  rst_endevent(ptr);
+}
+/* Rastro function implementation for 'dcccccii' - fortran support */
+void rst_event_dcccccii_f_( int16_t *type, double* d0, int8_t* c0, int8_t* c1, int8_t* c2, int8_t* c3, int8_t* c4, int32_t* i0, int32_t* i1)
+{
+  rst_event_dcccccii ((u_int16_t)* type, (double)* d0, (u_int8_t)* c0, (u_int8_t)* c1, (u_int8_t)* c2, (u_int8_t)* c3, (u_int8_t)* c4, (u_int32_t)* i0, (u_int32_t)* i1);
+}
+
+/* Rastro function implementation for 'cs' */
+void rst_event_cs_ptr(rst_buffer_t *ptr, u_int16_t type, u_int8_t c0, const char* s0)
+{
+  rst_startevent(ptr, type<<18|0x26100);
+  RST_PUT(ptr, u_int8_t, c0);
+  RST_PUT_STR(ptr, s0);
+  rst_endevent(ptr);
+}
+/* Rastro function implementation for 'cs' - fortran support */
+void rst_event_cs_f_( int16_t *type, int8_t* c0, const char* s0)
+{
+  rst_event_cs ((u_int16_t)* type, (u_int8_t)* c0,  s0);
+}
+
+
+
+

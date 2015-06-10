@@ -59,6 +59,72 @@ void rst_event_dsssssii_ptr(rst_buffer_t *ptr, u_int16_t type, double d0, const 
 void rst_event_dsssssii_f_ (int16_t *type, double* d0, const char* s0, const char* s1, const char* s2, const char* s3, const char* s4, int32_t* i0, int32_t* i1);
 #define rst_event_dsssssii(type, d0, s0, s1, s2, s3, s4, i0, i1) rst_event_dsssssii_ptr(RST_PTR, type, d0, s0, s1, s2, s3, s4, i0, i1)
 
+
+
+
+/* Rastro function prototype for 'ccc' */
+void rst_event_ccc_ptr(rst_buffer_t *ptr, u_int16_t type, u_int8_t c0, u_int8_t c1, u_int8_t c2);
+void rst_event_ccc_f_ (int16_t *type, int8_t* c0, int8_t* c1, int8_t* c2);
+#define rst_event_ccc(type, c0, c1, c2) rst_event_ccc_ptr(RST_PTR, type, c0, c1, c2)
+
+/* Rastro function prototype for 'cccc' */
+void rst_event_cccc_ptr(rst_buffer_t *ptr, u_int16_t type, u_int8_t c0, u_int8_t c1, u_int8_t c2, u_int8_t c3);
+void rst_event_cccc_f_ (int16_t *type, int8_t* c0, int8_t* c1, int8_t* c2, int8_t* c3);
+#define rst_event_cccc(type, c0, c1, c2, c3) rst_event_cccc_ptr(RST_PTR, type, c0, c1, c2, c3)
+
+/* Rastro function prototype for 'ccccc' */
+void rst_event_ccccc_ptr(rst_buffer_t *ptr, u_int16_t type, u_int8_t c0, u_int8_t c1, u_int8_t c2, u_int8_t c3, u_int8_t c4);
+void rst_event_ccccc_f_ (int16_t *type, int8_t* c0, int8_t* c1, int8_t* c2, int8_t* c3, int8_t* c4);
+#define rst_event_ccccc(type, c0, c1, c2, c3, c4) rst_event_ccccc_ptr(RST_PTR, type, c0, c1, c2, c3, c4)
+
+/* Rastro function prototype for 'dcccc' */
+void rst_event_dcccc_ptr(rst_buffer_t *ptr, u_int16_t type, double d0, u_int8_t c0, u_int8_t c1, u_int8_t c2, u_int8_t c3);
+void rst_event_dcccc_f_ (int16_t *type, double* d0, int8_t* c0, int8_t* c1, int8_t* c2, int8_t* c3);
+#define rst_event_dcccc(type, d0, c0, c1, c2, c3) rst_event_dcccc_ptr(RST_PTR, type, d0, c0, c1, c2, c3)
+
+/* Rastro function prototype for 'dcc' */
+void rst_event_dcc_ptr(rst_buffer_t *ptr, u_int16_t type, double d0, u_int8_t c0, u_int8_t c1);
+void rst_event_dcc_f_ (int16_t *type, double* d0, int8_t* c0, int8_t* c1);
+#define rst_event_dcc(type, d0, c0, c1) rst_event_dcc_ptr(RST_PTR, type, d0, c0, c1)
+
+/* Rastro function prototype for 'dccd' */
+void rst_event_dccd_ptr(rst_buffer_t *ptr, u_int16_t type, double d0, u_int8_t c0, u_int8_t c1, double d1);
+void rst_event_dccd_f_ (int16_t *type, double* d0, int8_t* c0, int8_t* c1, double* d1);
+#define rst_event_dccd(type, d0, c0, c1, d1) rst_event_dccd_ptr(RST_PTR, type, d0, c0, c1, d1)
+
+/* Rastro function prototype for 'dccc' */
+void rst_event_dccc_ptr(rst_buffer_t *ptr, u_int16_t type, double d0, u_int8_t c0, u_int8_t c1, u_int8_t c2);
+void rst_event_dccc_f_ (int16_t *type, double* d0, int8_t* c0, int8_t* c1, int8_t* c2);
+#define rst_event_dccc(type, d0, c0, c1, c2) rst_event_dccc_ptr(RST_PTR, type, d0, c0, c1, c2)
+
+/* Rastro function prototype for 'dccci' */
+void rst_event_dccci_ptr(rst_buffer_t *ptr, u_int16_t type, double d0, u_int8_t c0, u_int8_t c1, u_int8_t c2, u_int32_t i0);
+void rst_event_dccci_f_ (int16_t *type, double* d0, int8_t* c0, int8_t* c1, int8_t* c2, int32_t* i0);
+#define rst_event_dccci(type, d0, c0, c1, c2, i0) rst_event_dccci_ptr(RST_PTR, type, d0, c0, c1, c2, i0)
+
+/* Rastro function prototype for 'dccccc' */
+void rst_event_dccccc_ptr(rst_buffer_t *ptr, u_int16_t type, double d0, u_int8_t c0, u_int8_t c1, u_int8_t c2, u_int8_t c3, u_int8_t c4);
+void rst_event_dccccc_f_ (int16_t *type, double* d0, int8_t* c0, int8_t* c1, int8_t* c2, int8_t* c3, int8_t* c4);
+#define rst_event_dccccc(type, d0, c0, c1, c2, c3, c4) rst_event_dccccc_ptr(RST_PTR, type, d0, c0, c1, c2, c3, c4)
+
+/* Rastro function prototype for 'dccccci' */
+void rst_event_dccccci_ptr(rst_buffer_t *ptr, u_int16_t type, double d0, u_int8_t c0, u_int8_t c1, u_int8_t c2, u_int8_t c3, u_int8_t c4, u_int32_t i0);
+void rst_event_dccccci_f_ (int16_t *type, double* d0, int8_t* c0, int8_t* c1, int8_t* c2, int8_t* c3, int8_t* c4, int32_t* i0);
+#define rst_event_dccccci(type, d0, c0, c1, c2, c3, c4, i0) rst_event_dccccci_ptr(RST_PTR, type, d0, c0, c1, c2, c3, c4, i0)
+
+/* Rastro function prototype for 'dcccccii' */
+void rst_event_dcccccii_ptr(rst_buffer_t *ptr, u_int16_t type, double d0, u_int8_t c0, u_int8_t c1, u_int8_t c2, u_int8_t c3, u_int8_t c4, u_int32_t i0, u_int32_t i1);
+void rst_event_dcccccii_f_ (int16_t *type, double* d0, int8_t* c0, int8_t* c1, int8_t* c2, int8_t* c3, int8_t* c4, int32_t* i0, int32_t* i1);
+#define rst_event_dcccccii(type, d0, c0, c1, c2, c3, c4, i0, i1) rst_event_dcccccii_ptr(RST_PTR, type, d0, c0, c1, c2, c3, c4, i0, i1)
+
+/* Rastro function prototype for 'cs' */
+void rst_event_cs_ptr(rst_buffer_t *ptr, u_int16_t type, u_int8_t c0, const char* s0);
+void rst_event_cs_f_ (int16_t *type, int8_t* c0, const char* s0);
+#define rst_event_cs(type, c0, s0) rst_event_cs_ptr(RST_PTR, type, c0, s0)
+
+
+
+
 void rst_init_f_(int64_t *id1, int64_t *id2);
 void rst_finalize_f_ (void);
 
