@@ -17,6 +17,56 @@
 #include "poti_private.h"
 #include "poti_events_rastro.h"
 
+typedef struct StringParamsList{
+  char* string;
+  short string_position;
+  struct  StringParamsList* next;
+}StringParamsList;
+
+
+StringParamsList *stringList = NULL;
+
+short FindStringParam(const char* param);
+
+short FindStringParam(const char* param)
+{
+  short counter = 0;
+  if(stringList == NULL){
+    stringList = malloc(sizeof(StringParamsList));
+    stringList->string = strdup(param);
+    stringList->string_position = counter;
+    stringList->next = NULL;
+    return counter;
+  }  
+
+  StringParamsList *actual = stringList;  
+  int mycounter =0;
+  while(actual != NULL){
+      actual = actual->next;
+      mycounter = mycounter + 1;
+  }
+  actual = stringList;
+  while(actual != NULL){
+    //printf(" iter %s \n",actual->string);
+    if(strcmp(actual->string, param) == 0){
+      return actual->string_position;
+      break;
+    }
+    if(actual->next == NULL){
+      counter = counter + 1;
+      break;
+    }  
+    actual = actual->next;
+    counter = counter + 1;
+  }
+  StringParamsList *new_param = (StringParamsList *)malloc(sizeof(StringParamsList));
+  new_param->string = strdup(param);
+  new_param->string_position = counter;
+  new_param->next = NULL;
+  actual->next = new_param;
+  return counter;
+}
+
 static double paje_event_timestamp(double timestamp)
 {
   static double first_timestamp = -1;
@@ -40,6 +90,9 @@ void poti_DefineContainerType(const char *alias,
   }else if(poti_mode & POTI_BINARY){
     char temp[50];
     sprintf(temp, "\"%s\"", name);
+    FindStringParam(temp);
+    FindStringParam(containerType);
+    FindStringParam(alias);
     rst_event_sss(PajeDefineContainerTypeEventId,
 		  alias,
 		  containerType,
@@ -64,6 +117,10 @@ void poti_DefineVariableType(const char *alias,
     sprintf(temp, "\"%s\"", name);
     char temp2[50];
     sprintf(temp2, "\"%s\"", color);
+    FindStringParam(temp);
+    FindStringParam(containerType);
+    FindStringParam(alias);
+    FindStringParam(temp2);
     rst_event_ssss( PajeDefineVariableTypeEventId,
 		    alias,
 		    containerType,
@@ -85,7 +142,9 @@ void poti_DefineStateType(const char *alias,
   }else if(poti_mode & POTI_BINARY){
     char temp[50];
     sprintf(temp, "\"%s\"", name);
-
+    FindStringParam(temp);
+    FindStringParam(containerType);
+    FindStringParam(alias);
     rst_event_sss(PajeDefineStateTypeEventId,
 	    alias,
 	    containerType,
@@ -106,7 +165,9 @@ void poti_DefineEventType(const char *alias,
   }else if(poti_mode & POTI_BINARY){
     char temp[50];
     sprintf(temp, "\"%s\"", name);
-
+    FindStringParam(temp);
+    FindStringParam(containerType);
+    FindStringParam(alias);
     rst_event_sss(PajeDefineEventTypeEventId,alias,containerType,temp);
   }
 }
@@ -127,7 +188,12 @@ void poti_DefineLinkType(const char *alias,
            name);
   }else if(poti_mode & POTI_BINARY){
     char temp[50];
-      sprintf(temp, "\"%s\"", name);
+    sprintf(temp, "\"%s\"", name);
+    FindStringParam(temp);
+    FindStringParam(containerType);
+    FindStringParam(alias);
+    FindStringParam(startContainerType);
+    FindStringParam(endContainerType);
     rst_event_sssss(PajeDefineLinkTypeEventId,
         alias,
         containerType,
@@ -154,6 +220,10 @@ void poti_DefineEntityValue(const char *alias,
     sprintf(temp, "\"%s\"", name);
     char temp2[50];
     sprintf(temp2, "\"%s\"", color);
+     FindStringParam(temp);
+    FindStringParam(temp2);
+    FindStringParam(alias);
+    FindStringParam(entityType);
     rst_event_ssss(PajeDefineEntityValueEventId,
 		    alias,
 		    entityType,
@@ -168,6 +238,7 @@ void poti_CreateContainer(double timestamp,
                          const char *container,
                          const char *name)
 {
+    FindStringParam(name);
   if(poti_mode & POTI_TEXT){
     fprintf(paje_file,"%d %.9f %s %s %s \"%s\"\n",
            PajeCreateContainerEventId,
@@ -179,6 +250,10 @@ void poti_CreateContainer(double timestamp,
   }else if(poti_mode & POTI_BINARY){
     char temp[50];
     sprintf(temp, "\"%s\"", name);
+    FindStringParam(alias);
+    FindStringParam(temp);
+    FindStringParam(container);
+    FindStringParam(type);
     rst_event_dssss(PajeCreateContainerEventId,
              paje_event_timestamp(timestamp),
              alias,
@@ -199,6 +274,8 @@ void poti_DestroyContainer(double timestamp,
            type,
            container);
   }else if(poti_mode & POTI_BINARY){
+    FindStringParam(type);
+    FindStringParam(container);
     rst_event_dss(PajeDestroyContainerEventId,
              paje_event_timestamp(timestamp),
              type,
