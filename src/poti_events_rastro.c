@@ -405,3 +405,219 @@ void rst_event_cs_f_( int16_t *type, int8_t* c0, const char* s0)
 
 
 
+/* USING 16 bits for reference counter */
+
+
+/* Rastro function implementation for 'www' */
+void rst_event_www_ptr(rst_buffer_t *ptr, u_int16_t type, u_int16_t w0, u_int16_t w1, u_int16_t w2)
+{
+  rst_startevent(ptr, type<<18|0x25550);
+  RST_PUT(ptr, u_int16_t, w0);
+  RST_PUT(ptr, u_int16_t, w1);
+  RST_PUT(ptr, u_int16_t, w2);
+  rst_endevent(ptr);
+}
+/* Rastro function implementation for 'www' - fortran support */
+void rst_event_www_f_( int16_t *type, int16_t* w0, int16_t* w1, int16_t* w2)
+{
+  rst_event_www ((u_int16_t)* type, (u_int16_t)* w0, (u_int16_t)* w1, (u_int16_t)* w2);
+}
+
+/* Rastro function implementation for 'wwww' */
+void rst_event_wwww_ptr(rst_buffer_t *ptr, u_int16_t type, u_int16_t w0, u_int16_t w1, u_int16_t w2, u_int16_t w3)
+{
+  rst_startevent(ptr, type<<18|0x25555);
+  RST_PUT(ptr, u_int16_t, w0);
+  RST_PUT(ptr, u_int16_t, w1);
+  RST_PUT(ptr, u_int16_t, w2);
+  RST_PUT(ptr, u_int16_t, w3);
+  rst_endevent(ptr);
+}
+/* Rastro function implementation for 'wwww' - fortran support */
+void rst_event_wwww_f_( int16_t *type, int16_t* w0, int16_t* w1, int16_t* w2, int16_t* w3)
+{
+  rst_event_wwww ((u_int16_t)* type, (u_int16_t)* w0, (u_int16_t)* w1, (u_int16_t)* w2, (u_int16_t)* w3);
+}
+
+/* Rastro function implementation for 'wwwww' */
+void rst_event_wwwww_ptr(rst_buffer_t *ptr, u_int16_t type, u_int16_t w0, u_int16_t w1, u_int16_t w2, u_int16_t w3, u_int16_t w4)
+{
+  rst_startevent(ptr, type<<18|0x5555);
+  RST_PUT(ptr, u_int32_t, 0x25000000);
+  RST_PUT(ptr, u_int16_t, w0);
+  RST_PUT(ptr, u_int16_t, w1);
+  RST_PUT(ptr, u_int16_t, w2);
+  RST_PUT(ptr, u_int16_t, w3);
+  RST_PUT(ptr, u_int16_t, w4);
+  rst_endevent(ptr);
+}
+/* Rastro function implementation for 'wwwww' - fortran support */
+void rst_event_wwwww_f_( int16_t *type, int16_t* w0, int16_t* w1, int16_t* w2, int16_t* w3, int16_t* w4)
+{
+  rst_event_wwwww ((u_int16_t)* type, (u_int16_t)* w0, (u_int16_t)* w1, (u_int16_t)* w2, (u_int16_t)* w3, (u_int16_t)* w4);
+}
+
+/* Rastro function implementation for 'dwwww' */
+void rst_event_dwwww_ptr(rst_buffer_t *ptr, u_int16_t type, double d0, u_int16_t w0, u_int16_t w1, u_int16_t w2, u_int16_t w3)
+{
+  rst_startevent(ptr, type<<18|0x2555);
+  RST_PUT(ptr, u_int32_t, 0x25000000);
+  RST_PUT(ptr, double, d0);
+  RST_PUT(ptr, u_int16_t, w0);
+  RST_PUT(ptr, u_int16_t, w1);
+  RST_PUT(ptr, u_int16_t, w2);
+  RST_PUT(ptr, u_int16_t, w3);
+  rst_endevent(ptr);
+}
+/* Rastro function implementation for 'dwwww' - fortran support */
+void rst_event_dwwww_f_( int16_t *type, double* d0, int16_t* w0, int16_t* w1, int16_t* w2, int16_t* w3)
+{
+  rst_event_dwwww ((u_int16_t)* type, (double)* d0, (u_int16_t)* w0, (u_int16_t)* w1, (u_int16_t)* w2, (u_int16_t)* w3);
+}
+
+/* Rastro function implementation for 'dww' */
+void rst_event_dww_ptr(rst_buffer_t *ptr, u_int16_t type, double d0, u_int16_t w0, u_int16_t w1)
+{
+  rst_startevent(ptr, type<<18|0x22550);
+  RST_PUT(ptr, double, d0);
+  RST_PUT(ptr, u_int16_t, w0);
+  RST_PUT(ptr, u_int16_t, w1);
+  rst_endevent(ptr);
+}
+/* Rastro function implementation for 'dww' - fortran support */
+void rst_event_dww_f_( int16_t *type, double* d0, int16_t* w0, int16_t* w1)
+{
+  rst_event_dww ((u_int16_t)* type, (double)* d0, (u_int16_t)* w0, (u_int16_t)* w1);
+}
+
+/* Rastro function implementation for 'dwwd' */
+void rst_event_dwwd_ptr(rst_buffer_t *ptr, u_int16_t type, double d0, u_int16_t w0, u_int16_t w1, double d1)
+{
+  rst_startevent(ptr, type<<18|0x22255);
+  RST_PUT(ptr, double, d0);
+  RST_PUT(ptr, double, d1);
+  RST_PUT(ptr, u_int16_t, w0);
+  RST_PUT(ptr, u_int16_t, w1);
+  rst_endevent(ptr);
+}
+/* Rastro function implementation for 'dwwd' - fortran support */
+void rst_event_dwwd_f_( int16_t *type, double* d0, int16_t* w0, int16_t* w1, double* d1)
+{
+  rst_event_dwwd ((u_int16_t)* type, (double)* d0, (u_int16_t)* w0, (u_int16_t)* w1, (double)* d1);
+}
+
+/* Rastro function implementation for 'dwww' */
+void rst_event_dwww_ptr(rst_buffer_t *ptr, u_int16_t type, double d0, u_int16_t w0, u_int16_t w1, u_int16_t w2)
+{
+  rst_startevent(ptr, type<<18|0x22555);
+  RST_PUT(ptr, double, d0);
+  RST_PUT(ptr, u_int16_t, w0);
+  RST_PUT(ptr, u_int16_t, w1);
+  RST_PUT(ptr, u_int16_t, w2);
+  rst_endevent(ptr);
+}
+/* Rastro function implementation for 'dwww' - fortran support */
+void rst_event_dwww_f_( int16_t *type, double* d0, int16_t* w0, int16_t* w1, int16_t* w2)
+{
+  rst_event_dwww ((u_int16_t)* type, (double)* d0, (u_int16_t)* w0, (u_int16_t)* w1, (u_int16_t)* w2);
+}
+
+/* Rastro function implementation for 'dwwwi' */
+void rst_event_dwwwi_ptr(rst_buffer_t *ptr, u_int16_t type, double d0, u_int16_t w0, u_int16_t w1, u_int16_t w2, u_int32_t i0)
+{
+  rst_startevent(ptr, type<<18|0x2755);
+  RST_PUT(ptr, u_int32_t, 0x25000000);
+  RST_PUT(ptr, double, d0);
+  RST_PUT(ptr, u_int32_t, i0);
+  RST_PUT(ptr, u_int16_t, w0);
+  RST_PUT(ptr, u_int16_t, w1);
+  RST_PUT(ptr, u_int16_t, w2);
+  rst_endevent(ptr);
+}
+/* Rastro function implementation for 'dwwwi' - fortran support */
+void rst_event_dwwwi_f_( int16_t *type, double* d0, int16_t* w0, int16_t* w1, int16_t* w2, int32_t* i0)
+{
+  rst_event_dwwwi ((u_int16_t)* type, (double)* d0, (u_int16_t)* w0, (u_int16_t)* w1, (u_int16_t)* w2, (u_int32_t)* i0);
+}
+
+/* Rastro function implementation for 'dwwwww' */
+void rst_event_dwwwww_ptr(rst_buffer_t *ptr, u_int16_t type, double d0, u_int16_t w0, u_int16_t w1, u_int16_t w2, u_int16_t w3, u_int16_t w4)
+{
+  rst_startevent(ptr, type<<18|0x2555);
+  RST_PUT(ptr, u_int32_t, 0x25500000);
+  RST_PUT(ptr, double, d0);
+  RST_PUT(ptr, u_int16_t, w0);
+  RST_PUT(ptr, u_int16_t, w1);
+  RST_PUT(ptr, u_int16_t, w2);
+  RST_PUT(ptr, u_int16_t, w3);
+  RST_PUT(ptr, u_int16_t, w4);
+  rst_endevent(ptr);
+}
+/* Rastro function implementation for 'dwwwww' - fortran support */
+void rst_event_dwwwww_f_( int16_t *type, double* d0, int16_t* w0, int16_t* w1, int16_t* w2, int16_t* w3, int16_t* w4)
+{
+  rst_event_dwwwww ((u_int16_t)* type, (double)* d0, (u_int16_t)* w0, (u_int16_t)* w1, (u_int16_t)* w2, (u_int16_t)* w3, (u_int16_t)* w4);
+}
+
+/* Rastro function implementation for 'dwwwwwi' */
+void rst_event_dwwwwwi_ptr(rst_buffer_t *ptr, u_int16_t type, double d0, u_int16_t w0, u_int16_t w1, u_int16_t w2, u_int16_t w3, u_int16_t w4, u_int32_t i0)
+{
+  rst_startevent(ptr, type<<18|0x2755);
+  RST_PUT(ptr, u_int32_t, 0x25550000);
+  RST_PUT(ptr, double, d0);
+  RST_PUT(ptr, u_int32_t, i0);
+  RST_PUT(ptr, u_int16_t, w0);
+  RST_PUT(ptr, u_int16_t, w1);
+  RST_PUT(ptr, u_int16_t, w2);
+  RST_PUT(ptr, u_int16_t, w3);
+  RST_PUT(ptr, u_int16_t, w4);
+  rst_endevent(ptr);
+}
+/* Rastro function implementation for 'dwwwwwi' - fortran support */
+void rst_event_dwwwwwi_f_( int16_t *type, double* d0, int16_t* w0, int16_t* w1, int16_t* w2, int16_t* w3, int16_t* w4, int32_t* i0)
+{
+  rst_event_dwwwwwi ((u_int16_t)* type, (double)* d0, (u_int16_t)* w0, (u_int16_t)* w1, (u_int16_t)* w2, (u_int16_t)* w3, (u_int16_t)* w4, (u_int32_t)* i0);
+}
+
+/* Rastro function implementation for 'dwwwwwii' */
+void rst_event_dwwwwwii_ptr(rst_buffer_t *ptr, u_int16_t type, double d0, u_int16_t w0, u_int16_t w1, u_int16_t w2, u_int16_t w3, u_int16_t w4, u_int32_t i0, u_int32_t i1)
+{
+  rst_startevent(ptr, type<<18|0x2775);
+  RST_PUT(ptr, u_int32_t, 0x25555000);
+  RST_PUT(ptr, double, d0);
+  RST_PUT(ptr, u_int32_t, i0);
+  RST_PUT(ptr, u_int32_t, i1);
+  RST_PUT(ptr, u_int16_t, w0);
+  RST_PUT(ptr, u_int16_t, w1);
+  RST_PUT(ptr, u_int16_t, w2);
+  RST_PUT(ptr, u_int16_t, w3);
+  RST_PUT(ptr, u_int16_t, w4);
+  rst_endevent(ptr);
+}
+/* Rastro function implementation for 'dwwwwwii' - fortran support */
+void rst_event_dwwwwwii_f_( int16_t *type, double* d0, int16_t* w0, int16_t* w1, int16_t* w2, int16_t* w3, int16_t* w4, int32_t* i0, int32_t* i1)
+{
+  rst_event_dwwwwwii ((u_int16_t)* type, (double)* d0, (u_int16_t)* w0, (u_int16_t)* w1, (u_int16_t)* w2, (u_int16_t)* w3, (u_int16_t)* w4, (u_int32_t)* i0, (u_int32_t)* i1);
+}
+
+/* Rastro function implementation for 'ws' */
+void rst_event_ws_ptr(rst_buffer_t *ptr, u_int16_t type, u_int16_t w0, const char* s0)
+{
+  rst_startevent(ptr, type<<18|0x25100);
+  RST_PUT(ptr, u_int16_t, w0);
+  RST_PUT_STR(ptr, s0);
+  rst_endevent(ptr);
+}
+/* Rastro function implementation for 'ws' - fortran support */
+void rst_event_ws_f_( int16_t *type, int16_t* w0, const char* s0)
+{
+  rst_event_ws ((u_int16_t)* type, (u_int16_t)* w0,  s0);
+}
+
+
+
+
+
+
+
+

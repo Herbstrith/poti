@@ -21,21 +21,24 @@ short FindStringParam(const char* param);
 
 short FindStringParam(const char* param)
 {
+  //int string_reference_id = 888;
   short counter = 0;
   if(stringList == NULL){
     stringList = malloc(sizeof(StringParamsList));
     stringList->string = strdup(param);
     stringList->string_position = counter;
     stringList->next = NULL;
+    //write the string in the file with and id of 888
+   // rst_event_ws(string_reference_id,counter,stringList->string);
     return counter;
   }  
 
   StringParamsList *actual = stringList;  
-  int mycounter =0;
+  /*int mycounter =0;
   while(actual != NULL){
       actual = actual->next;
       mycounter = mycounter + 1;
-  }
+  }*/
   actual = stringList;
   while(actual != NULL){
     if(strcmp(actual->string, param) == 0){
@@ -54,6 +57,8 @@ short FindStringParam(const char* param)
   new_param->string_position = counter;
   new_param->next = NULL;
   actual->next = new_param;
+  //write the string in the file with and id of 888
+  //rst_event_ws(string_reference_id,counter,new_param->string);
   return counter;
 }
 
@@ -80,7 +85,7 @@ void poti_DefineContainerType(const char *alias,
   }else if(poti_mode & POTI_BINARY){
     char temp[50];
     sprintf(temp, "\"%s\"", name);
-    rst_event_ccc(PajeDefineContainerTypeEventId,
+    rst_event_www(PajeDefineContainerTypeEventId,
 		              FindStringParam(alias),
 		              FindStringParam(containerType),
 		              FindStringParam(temp));
@@ -104,7 +109,7 @@ void poti_DefineVariableType(const char *alias,
     sprintf(temp, "\"%s\"", name);
     char temp2[50];
     sprintf(temp2, "\"%s\"", color);
-    rst_event_cccc( PajeDefineVariableTypeEventId,
+    rst_event_wwww( PajeDefineVariableTypeEventId,
                   FindStringParam(alias),
                   FindStringParam(containerType),
                   FindStringParam(temp),
@@ -125,7 +130,7 @@ void poti_DefineStateType(const char *alias,
   }else if(poti_mode & POTI_BINARY){
     char temp[50];
     sprintf(temp, "\"%s\"", name);
-    rst_event_ccc(PajeDefineStateTypeEventId,
+    rst_event_www(PajeDefineStateTypeEventId,
                   FindStringParam(alias),
                   FindStringParam(containerType),
                   FindStringParam(temp));
@@ -145,7 +150,7 @@ void poti_DefineEventType(const char *alias,
   }else if(poti_mode & POTI_BINARY){
     char temp[50];
     sprintf(temp, "\"%s\"", name);
-    rst_event_ccc(PajeDefineEventTypeEventId,
+    rst_event_www(PajeDefineEventTypeEventId,
                   FindStringParam(alias),    
                   FindStringParam(containerType),   
                   FindStringParam(temp));
@@ -169,7 +174,7 @@ void poti_DefineLinkType(const char *alias,
   }else if(poti_mode & POTI_BINARY){
     char temp[50];
     sprintf(temp, "\"%s\"", name);
-    rst_event_ccccc(PajeDefineLinkTypeEventId,
+    rst_event_wwwww(PajeDefineLinkTypeEventId,
                   FindStringParam(alias),
                   FindStringParam(containerType),
                   FindStringParam(startContainerType),
@@ -195,7 +200,7 @@ void poti_DefineEntityValue(const char *alias,
     sprintf(temp, "\"%s\"", name);
     char temp2[50];
     sprintf(temp2, "\"%s\"", color);
-    rst_event_cccc(PajeDefineEntityValueEventId,
+    rst_event_wwww(PajeDefineEntityValueEventId,
                   FindStringParam(alias),
                   FindStringParam(entityType),
                   FindStringParam(temp),
@@ -221,7 +226,7 @@ void poti_CreateContainer(double timestamp,
   }else if(poti_mode & POTI_BINARY){
     char temp[50];
     sprintf(temp, "\"%s\"", name);
-    rst_event_dcccc(PajeCreateContainerEventId,
+    rst_event_dwwww(PajeCreateContainerEventId,
               paje_event_timestamp(timestamp),
               FindStringParam(alias),
               FindStringParam(type),
@@ -241,7 +246,7 @@ void poti_DestroyContainer(double timestamp,
            type,
            container);
   }else if(poti_mode & POTI_BINARY){
-    rst_event_dcc(PajeDestroyContainerEventId,
+    rst_event_dww(PajeDestroyContainerEventId,
               paje_event_timestamp(timestamp),
               FindStringParam(type),
               FindStringParam(container));
@@ -262,7 +267,7 @@ void poti_SetVariable (double timestamp,
             type,
             value);
   }else if(poti_mode & POTI_BINARY){
-      rst_event_dccd(PajeSetVariableEventId,
+      rst_event_dwwd(PajeSetVariableEventId,
               paje_event_timestamp(timestamp),
               FindStringParam(container),
               FindStringParam(type),
@@ -283,7 +288,7 @@ void poti_AddVariable (double timestamp,
             type,
             value);
   }else if(poti_mode & POTI_BINARY){
-    rst_event_dccd( PajeAddVariableEventId,
+    rst_event_dwwd( PajeAddVariableEventId,
               paje_event_timestamp(timestamp),
               FindStringParam(container),
               FindStringParam(type),
@@ -304,7 +309,7 @@ void poti_SubVariable (double timestamp,
             type,
             value);
   }else if(poti_mode & POTI_BINARY){
-    rst_event_dccd(PajeSubVariableEventId,
+    rst_event_dwwd(PajeSubVariableEventId,
               paje_event_timestamp(timestamp),
               FindStringParam(container),
               FindStringParam(type),
@@ -325,7 +330,7 @@ void poti_SetState(double timestamp,
            type,
            value);
   }else if(poti_mode & POTI_BINARY){
-    rst_event_dccc(PajeSetStateEventId,
+    rst_event_dwww(PajeSetStateEventId,
              paje_event_timestamp(timestamp),
               FindStringParam(container),
             FindStringParam(type),
@@ -347,7 +352,7 @@ void poti_PushState(double timestamp,
            type,
            value);
   }else if(poti_mode & POTI_BINARY){
-    rst_event_dccc(PajePushStateEventId,
+    rst_event_dwww(PajePushStateEventId,
              paje_event_timestamp(timestamp),
              FindStringParam(container),
             FindStringParam(type),
@@ -372,7 +377,7 @@ void poti_PushStateMark(double timestamp,
               value,
               mark);
     }else if(poti_mode & POTI_BINARY){
-      rst_event_dccci(PajePushStateMarkEventId,
+      rst_event_dwwwi(PajePushStateMarkEventId,
                   paje_event_timestamp(timestamp),
                  FindStringParam(container),
                   FindStringParam(type),
@@ -395,7 +400,7 @@ void poti_PopState(double timestamp,
            container,
            type);
   }else if(poti_mode & POTI_BINARY){
-    rst_event_dcc(PajePopStateEventId,
+    rst_event_dww(PajePopStateEventId,
              paje_event_timestamp(timestamp),
              FindStringParam(container),
              FindStringParam(type));
@@ -413,7 +418,7 @@ void poti_ResetState(double timestamp,
            container,
            type);
   }else if(poti_mode & POTI_BINARY){
-    rst_event_dcc(PajeResetStateEventId,
+    rst_event_dww(PajeResetStateEventId,
               paje_event_timestamp(timestamp),
               FindStringParam(container),
               FindStringParam(type));
@@ -437,7 +442,7 @@ void poti_StartLink(double timestamp,
          value,
          key);
   }else if(poti_mode & POTI_BINARY){
-    rst_event_dccccc(PajeStartLinkEventId,
+    rst_event_dwwwww(PajeStartLinkEventId,
               paje_event_timestamp(timestamp),
               FindStringParam(container),
               FindStringParam(type),
@@ -467,7 +472,7 @@ void poti_StartLinkSize(double timestamp,
               key,
               size);
     }else if(poti_mode & POTI_BINARY){
-      rst_event_dccccci(PajeStartLinkSizeEventId,
+      rst_event_dwwwwwi(PajeStartLinkSizeEventId,
                   paje_event_timestamp(timestamp),
                   FindStringParam(container),
                   FindStringParam(type),
@@ -503,7 +508,7 @@ void poti_StartLinkSizeMark(double timestamp,
               size,
               mark);
     }else if(poti_mode & POTI_BINARY){
-      rst_event_dcccccii(PajeStartLinkSizeMarkEventId,
+      rst_event_dwwwwwii(PajeStartLinkSizeMarkEventId,
                 paje_event_timestamp(timestamp),
                 FindStringParam(container),
                 FindStringParam(type),
@@ -535,7 +540,7 @@ void poti_EndLink(double timestamp,
            value,
            key);
   }else if(poti_mode & POTI_BINARY){
-    rst_event_dccccc(PajeEndLinkEventId,
+    rst_event_dwwwww(PajeEndLinkEventId,
              paje_event_timestamp(timestamp),
              FindStringParam(container),
               FindStringParam(type),
@@ -558,7 +563,7 @@ void poti_NewEvent(double timestamp,
            type,
            value);
   }else if(poti_mode & POTI_BINARY){
-    rst_event_dccc(PajeNewEventEventId,
+    rst_event_dwww(PajeNewEventEventId,
              paje_event_timestamp(timestamp),
             FindStringParam(container),
             FindStringParam(type),

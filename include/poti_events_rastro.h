@@ -125,6 +125,74 @@ void rst_event_cs_f_ (int16_t *type, int8_t* c0, const char* s0);
 
 
 
+
+/* USING 16 bits for reference counter */
+
+/* Rastro function prototype for 'www' */
+void rst_event_www_ptr(rst_buffer_t *ptr, u_int16_t type, u_int16_t w0, u_int16_t w1, u_int16_t w2);
+void rst_event_www_f_ (int16_t *type, int16_t* w0, int16_t* w1, int16_t* w2);
+#define rst_event_www(type, w0, w1, w2) rst_event_www_ptr(RST_PTR, type, w0, w1, w2)
+
+/* Rastro function prototype for 'wwww' */
+void rst_event_wwww_ptr(rst_buffer_t *ptr, u_int16_t type, u_int16_t w0, u_int16_t w1, u_int16_t w2, u_int16_t w3);
+void rst_event_wwww_f_ (int16_t *type, int16_t* w0, int16_t* w1, int16_t* w2, int16_t* w3);
+#define rst_event_wwww(type, w0, w1, w2, w3) rst_event_wwww_ptr(RST_PTR, type, w0, w1, w2, w3)
+
+/* Rastro function prototype for 'wwwww' */
+void rst_event_wwwww_ptr(rst_buffer_t *ptr, u_int16_t type, u_int16_t w0, u_int16_t w1, u_int16_t w2, u_int16_t w3, u_int16_t w4);
+void rst_event_wwwww_f_ (int16_t *type, int16_t* w0, int16_t* w1, int16_t* w2, int16_t* w3, int16_t* w4);
+#define rst_event_wwwww(type, w0, w1, w2, w3, w4) rst_event_wwwww_ptr(RST_PTR, type, w0, w1, w2, w3, w4)
+
+/* Rastro function prototype for 'dwwww' */
+void rst_event_dwwww_ptr(rst_buffer_t *ptr, u_int16_t type, double d0, u_int16_t w0, u_int16_t w1, u_int16_t w2, u_int16_t w3);
+void rst_event_dwwww_f_ (int16_t *type, double* d0, int16_t* w0, int16_t* w1, int16_t* w2, int16_t* w3);
+#define rst_event_dwwww(type, d0, w0, w1, w2, w3) rst_event_dwwww_ptr(RST_PTR, type, d0, w0, w1, w2, w3)
+
+/* Rastro function prototype for 'dww' */
+void rst_event_dww_ptr(rst_buffer_t *ptr, u_int16_t type, double d0, u_int16_t w0, u_int16_t w1);
+void rst_event_dww_f_ (int16_t *type, double* d0, int16_t* w0, int16_t* w1);
+#define rst_event_dww(type, d0, w0, w1) rst_event_dww_ptr(RST_PTR, type, d0, w0, w1)
+
+/* Rastro function prototype for 'dwwd' */
+void rst_event_dwwd_ptr(rst_buffer_t *ptr, u_int16_t type, double d0, u_int16_t w0, u_int16_t w1, double d1);
+void rst_event_dwwd_f_ (int16_t *type, double* d0, int16_t* w0, int16_t* w1, double* d1);
+#define rst_event_dwwd(type, d0, w0, w1, d1) rst_event_dwwd_ptr(RST_PTR, type, d0, w0, w1, d1)
+
+/* Rastro function prototype for 'dwww' */
+void rst_event_dwww_ptr(rst_buffer_t *ptr, u_int16_t type, double d0, u_int16_t w0, u_int16_t w1, u_int16_t w2);
+void rst_event_dwww_f_ (int16_t *type, double* d0, int16_t* w0, int16_t* w1, int16_t* w2);
+#define rst_event_dwww(type, d0, w0, w1, w2) rst_event_dwww_ptr(RST_PTR, type, d0, w0, w1, w2)
+
+/* Rastro function prototype for 'dwwwi' */
+void rst_event_dwwwi_ptr(rst_buffer_t *ptr, u_int16_t type, double d0, u_int16_t w0, u_int16_t w1, u_int16_t w2, u_int32_t i0);
+void rst_event_dwwwi_f_ (int16_t *type, double* d0, int16_t* w0, int16_t* w1, int16_t* w2, int32_t* i0);
+#define rst_event_dwwwi(type, d0, w0, w1, w2, i0) rst_event_dwwwi_ptr(RST_PTR, type, d0, w0, w1, w2, i0)
+
+/* Rastro function prototype for 'dwwwww' */
+void rst_event_dwwwww_ptr(rst_buffer_t *ptr, u_int16_t type, double d0, u_int16_t w0, u_int16_t w1, u_int16_t w2, u_int16_t w3, u_int16_t w4);
+void rst_event_dwwwww_f_ (int16_t *type, double* d0, int16_t* w0, int16_t* w1, int16_t* w2, int16_t* w3, int16_t* w4);
+#define rst_event_dwwwww(type, d0, w0, w1, w2, w3, w4) rst_event_dwwwww_ptr(RST_PTR, type, d0, w0, w1, w2, w3, w4)
+
+/* Rastro function prototype for 'dwwwwwi' */
+void rst_event_dwwwwwi_ptr(rst_buffer_t *ptr, u_int16_t type, double d0, u_int16_t w0, u_int16_t w1, u_int16_t w2, u_int16_t w3, u_int16_t w4, u_int32_t i0);
+void rst_event_dwwwwwi_f_ (int16_t *type, double* d0, int16_t* w0, int16_t* w1, int16_t* w2, int16_t* w3, int16_t* w4, int32_t* i0);
+#define rst_event_dwwwwwi(type, d0, w0, w1, w2, w3, w4, i0) rst_event_dwwwwwi_ptr(RST_PTR, type, d0, w0, w1, w2, w3, w4, i0)
+
+/* Rastro function prototype for 'dwwwwwii' */
+void rst_event_dwwwwwii_ptr(rst_buffer_t *ptr, u_int16_t type, double d0, u_int16_t w0, u_int16_t w1, u_int16_t w2, u_int16_t w3, u_int16_t w4, u_int32_t i0, u_int32_t i1);
+void rst_event_dwwwwwii_f_ (int16_t *type, double* d0, int16_t* w0, int16_t* w1, int16_t* w2, int16_t* w3, int16_t* w4, int32_t* i0, int32_t* i1);
+#define rst_event_dwwwwwii(type, d0, w0, w1, w2, w3, w4, i0, i1) rst_event_dwwwwwii_ptr(RST_PTR, type, d0, w0, w1, w2, w3, w4, i0, i1)
+
+/* Rastro function prototype for 'ws' */
+void rst_event_ws_ptr(rst_buffer_t *ptr, u_int16_t type, u_int16_t w0, const char* s0);
+void rst_event_ws_f_ (int16_t *type, int16_t* w0, const char* s0);
+#define rst_event_ws(type, w0, s0) rst_event_ws_ptr(RST_PTR, type, w0, s0)
+
+
+
+
+
+
 void rst_init_f_(int64_t *id1, int64_t *id2);
 void rst_finalize_f_ (void);
 
