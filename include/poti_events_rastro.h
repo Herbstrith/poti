@@ -189,7 +189,10 @@ void rst_event_ws_f_ (int16_t *type, int16_t* w0, const char* s0);
 #define rst_event_ws(type, w0, s0) rst_event_ws_ptr(RST_PTR, type, w0, s0)
 
 
-
+/* Rastro function prototype for 's' */
+void rst_event_s_ptr(rst_buffer_t *ptr, u_int16_t type, const char* s0);
+void rst_event_s_f_ (int16_t *type, const char* s0);
+#define rst_event_s(type, s0) rst_event_s_ptr(RST_PTR, type, s0)
 
 
 

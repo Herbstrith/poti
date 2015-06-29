@@ -615,6 +615,18 @@ void rst_event_ws_f_( int16_t *type, int16_t* w0, const char* s0)
 }
 
 
+/* Rastro function implementation for 's' */
+void rst_event_s_ptr(rst_buffer_t *ptr, u_int16_t type, const char* s0)
+{
+  rst_startevent(ptr, type<<18|0x21000);
+  RST_PUT_STR(ptr, s0);
+  rst_endevent(ptr);
+}
+/* Rastro function implementation for 's' - fortran support */
+void rst_event_s_f_( int16_t *type, const char* s0)
+{
+  rst_event_s ((u_int16_t)* type,  s0);
+}
 
 
 

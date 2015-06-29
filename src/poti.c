@@ -26,21 +26,6 @@ int poti_mode = 0;
 
 StringParamsList *stringList = NULL;
 
-void PrintStringParam(void);
-
-void PrintStringParam(void)
-{
-  StringParamsList *actual = stringList;  
-  while(actual != NULL){
-      printf("\n %d %s",actual->string_position, actual->string);
-      rst_event_cs( 555,
-		    actual->string_position,
-		    actual->string);
-      actual = actual->next;
-  }
-}
-
-
 int poti_init(int output, const char *filename, int header_basic, int header_old)
 {
   poti_mode = output;
@@ -65,10 +50,6 @@ int poti_init(int output, const char *filename, int header_basic, int header_old
 void poti_close ()
 {
   if (poti_mode & POTI_BINARY) {
-    rst_finalize();
-    //generate the file with the strings
-    rst_init_filename("strings_reference.rst");
-    PrintStringParam();
     rst_finalize();
   }else if(poti_mode & POTI_TEXT) {
     if (paje_file != stdout) {

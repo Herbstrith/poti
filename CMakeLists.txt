@@ -16,6 +16,11 @@ CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
 PROJECT(poti)
 SET(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake")
 
+OPTION(STRING_REFERENCE "Generates a smaller .rst file, but with a slower reading performance" ON)
+IF(STRING_REFERENCE)
+    ADD_DEFINITIONS(-DSTRING_REFERENCE)
+ENDIF(STRING_REFERENCE)
+
 find_package(BZip2)
 if (BZIP2_FOUND)
   include_directories(${BZIP_INCLUDE_DIRS})
