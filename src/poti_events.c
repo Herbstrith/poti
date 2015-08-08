@@ -257,7 +257,6 @@ void poti_CreateContainer(double timestamp,
                          const char *container,
                          const char *name)
 {
-    FindStringParam(name);
   if(poti_mode & POTI_TEXT){
     fprintf(paje_file,"%d %.9f %s %s %s \"%s\"\n",
            PajeCreateContainerEventId,
