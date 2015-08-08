@@ -18,13 +18,13 @@
 #include "main.h"
 
 static char doc[] = "Translates from textual to binary Paje file format";
-static char args_doc[] = "{file.paje}";
+static char args_doc[] = "{file.paje} {outputfilename.rst}";
 
 static struct argp_option options[] = {
   { 0 }
 };
 
-#define MAX_INPUT_SIZE 1
+#define MAX_INPUT_SIZE 2
 struct arguments {
   char *input[MAX_INPUT_SIZE];
   int input_size;
@@ -63,6 +63,8 @@ void yyerror (char const *s) {
 int main (int argc, char **argv)
 {
   struct arguments arguments;
+  char* filename = (char *) malloc(sizeof(char) * (80));
+  sprintf(filename, "output.rst");
   bzero (&arguments, sizeof(struct arguments));
   if (argp_parse (&argp, argc, argv, 0, 0, &arguments) == ARGP_KEY_ERROR){
     fprintf(stderr,
@@ -81,9 +83,12 @@ int main (int argc, char **argv)
 	      __FUNCTION__, arguments.input[0]);
       return 1;
     }
+    if(arguments.input_size > 1){
+        sprintf(filename, "%s",arguments.input[1]);
+    }
   }
   
-  poti_init(POTI_BINARY, "output.rst", -1, -1);
+  poti_init(POTI_BINARY, filename, -1, -1);
   int ret = yyparse();
   poti_close();
   return ret;
